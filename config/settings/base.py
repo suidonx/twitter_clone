@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
+    "sass_processor",
 ]
 
 MIDDLEWARE = [
@@ -131,11 +132,22 @@ STORAGES = {
     },
 }
 
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "sass_processor.finders.CssFinder",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# SASS/SCSS
+
+SASS_PRECISION = 8
+SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r"^.+\.scss$"
+
 # media
 
 MEDIA_URL = "/media/"

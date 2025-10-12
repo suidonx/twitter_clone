@@ -5,3 +5,5 @@ gunicorn==23.0.0
 whitenoise==6.10.0
 django-cloudinary-storage==0.3.0
 cloudinary==1.44.1
+django-compressor
+django-sass-processor
