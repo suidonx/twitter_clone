@@ -7,3 +7,4 @@ django-cloudinary-storage==0.3.0
 cloudinary==1.44.1
 django-compressor
 django-sass-processor
+django-allauth[socialaccount]
