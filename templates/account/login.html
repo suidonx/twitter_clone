@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% block title %}
+  Xにログイン / X
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet" href="{% sass_src 'scss/login.scss' %}">
+{% endblock scss %}
+<!-- content -->
+{% block content %}
+  <div class="container">
+    <img src="{% static "images/x-logo.svg" %}"
+         alt="x-logo"
+         width="30"
+         height="30">
+    <div class="login-form">
+      <h2>Xにログイン</h2>
+      <form action="">
+        <input type="email" placeholder="メールアドレス">
+        <div class="invalid-feedback d-block">メールアドレスを入力してください</div>
+        <button class="next">次へ</button>
+        <button class="forgot-password">パスワードを忘れた場合はこちら</button>
+        <small>アカウントをお持ちでない場合は<a href="">登録</a></small>
+      </form>
+    </div>
+  </div>
+{% endblock content %}
