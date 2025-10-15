@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% block title %}
+  アカウント作成 / X
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet" href="{% sass_src 'scss/signup.scss' %}">
+{% endblock scss %}
+{% block content %}
+  <div class="container">
+    <img src="{% static 'images/x-logo.svg' %}"
+         alt="x-logo"
+         width="30"
+         height="30">
+    <div class="account-form">
+      <h2>アカウントを作成</h2>
+      <form action="">
+        <div class="address">
+          <input type="text" placeholder="名前" maxlength="50" required>
+          <div class="invalid-feedback d-block">名前を入力してください</div>
+          <input type="email" placeholder="メール" required>
+          <div class="invalid-feedback d-block">メールアドレスを入力してください</div>
+          <input type="tel" placeholder="電話番号">
+          <div class="invalid-feedback d-block">正しい電話番号を入力してください</div>
+        </div>
+        <p>生年月日</p>
+        <small>この情報は公開されません。このアカウントをビジネス、ペットなどに使う場合でも、ご自身の年齢を確認してください。</small>
+        <div class="birth-of-date">
+          <input type="text" placeholder="YYYYMMDD">
+          <div class="invalid-feedback d-block">正しい生年月日を入力してください</div>
+        </div>
+        <button>次へ</button>
+      </form>
+    </div>
+  </div>
+{% endblock content %}
