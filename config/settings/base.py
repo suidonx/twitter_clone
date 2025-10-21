@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import environ
 
+from django.urls import reverse_lazy
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -88,7 +89,6 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
-WSGI_APPLICATION = "config.wsgi.application"
 SITE_ID = 1
 
 # サインアップ設定
@@ -99,8 +99,17 @@ ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
 LOGIN_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy("account_login")
 
+# メールアドレスを確認してからログイン可能にする
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
+# メールアドレスのみでログインする
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+# ACCOUNT_LOGIN_METHODS = {"email"}
 
+# wsgi
+WSGI_APPLICATION = "config.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

@@ -13,7 +13,7 @@ body {
   }
 
   .login-form {
-    h2 {
+    h1 {
       color: white;
     }
 
@@ -22,6 +22,7 @@ body {
         border: 1px solid gray;
         border-radius: 5px;
         background-color: black;
+        color: white;
         margin-top: 20px;
         padding: 10px;
         width: 100%;
@@ -35,20 +36,39 @@ body {
         border: 1px solid gray;
         border-radius: 25px;
         font-weight: bold;
+        margin-block: 30px;
+        transition: all 0.5s;
         padding: 8px;
-        margin-top: 30px;
         width: 100%;
       }
 
+      button:hover {
+        opacity: 0.8;
+      }
+
       .forgot-password {
-        background-color: black;
+        border: 1px solid gray;
+        border-radius: 25px;
         color: white;
+        display: inline-block;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.5s;
+        padding: 8px;
+        width: 100%;
+      }
+
+      .forgot-password:hover {
+        opacity: 0.8;
       }
 
       small {
+        color: white;
         display: inline-block;
         margin-top: 50px;
         a {
+          color: dodgerblue;
           text-decoration: none;
         }
       }

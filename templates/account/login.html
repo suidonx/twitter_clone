@@ -2,26 +2,35 @@
 {% load static %}
 {% load sass_tags %}
 {% block title %}
-  Xにログイン / X
+  Xにログイン / Xクローン
 {% endblock title %}
 {% block scss %}
   <link rel="stylesheet" href="{% sass_src 'scss/login.scss' %}">
 {% endblock scss %}
 <!-- content -->
 {% block content %}
+  {% if messages %}
+    <ul class="messages list-unstyled">
+      {% for message in messages %}
+        <li {% if message.tags %}class="list-unstyled alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
   <div class="container">
     <img src="{% static "images/x-logo.svg" %}"
          alt="x-logo"
          width="30"
          height="30">
     <div class="login-form">
-      <h2>Xにログイン</h2>
-      <form action="">
-        <input type="email" placeholder="メールアドレス">
-        <div class="invalid-feedback d-block">メールアドレスを入力してください</div>
+      <h1>Xにログイン</h1>
+      <form action="{% url "account_login" %}" method="post">
+        {% csrf_token %}
+        <div class="invalid-feedback d-block">{{ form.non_field_errors }}</div>
+        {{ form.login }}
+        {{ form.password }}
         <button class="next">次へ</button>
-        <button class="forgot-password">パスワードを忘れた場合はこちら</button>
-        <small>アカウントをお持ちでない場合は<a href="">登録</a></small>
+        <a href="{% url "account_reset_password" %}" class="forgot-password">パスワードを忘れた場合はこちら</a>
+        <small>アカウントをお持ちでない場合は<a href="{% url "account_signup" %}">登録</a></small>
       </form>
     </div>
   </div>
