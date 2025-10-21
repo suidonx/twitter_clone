@@ -9,3 +9,4 @@ django-compressor
 django-sass-processor
 django-allauth[socialaccount]
 libsass
+Pillow
