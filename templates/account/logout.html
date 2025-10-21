@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% block title %}
+  ログアウト / Xクローン
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet" href="{% sass_src 'scss/logout.scss' %}">
+{% endblock scss %}
+{% block content %}
+  <div class="container">
+    <img src="{% static "images/x-logo.svg" %}"
+         alt="x-logo"
+         width="30"
+         height="30">
+    <h1>ログアウト</h1>
+    <p>ログアウトしますか？</p>
+    <form action="{% url "account_logout" %}" method="post">
+      {% csrf_token %}
+      <button>ログアウト</button>
+    </form>
+  </div>
+{% endblock content %}
