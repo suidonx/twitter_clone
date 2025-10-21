@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% block title %}
+  ホーム / Xクローン
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet" href="{% sass_src 'scss/top.scss' %}">
+{% endblock scss %}
+<!-- content -->
+{% block content %}
+  {% if messages %}
+    <ul class="messages list-unstyled">
+      {% for message in messages %}
+        <li {% if message.tags %}class="list-unstyled alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <div class="container">
+    <header>
+      <div class="header-logo">
+        <img src="{% static "images/x-logo.svg" %}"
+             alt="x-logo"
+             width="25"
+             height="25"
+             class="logo">
+        <p>Xクローン</p>
+      </div>
+      <ul>
+        <li class="logout">
+          <a href="{% url "account_logout" %}">ログアウト</a>
+        </li>
+        <li class="login">
+          <a href="{% url "account_login" %}">ログイン</a>
+        </li>
+        <li class="signup">
+          <a href="{% url "account_signup" %}">新規登録</a>
+        </li>
+      </ul>
+    </header>
+    <nav>
+      <ul>
+        <li>
+          <a href="">
+            <i class="bi bi-house-door"></i>ホーム
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-search"></i>話題を検索
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-bell"></i>通知
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-envelope"></i>メッセージ
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-cone"></i>Grok
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-card-list"></i>リスト
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-bookmark"></i>ブックマーク
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-people"></i>コミュニティ
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-twitter-x"></i>プレミアム
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-person"></i>プロフィール
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-chat-dots"></i>もっと見る
+          </a>
+        </li>
+      </ul>
+      <button>ポストする</button>
+      <div class="user-name">ユーザー名: {{ user.username }}</div>
+    </nav>
+    <main>
+      <h2>ツイート画面</h2>
+    </main>
+    <aside>
+      <h2>お知らせ画面</h2>
+    </aside>
+  </div>
+{% endblock content %}
