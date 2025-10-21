@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% block title %}
+  メールアドレスの確認
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet" href="{% sass_src 'scss/email_confirm.scss' %}">
+{% endblock scss %}
+<!-- content -->
+{% block content %}
+  <div class="container">
+    <h1>メールアドレスの確認</h1>
+    {% if confirmation %}
+      <p>
+        {% with confirmation.email_address.email as email %}
+          {% with confirmation.email_address.user as user %}
+            メールアドレス: <a href="mailto:{{ email }}">{{ email }}</a>がユーザー: {{ user }}さんのものであることを確認してください。
+          {% endwith %}
+        {% endwith %}
+      </p>
+      <form method="post"
+            action="{% url "account_confirm_email" confirmation.key %}">
+        {% csrf_token %}
+        <button type="submit">確認する</button>
+      </form>
+    {% else %}
+      <p>
+        このメール確認リンクは期限切れまたは無効です。<a href="{% url "account_email" %}">新しいメール確認リクエストを発行する。</a>
+      </p>
+    {% endif %}
+  </div>
+{% endblock content %}
