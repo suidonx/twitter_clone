@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import environ
+import os
 
 from django.urls import reverse_lazy
 from pathlib import Path
@@ -189,3 +190,11 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 # custom user model
 AUTH_USER_MODEL = "accounts.CustomUser"
+
+# mailcather
+if DEBUG:
+    EMAIL_HOST = os.getenv("EMAIL_HOST", "")
+    EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
+    EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
+    EMAIL_PORT = os.getenv("EMAIL_PORT", 587)
+    EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", False)
