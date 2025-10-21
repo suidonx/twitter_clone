@@ -78,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-# django all auth
+# django-allauth config
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     "django.contrib.auth.backends.ModelBackend",
