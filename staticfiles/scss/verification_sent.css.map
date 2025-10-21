@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "verification_sent.css",
+	"sources": [
+		"verification_sent.scss"
+	],
+	"names": [],
+	"mappings": "AAAA,AAAA,IAAI,CAAC;EACH,gBAAgB,EAAE,KAAK;EACvB,MAAM,EAAE,KAAK,GACd;;AAED,AAAA,UAAU,CAAC;EACT,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,IAAI,GAKd;EAPD,AAIE,UAJQ,CAIR,EAAE,CAAC;IACD,aAAa,EAAE,IAAI,GACpB"
+}
