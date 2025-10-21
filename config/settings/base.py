@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "sass_processor",
+    "django.contrib.sites",
+    "accounts.apps.AccountsConfig",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -87,6 +89,17 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 WSGI_APPLICATION = "config.wsgi.application"
+SITE_ID = 1
+
+# サインアップ設定
+ACCOUNT_SIGNUP_FIELDS = ["username*", "email*", "password1*", "password2*"]
+ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
+
+# ログイン・ログアウト後のリダイレクト先
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy("account_login")
+
+
 
 
 # Database

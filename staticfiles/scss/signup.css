@@ -9,7 +9,7 @@ body {
       width: 100%; }
     body .container .account-form {
       margin-bottom: 30px; }
-      body .container .account-form h2 {
+      body .container .account-form h1 {
         color: white; }
       body .container .account-form form .address {
         display: flex;
