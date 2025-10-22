@@ -1,0 +1,46 @@
+body {
+  background-color: black;
+  height: 100vh; }
+  body .container {
+    padding: 3rem;
+    width: 600px; }
+    body .container img {
+      margin-bottom: 30px;
+      width: 100%; }
+    body .container .account-form {
+      margin-bottom: 30px; }
+      body .container .account-form h1 {
+        color: white; }
+      body .container .account-form form .address {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px; }
+      body .container .account-form form p {
+        color: white;
+        margin: 0; }
+      body .container .account-form form small {
+        color: gray; }
+      body .container .account-form form .birth-of-date {
+        margin-top: 30px; }
+        body .container .account-form form .birth-of-date input {
+          margin: 0; }
+      body .container .account-form form button {
+        border-radius: 25px;
+        font-weight: bold;
+        margin-top: 50px;
+        padding: 10px;
+        width: 100%; }
+
+input {
+  background-color: black;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: white;
+  margin-top: 25px;
+  padding: 10px;
+  width: 100%; }
+
+input:focus {
+  border: 1px solid #1d9bf1; }
+
+/*# sourceMappingURL=signup.css.map */

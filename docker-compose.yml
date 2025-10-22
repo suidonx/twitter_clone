@@ -28,6 +28,16 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    environment:
+      EMAIL_HOST: smtp
+      EMAIL_PORT: 1025
+      DJANGO_SETTINGS_MODULE: config.settings.local
+
+  smtp:
+    image: schickling/mailcatcher
+    ports:
+      - "1080:1080"
+      - "1025:1025"
 
 volumes:
   db-data:

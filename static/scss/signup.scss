@@ -1,0 +1,65 @@
+body {
+  background-color: black;
+  height: 100vh;
+
+  .container {
+    padding: 3rem;
+    width: 600px;
+
+    img {
+      margin-bottom: 30px;
+      width: 100%;
+    }
+
+    .account-form {
+      margin-bottom: 30px;
+
+      h1 {
+        color: white;
+      }
+
+      form {
+        .address {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 20px;
+        }
+        p {
+          color: white;
+          margin: 0;
+        }
+        small {
+          color: gray;
+        }
+
+        .birth-of-date {
+          margin-top: 30px;
+          input {
+            margin: 0;
+          }
+        }
+        button {
+          border-radius: 25px;
+          font-weight: bold;
+          margin-top: 50px;
+          padding: 10px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+input {
+  background-color: black;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: white;
+  margin-top: 25px;
+  padding: 10px;
+  width: 100%;
+}
+
+input:focus {
+  border: 1px solid #1d9bf1;
+}

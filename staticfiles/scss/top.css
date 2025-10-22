@@ -1,0 +1,106 @@
+body {
+  background-color: black;
+  height: 100vh;
+  width: 100%; }
+
+.container {
+  display: grid;
+  grid-template: "header header header" 50px "left center right" / 300px 1fr 350px;
+  height: 100%; }
+
+header {
+  border-bottom: 1px solid gray;
+  display: flex;
+  grid-area: header;
+  justify-content: space-between;
+  padding: 10px; }
+  header .header-logo {
+    align-items: center;
+    display: flex;
+    gap: 20px; }
+    header .header-logo .logo {
+      margin-left: 20px; }
+    header .header-logo p {
+      color: white;
+      font-weight: bold;
+      margin: 0;
+      padding: 0; }
+  header ul {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    justify-content: end;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 300px; }
+  header li {
+    background-color: #1d9bf0;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: bold; }
+    header li a {
+      color: white;
+      display: block;
+      padding: 5px 10px;
+      text-decoration: none; }
+    header li a:hover {
+      color: white;
+      opacity: 0.8; }
+  header .login,
+  header .logout {
+    background-color: white; }
+    header .login a,
+    header .logout a {
+      color: #1d9bf0; }
+    header .login a:hover,
+    header .logout a:hover {
+      color: #1d9bf0; }
+
+nav {
+  color: white;
+  grid-area: left;
+  padding: 10px; }
+  nav ul {
+    margin: 0px;
+    padding: 10px; }
+    nav ul .bi {
+      font-size: 1.5rem;
+      margin-right: 20px; }
+    nav ul li {
+      font-size: 1.3rem;
+      list-style: none;
+      margin-bottom: 20px; }
+      nav ul li a {
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        transition: all 0.2s; }
+      nav ul li a:hover {
+        color: white;
+        background-color: #282727;
+        border-radius: 30px;
+        opacity: 0.8; }
+  nav button {
+    border-radius: 30px;
+    font-weight: bold;
+    padding: 12px;
+    transition: all 0.5s;
+    width: 80%; }
+  nav button:hover {
+    opacity: 0.8; }
+  nav .user-name {
+    color: greenyellow;
+    font-weight: bold; }
+
+main {
+  border: 1px solid gray;
+  color: white;
+  grid-area: center; }
+
+aside {
+  border: 1px solid gray;
+  color: white;
+  grid-area: right; }
+
+/*# sourceMappingURL=top.css.map */

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% block title %}
+  メールアドレスを確認してください / Xクローン
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet" href="{% sass_src 'scss/verification_sent.scss' %}">
+{% endblock scss %}
+<!-- content -->
+{% block content %}
+  {% if messages %}
+    <ul class="messages list-unstyled">
+      {% for message in messages %}
+        <li {% if message.tags %}class="list-unstyled alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <div class="container">
+    <h1>メールアドレスを確認してください</h1>
+    <p>
+      確認のメールを送信しました。メールに記載されたリンクをクリックして、ユーザー登録を完了させてください。
+      <br>
+      確認メールが届かないときは迷惑メールフォルダをご確認ください。
+      <br>
+      しばらくしても確認のメールが届かない場合はお問い合わせください。
+    </p>
+  </div>
+{% endblock content %}

@@ -1,0 +1,38 @@
+body {
+  background-color: black;
+  height: 100vh; }
+
+.container {
+  padding: 7rem;
+  width: 600px; }
+  .container img {
+    margin-bottom: 30px;
+    width: 100%; }
+  .container .login-form h2 {
+    color: white; }
+  .container .login-form form input {
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: black;
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%; }
+  .container .login-form form input:focus {
+    border: 1px solid #1d9bf1; }
+  .container .login-form form button {
+    border: 1px solid gray;
+    border-radius: 25px;
+    font-weight: bold;
+    padding: 8px;
+    margin-top: 30px;
+    width: 100%; }
+  .container .login-form form .forgot-password {
+    background-color: black;
+    color: white; }
+  .container .login-form form small {
+    display: inline-block;
+    margin-top: 50px; }
+    .container .login-form form small a {
+      text-decoration: none; }
+
+/*# sourceMappingURL=login.css.map */

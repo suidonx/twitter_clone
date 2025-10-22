@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% block title %}
+  アカウント作成 / Xクローン
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet" href="{% sass_src 'scss/signup.scss' %}">
+{% endblock scss %}
+{% block content %}
+  <div class="container">
+    <img src="{% static 'images/x-logo.svg' %}"
+         alt="x-logo"
+         width="30"
+         height="30">
+    <div class="account-form">
+      <h1>アカウントを作成</h1>
+      <form method="post" action="{% url "account_signup" %}">
+        {% csrf_token %}
+        <div class="address">
+          {{ form.username }}
+          <div class="invalid-feedback d-block">{{ form.username.errors }}</div>
+          {{ form.email }}
+          <div class="invalid-feedback d-block">{{ form.email.errors }}</div>
+          {{ form.phone_number }}
+          <div class="invalid-feedback d-block">{{ form.phone_number.errors }}</div>
+          {{ form.password1 }}
+          {{ form.password2 }}
+          <div class="invalid-feedback d-block">{{ form.password1.errors }}</div>
+        </div>
+        <p>生年月日</p>
+        <small>この情報は公開されません。このアカウントをビジネス、ペットなどに使う場合でも、ご自身の年齢を確認してください。</small>
+        <div class="birth-of-date">
+          {{ form.birth_of_date }}
+          <div class="invalid-feedback d-block">{{ form.birth_of_date.errors }}</div>
+        </div>
+        <button>次へ</button>
+      </form>
+    </div>
+  </div>
+{% endblock content %}
