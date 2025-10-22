@@ -27,15 +27,18 @@
         <p>Xクローン</p>
       </div>
       <ul>
-        <li class="logout">
-          <a href="{% url "account_logout" %}">ログアウト</a>
-        </li>
-        <li class="login">
-          <a href="{% url "account_login" %}">ログイン</a>
-        </li>
-        <li class="signup">
-          <a href="{% url "account_signup" %}">新規登録</a>
-        </li>
+        {% if user.is_authenticated %}
+          <li class="logout">
+            <a href="{% url "account_logout" %}">ログアウト</a>
+          </li>
+        {% else %}
+          <li class="login">
+            <a href="{% url "account_login" %}">ログイン</a>
+          </li>
+          <li class="signup">
+            <a href="{% url "account_signup" %}">新規登録</a>
+          </li>
+        {% endif %}
       </ul>
     </header>
     <nav>
