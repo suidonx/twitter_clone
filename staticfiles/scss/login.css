@@ -8,12 +8,33 @@ body {
   .container img {
     margin-bottom: 30px;
     width: 100%; }
-  .container .login-form h2 {
+  .container .login-form h1 {
     color: white; }
+  .container .login-form .github {
+    background-color: white;
+    border-radius: 25px;
+    color: black;
+    display: inline-block;
+    font-weight: bold;
+    margin-block: 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.5s;
+    padding: 8px;
+    width: 100%; }
+  .container .login-form .github:hover {
+    opacity: 0.8; }
+  .container .login-form .bi-github {
+    margin-right: 5px; }
+  .container .login-form p {
+    color: white;
+    margin: 0px;
+    text-align: center; }
   .container .login-form form input {
     border: 1px solid gray;
     border-radius: 5px;
     background-color: black;
+    color: white;
     margin-top: 20px;
     padding: 10px;
     width: 100%; }
@@ -23,16 +44,31 @@ body {
     border: 1px solid gray;
     border-radius: 25px;
     font-weight: bold;
+    margin-block: 30px;
+    transition: all 0.5s;
     padding: 8px;
-    margin-top: 30px;
     width: 100%; }
+  .container .login-form form button:hover {
+    opacity: 0.8; }
   .container .login-form form .forgot-password {
-    background-color: black;
-    color: white; }
+    border: 1px solid gray;
+    border-radius: 25px;
+    color: white;
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.5s;
+    padding: 8px;
+    width: 100%; }
+  .container .login-form form .forgot-password:hover {
+    opacity: 0.8; }
   .container .login-form form small {
+    color: white;
     display: inline-block;
     margin-top: 50px; }
     .container .login-form form small a {
+      color: dodgerblue;
       text-decoration: none; }
 
 /*# sourceMappingURL=login.css.map */

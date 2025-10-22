@@ -17,6 +17,34 @@ body {
       color: white;
     }
 
+    .github {
+      background-color: white;
+      border-radius: 25px;
+      color: black;
+      display: inline-block;
+      font-weight: bold;
+      margin-block: 20px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.5s;
+      padding: 8px;
+      width: 100%;
+    }
+
+    .github:hover {
+      opacity: 0.8;
+    }
+
+    .bi-github {
+      margin-right: 5px;
+    }
+
+    p {
+      color: white;
+      margin: 0px;
+      text-align: center;
+    }
+
     form {
       input {
         border: 1px solid gray;

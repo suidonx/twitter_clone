@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load sass_tags %}
+{% load socialaccount %}
 {% block title %}
   Xにログイン / Xクローン
 {% endblock title %}
@@ -23,6 +24,8 @@
          height="30">
     <div class="login-form">
       <h1>Xにログイン</h1>
+      <a class="github" href="{% provider_login_url "github" %}"><i class="bi bi-github"></i>GitHubのアカウントでログイン</a>
+      <p>または</p>
       <form action="{% url "account_login" %}" method="post">
         {% csrf_token %}
         <div class="invalid-feedback d-block">{{ form.non_field_errors }}</div>

@@ -1,0 +1,35 @@
+body {
+  background-color: black;
+  height: 100vh;
+}
+
+.container {
+  color: white;
+  padding: 7rem;
+  width: 700px;
+
+  img {
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  p {
+    margin-block: 10px;
+  }
+
+  form {
+    button {
+      border: 1px solid gray;
+      border-radius: 25px;
+      font-weight: bold;
+      margin-block: 30px;
+      transition: all 0.5s;
+      padding: 8px;
+      width: 100%;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+  }
+}
