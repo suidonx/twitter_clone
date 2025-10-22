@@ -11,6 +11,26 @@ body {
       margin-bottom: 30px; }
       body .container .account-form h1 {
         color: white; }
+      body .container .account-form .github {
+        background-color: white;
+        border-radius: 25px;
+        color: black;
+        display: inline-block;
+        font-weight: bold;
+        margin-block: 20px;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.5s;
+        padding: 8px;
+        width: 100%; }
+      body .container .account-form .github:hover {
+        opacity: 0.8; }
+      body .container .account-form .bi-github {
+        margin-right: 5px; }
+      body .container .account-form p {
+        color: white;
+        margin: 0px;
+        text-align: center; }
       body .container .account-form form .address {
         display: flex;
         flex-direction: column;
