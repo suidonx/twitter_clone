@@ -103,7 +103,22 @@
       <div class="user-name">ユーザー名: {{ user.username }}</div>
     </nav>
     <main>
-      <h2>ツイート画面</h2>
+      <div class="tab">
+        <label>
+          <input type="radio" name="tab" checked>
+          <p>おすすめ</p>
+        </label>
+        <div class="tweet-list">
+          <h3>おすすめツイート一覧</h3>
+        </div>
+        <label>
+          <input type="radio" name="tab">
+          <p>フォロー中</p>
+        </label>
+        <div class="tweet-list">
+          <h3>フォロー中のツイート一覧</h3>
+        </div>
+      </div>
     </main>
     <aside>
       <h2>お知らせ画面</h2>
