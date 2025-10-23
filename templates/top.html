@@ -104,6 +104,29 @@
     </nav>
     <main>
       <div class="tab">
+        <form method="" action="" class="tweet-form">
+          <div class="form-content-top">
+            <img src="{% static "images/milk-crown.jpg" %}"
+                 alt="画像"
+                 width="40"
+                 height="40">
+            <textarea name="" id="" placeholder="いまどうしてる？" maxlength="140"></textarea>
+          </div>
+          <div class="form-content-middle">
+            <small>
+              <i class="bi bi-globe-americas"></i>
+              全員が返信できます
+            </small>
+          </div>
+          <div class="form-content-bottom">
+            <ul class="icon">
+              <li>
+                <i class="bi bi-image"></i>
+              </li>
+            </ul>
+            <button>ポストする</button>
+          </div>
+        </form>
         <label>
           <input type="radio" name="tab" checked>
           <p>おすすめ</p>
