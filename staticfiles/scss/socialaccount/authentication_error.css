@@ -1,0 +1,15 @@
+body {
+  background-color: black;
+  height: 100vh; }
+
+.container {
+  color: white;
+  padding: 7rem;
+  width: 700px; }
+  .container img {
+    margin-bottom: 30px;
+    width: 100%; }
+  .container p {
+    margin-block: 10px; }
+
+/*# sourceMappingURL=authentication_error.css.map */

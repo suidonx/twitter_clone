@@ -1,0 +1,19 @@
+body {
+  background-color: black;
+  height: 100vh;
+}
+
+.container {
+  color: white;
+  padding: 7rem;
+  width: 700px;
+
+  img {
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  p {
+    margin-block: 10px;
+  }
+}

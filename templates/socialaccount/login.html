@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% load socialaccount %}
+{% block title %}
+  {{ provider }}でログインする / Xクローン
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet"
+        href="{% sass_src 'scss/socialaccount/login.scss' %}">
+{% endblock scss %}
+{% block content %}
+  <div class="container">
+    <img src="{% static "images/x-logo.svg" %}"
+         alt="x-logo"
+         width="30"
+         height="30">
+    <h1>{{ provider }}でログインする</h1>
+    <p>{{ provider }}の外部アカウントを使ってログインを続行します。</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit">続行する</button>
+    </form>
+  </div>
+{% endblock content %}

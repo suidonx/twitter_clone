@@ -5,12 +5,12 @@ body {
 .container {
   color: white;
   padding: 7rem;
-  width: 1000px; }
+  width: 700px; }
   .container img {
     margin-bottom: 30px;
     width: 100%; }
-  .container h1 {
-    margin-bottom: 3rem; }
+  .container p {
+    margin-block: 10px; }
   .container form button {
     border: 1px solid gray;
     border-radius: 25px;
@@ -18,8 +18,8 @@ body {
     margin-block: 30px;
     transition: all 0.5s;
     padding: 8px;
-    width: 400px; }
+    width: 100%; }
   .container form button:hover {
     opacity: 0.8; }
 
-/*# sourceMappingURL=password_reset.css.map */
+/*# sourceMappingURL=login.css.map */

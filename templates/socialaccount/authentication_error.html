@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% load socialaccount %}
+{% block title %}
+  ログイン失敗 / Xクローン
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet"
+        href="{% sass_src 'scss/socialaccount/authentication_error.scss' %}">
+{% endblock scss %}
+{% block content %}
+  <div class="container">
+    <img src="{% static "images/x-logo.svg" %}"
+         alt="x-logo"
+         width="30"
+         height="30">
+    <h1>外部アカウントによるログインに失敗しました</h1>
+    <p>外部アカウントでのログイン時にエラーが発生しました。</p>
+  </div>
+{% endblock content %}
