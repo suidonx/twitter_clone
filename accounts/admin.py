@@ -16,7 +16,20 @@ class CustomUserAdmin(UserAdmin):
                 )
             },
         ),
-        (("Personal info"), {"fields": ("phone_number", "birth_of_date")}),
+        (
+            ("Personal info"),
+            {
+                "fields": (
+                    "phone_number",
+                    "birth_of_date",
+                    "icon_image",
+                    "header_image",
+                    "self_introduction",
+                    "place",
+                    "website",
+                )
+            },
+        ),
         (
             ("Permissions"),
             {
