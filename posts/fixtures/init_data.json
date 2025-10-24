@@ -1,0 +1,82 @@
+[
+  {
+    "model": "posts.Tweet",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "content": "hoge",
+      "created_at": "2025-10-24",
+      "updated_at": "2025-10-24"
+    }
+  },
+  {
+    "model": "posts.Tweet",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "content": "foo",
+      "created_at": "2025-10-24",
+      "updated_at": "2025-10-24"
+    }
+  },
+  {
+    "model": "posts.Tweet",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "content": "bar",
+      "created_at": "2025-10-24",
+      "updated_at": "2025-10-24"
+    }
+  },
+  {
+    "model": "posts.Tweet",
+    "pk": 4,
+    "fields": {
+      "user": 2,
+      "content": "hoge",
+      "created_at": "2025-10-24",
+      "updated_at": "2025-10-24"
+    }
+  },
+  {
+    "model": "posts.Tweet",
+    "pk": 5,
+    "fields": {
+      "user": 2,
+      "content": "foo",
+      "created_at": "2025-10-24",
+      "updated_at": "2025-10-24"
+    }
+  },
+  {
+    "model": "posts.Tweet",
+    "pk": 6,
+    "fields": {
+      "user": 2,
+      "content": "bar",
+      "created_at": "2025-10-24",
+      "updated_at": "2025-10-24"
+    }
+  },
+  {
+    "model": "posts.TweetImage",
+    "pk": 1,
+    "fields": {
+      "tweet": 3,
+      "image": "images/bulldozer.jpg",
+      "created_at": "2025-10-24",
+      "updated_at": "2025-10-24"
+    }
+  },
+  {
+    "model": "posts.TweetImage",
+    "pk": 2,
+    "fields": {
+      "tweet": 6,
+      "image": "images/dump-truck.jpg",
+      "created_at": "2025-10-24",
+      "updated_at": "2025-10-24"
+    }
+  }
+]
