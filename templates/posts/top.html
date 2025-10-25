@@ -103,13 +103,11 @@
       <div class="user-name">ユーザー名: {{ user.username }}</div>
     </nav>
     <main>
+      <!-- 投稿フォーム -->
       <div class="tab">
         <form method="" action="" class="tweet-form">
           <div class="form-content-top">
-            <img src="{% static "images/milk-crown.jpg" %}"
-                 alt="画像"
-                 width="40"
-                 height="40">
+            <img src="{{ user.icon_image.url }}" alt="画像" width="40" height="40">
             <textarea name="" id="" placeholder="いまどうしてる？" maxlength="140"></textarea>
           </div>
           <div class="form-content-middle">
