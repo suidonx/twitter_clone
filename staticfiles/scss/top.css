@@ -157,31 +157,51 @@ main {
     display: flex;
     flex-wrap: wrap;
     width: 100%; }
-  main label {
+  main .label {
     border-bottom: 1px solid gray;
-    cursor: pointer;
+    height: 50px;
     order: -1;
     text-align: center;
     transition: all 0.4s;
     width: 50%; }
-    main label:hover {
+    main .label:hover {
       background-color: #1d1c1c; }
-    main label input {
-      display: none; }
-      main label input:checked + p {
-        border-bottom: 5px solid #1d9bf0;
-        color: white;
-        font-weight: bold; }
-    main label p {
+    main .label.checked a {
+      color: white;
+      font-weight: bold; }
+      main .label.checked a p {
+        border-bottom: 5px solid #1d9bf0; }
+    main .label a {
       color: gray;
-      display: inline-block;
+      display: block;
       height: 100%;
       margin: 0px;
-      padding-block: 10px; }
-    main label:has(:checked) + .tweet-list {
+      text-decoration: none;
+      width: 100%; }
+      main .label a p {
+        display: inline-block;
+        margin: 0px;
+        padding-block: 10px; }
+    main .label.checked + .tweet-list {
       display: block; }
   main .tweet-list {
-    display: none; }
+    display: none;
+    width: 100%; }
+    main .tweet-list .tweet {
+      border-bottom: 1px solid gray;
+      display: flex;
+      gap: 10px;
+      padding-top: 10px;
+      padding-inline: 15px; }
+      main .tweet-list .tweet .user-icon {
+        border-radius: 100%; }
+      main .tweet-list .tweet .tweet-username {
+        font-weight: bold; }
+      main .tweet-list .tweet .tweet-property {
+        display: flex;
+        font-size: 0.9rem;
+        gap: 100px;
+        padding-block: 8px; }
 
 aside {
   color: white;

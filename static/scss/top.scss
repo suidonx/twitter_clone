@@ -218,9 +218,9 @@ main {
     width: 100%;
   }
 
-  label {
+  .label {
     border-bottom: 1px solid gray;
-    cursor: pointer;
+    height: 50px;
     order: -1;
     text-align: center;
     transition: all 0.4s;
@@ -230,31 +230,63 @@ main {
       background-color: rgb(29, 28, 28);
     }
 
-    input {
-      display: none;
-
-      &:checked + p {
-        border-bottom: 5px solid #1d9bf0;
+    &.checked {
+      a {
         color: white;
         font-weight: bold;
+        p {
+          border-bottom: 5px solid #1d9bf0;
+        }
       }
     }
 
-    p {
+    a {
       color: gray;
-      display: inline-block;
+      display: block;
       height: 100%;
       margin: 0px;
-      padding-block: 10px;
+      text-decoration: none;
+      width: 100%;
+
+      p {
+        display: inline-block;
+        margin: 0px;
+        padding-block: 10px;
+      }
     }
 
-    &:has(:checked) + .tweet-list {
+    &.checked + .tweet-list {
       display: block;
     }
   }
 
   .tweet-list {
     display: none;
+    width: 100%;
+
+    .tweet {
+      border-bottom: 1px solid gray;
+      display: flex;
+      gap: 10px;
+      padding-top: 10px;
+      padding-inline: 15px;
+
+      .user-icon {
+        border-radius: 100%;
+      }
+
+      .tweet-username {
+        font-weight: bold;
+      }
+      .tweet-property {
+        display: flex;
+        font-size: 0.9rem;
+        gap: 100px;
+        padding-block: 8px;
+      }
+    }
+  }
+
   }
 }
 

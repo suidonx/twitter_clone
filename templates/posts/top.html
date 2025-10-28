@@ -125,24 +125,67 @@
             <button>ポストする</button>
           </div>
         </form>
-        <label>
-          <input type="radio" name="tab" checked>
-          <p>おすすめ</p>
-        </label>
-        <div class="tweet-list">
-          <h3>おすすめツイート一覧</h3>
+        <!-- recommend tab -->
+        <div class="label {% if "tab=follow" not in request.get_full_path %}checked{% endif %}">
+          <a href="?tab=recommend">
+            <p>おすすめ</p>
+          </a>
         </div>
-        <label>
-          <input type="radio" name="tab">
-          <p>フォロー中</p>
-        </label>
         <div class="tweet-list">
-          <h3>フォロー中のツイート一覧</h3>
+          {% for object in object_list %}
+            <div class="tweet">
+              <img src="{{ object.user.icon_image.url }}"
+                   alt="ユーザーアイコン"
+                   width="40"
+                   height="40"
+                   class="user-icon">
+              <div class="tweet-content">
+                <div class="tweet-username">{{ object.user.username }}</div>
+                <div class="tweet-text">{{ object.content }}</div>
+                <div class="tweet-property">
+                  <i class="bi bi-chat"></i>
+                  <i class="bi bi-repeat"></i>
+                  <i class="bi bi-heart"></i>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <p>表示可能なツイートがありません。</p>
+          {% endfor %}
+        </div>
+        <!-- following tab -->
+        <div class="label {% if "tab=follow" in request.get_full_path %}checked{% endif %}">
+          <a href="?tab=follow">
+            <p>フォロー中</p>
+          </a>
+        </div>
+        <div class="tweet-list">
+          {% for object in object_list %}
+            <div class="tweet">
+              <img src="{{ object.user.icon_image.url }}"
+                   alt="ユーザーアイコン"
+                   width="40"
+                   height="40"
+                   class="user-icon">
+              <div class="tweet-content">
+                <div class="tweet-username">{{ object.user.username }}</div>
+                <div class="tweet-text">{{ object.content }}</div>
+                <div class="tweet-property">
+                  <i class="bi bi-chat"></i>
+                  <i class="bi bi-repeat"></i>
+                  <i class="bi bi-heart"></i>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <p>表示可能なツイートがありません。</p>
+          {% endfor %}
         </div>
       </div>
-    </main>
-    <aside>
-      <h2>お知らせ画面</h2>
-    </aside>
-  </div>
+    </div>
+  </main>
+  <aside>
+    <h2>お知らせ画面</h2>
+  </aside>
+</div>
 {% endblock content %}
