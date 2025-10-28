@@ -13,6 +13,6 @@ class Tweet(models.Model):
 
 class TweetImage(models.Model):
     tweet = models.ForeignKey(Tweet, on_delete=models.CASCADE)
-    image = models.ImageField()
+    image = models.ImageField(upload_to="images/")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
