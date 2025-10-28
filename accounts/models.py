@@ -15,7 +15,8 @@ class CustomUser(AbstractUser):
     birth_of_date = models.DateField(null=True, blank=True)
     icon_image = models.ImageField(
         upload_to="icon/",
-        default="defaults/default-profile-icon.jpg",
+        null=True,
+        blank=True,
     )
     header_image = models.ImageField(
         upload_to="header/",
