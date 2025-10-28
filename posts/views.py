@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.views.generic import ListView
 
@@ -9,6 +10,7 @@ from users.models import Follow
 class IndexView(ListView):
     model = Tweet
     template_name = "posts/top.html"
+    paginate_by = 5
 
     def get_queryset(self):
         queryset = super().get_queryset()

@@ -202,6 +202,12 @@ main {
         font-size: 0.9rem;
         gap: 100px;
         padding-block: 8px; }
+  main .paginator {
+    margin-block: 20px; }
+    main .paginator .pagination a {
+      transition: 0.4s all; }
+      main .paginator .pagination a:hover {
+        border-radius: 0px; }
 
 aside {
   color: white;

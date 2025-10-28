@@ -152,6 +152,42 @@
           {% empty %}
             <p>表示可能なツイートがありません。</p>
           {% endfor %}
+          <!-- pagination -->
+          <div class="paginator" aria-label="page navigation">
+            <ul class="pagination justify-content-center">
+              {% if page_obj.has_previous %}
+                <li class="page-item">
+                  <a aria-label="Previous"
+                     class="page-link"
+                     href="?tab=recommend&page={{ page_obj.previous_page_number }}">&laquo;</a>
+                </li>
+              {% endif %}
+              {% if page_obj.previous_page_number > 0 %}
+                <li class="page-item">
+                  <a class="page-link"
+                     href="?tab=recommend&page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                </li>
+              {% endif %}
+              {% if page_obj.paginator.num_pages != 1 %}
+                <li class="page-item active" aria-current="page">
+                  <a class="page-link" href="?tab=recommend&page={{ page_obj.number }}">{{ page_obj.number }}</a>
+                </li>
+              {% endif %}
+              {% if page_obj.next_page_number <= page_obj.paginator.num_pages %}
+                <li class="page-item">
+                  <a class="page-link"
+                     href="?tab=recommend&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                </li>
+              {% endif %}
+              {% if page_obj.has_next %}
+                <li class="page-item">
+                  <a aria-label="Next"
+                     class="page-link"
+                     href="?tab=recommend&page={{ page_obj.next_page_number }}">&raquo;</a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
         </div>
         <!-- following tab -->
         <div class="label {% if "tab=follow" in request.get_full_path %}checked{% endif %}">
@@ -180,12 +216,47 @@
           {% empty %}
             <p>表示可能なツイートがありません。</p>
           {% endfor %}
+          <!-- pagination -->
+          <div class="paginator" aria-label="page navigation">
+            <ul class="pagination justify-content-center">
+              {% if page_obj.has_previous %}
+                <li class="page-item">
+                  <a aria-label="Previous"
+                     class="page-link"
+                     href="?tab=recommend&page={{ page_obj.previous_page_number }}">&laquo;</a>
+                </li>
+              {% endif %}
+              {% if page_obj.previous_page_number > 0 %}
+                <li class="page-item">
+                  <a class="page-link"
+                     href="?tab=recommend&page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                </li>
+              {% endif %}
+              {% if page_obj.paginator.num_pages != 1 %}
+                <li class="page-item active" aria-current="page">
+                  <a class="page-link" href="?tab=recommend&page={{ page_obj.number }}">{{ page_obj.number }}</a>
+                </li>
+              {% endif %}
+              {% if page_obj.next_page_number <= page_obj.paginator.num_pages %}
+                <li class="page-item">
+                  <a class="page-link"
+                     href="?tab=recommend&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                </li>
+              {% endif %}
+              {% if page_obj.has_next %}
+                <li class="page-item">
+                  <a aria-label="Next"
+                     class="page-link"
+                     href="?tab=recommend&page={{ page_obj.next_page_number }}">&raquo;</a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
-  <aside>
-    <h2>お知らせ画面</h2>
-  </aside>
-</div>
+    </main>
+    <aside>
+      <h2>お知らせ画面</h2>
+    </aside>
+  </div>
 {% endblock content %}
