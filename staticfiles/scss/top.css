@@ -42,7 +42,7 @@ header {
     header li a {
       color: white;
       display: block;
-      padding: 8px 20px;
+      padding: 5px 18px;
       text-decoration: none; }
     header li a:hover {
       color: white;
@@ -109,59 +109,55 @@ main {
   grid-area: center; }
   main .tweet-form {
     border-bottom: 1px solid gray;
-    height: 100%;
-    padding: 8px 10px 0px 10px;
+    display: flex;
+    gap: 10px;
+    padding: 10px 15px;
     width: 100%; }
-    main .tweet-form .form-content-top {
-      display: flex;
-      gap: 10px;
-      margin-top: 5px; }
-      main .tweet-form .form-content-top img {
-        border-radius: 100%; }
-      main .tweet-form .form-content-top textarea {
+    main .tweet-form img {
+      border-radius: 100%; }
+    main .tweet-form .form-content {
+      width: 100%; }
+      main .tweet-form .form-content textarea {
         background-color: black;
         border: 0px;
         color: white;
         field-sizing: content;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         padding-block: 10px;
         resize: none;
         width: 100%; }
-        main .tweet-form .form-content-top textarea:focus {
+        main .tweet-form .form-content textarea:focus {
           outline: none; }
-    main .tweet-form .form-content-middle {
-      color: #1d9bf0;
-      margin-left: 50px;
-      padding: 10px;
-      padding-top: 0px; }
-      main .tweet-form .form-content-middle small {
+      main .tweet-form .form-content small {
+        color: #1d9bf0;
         font-weight: bold; }
-    main .tweet-form .form-content-bottom {
-      align-items: center;
-      border-top: 1px solid gray;
-      display: flex;
-      justify-content: space-between;
-      margin-left: 50px;
-      padding-block: 10px; }
-      main .tweet-form .form-content-bottom ul {
+      main .tweet-form .form-content .form-content-post {
+        align-items: center;
+        border-top: 1px solid gray;
         display: flex;
-        gap: 20px;
-        list-style: none;
-        margin: 0;
-        margin-left: 10px;
-        padding: 0; }
-        main .tweet-form .form-content-bottom ul li {
-          color: #1d9bf0; }
-      main .tweet-form .form-content-bottom button {
-        border: 0px;
-        border-radius: 25px;
-        font-size: 0.95rem;
-        font-weight: bold;
-        transition: all 0.3s;
-        padding: 8px 5px;
-        width: 110px; }
-        main .tweet-form .form-content-bottom button:hover {
-          opacity: 0.8; }
+        justify-content: space-between;
+        margin-top: 10px;
+        padding: 10px;
+        padding-bottom: 0px; }
+        main .tweet-form .form-content .form-content-post ul {
+          display: flex;
+          gap: 20px;
+          list-style: none;
+          margin: 0px;
+          padding: 0; }
+          main .tweet-form .form-content .form-content-post ul li {
+            color: #1d9bf0;
+            font-size: 1.1rem; }
+        main .tweet-form .form-content .form-content-post button {
+          border: 0px;
+          border-radius: 25px;
+          font-size: 0.95rem;
+          font-weight: bold;
+          transition: all 0.3s;
+          padding: 8px 5px;
+          width: 110px; }
+          main .tweet-form .form-content .form-content-post button:hover {
+            opacity: 0.8; }
   main .tab {
     display: flex;
     flex-wrap: wrap;

@@ -111,23 +111,21 @@
       <!-- 投稿フォーム -->
       <div class="tab">
         <form method="" action="" class="tweet-form">
-          <div class="form-content-top">
-            <img src="{{ user.icon_image.url }}" alt="画像" width="40" height="40">
+          <img src="{{ user.icon_image.url }}" alt="画像" width="40" height="40">
+          <div class="form-content">
             <textarea name="" id="" placeholder="いまどうしてる？" maxlength="140"></textarea>
-          </div>
-          <div class="form-content-middle">
             <small>
               <i class="bi bi-globe-americas"></i>
               全員が返信できます
             </small>
-          </div>
-          <div class="form-content-bottom">
-            <ul class="icon">
-              <li>
-                <i class="bi bi-image"></i>
-              </li>
-            </ul>
-            <button>ポストする</button>
+            <div class="form-content-post">
+              <ul class="icon">
+                <li>
+                  <i class="bi bi-image"></i>
+                </li>
+              </ul>
+              <button>ポストする</button>
+            </div>
           </div>
         </form>
         <!-- recommend tab -->

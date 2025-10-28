@@ -57,7 +57,7 @@ header {
     a {
       color: white;
       display: block;
-      padding: 8px 20px;
+      padding: 5px 18px;
       text-decoration: none;
     }
     a:hover {
@@ -150,25 +150,24 @@ main {
 
   .tweet-form {
     border-bottom: 1px solid gray;
-    height: 100%;
-    padding: 8px 10px 0px 10px;
+    display: flex;
+    gap: 10px;
+    padding: 10px 15px;
     width: 100%;
 
-    .form-content-top {
-      display: flex;
-      gap: 10px;
-      margin-top: 5px;
+    img {
+      border-radius: 100%;
+    }
 
-      img {
-        border-radius: 100%;
-      }
+    .form-content {
+      width: 100%;
 
       textarea {
         background-color: black;
         border: 0px;
         color: white;
         field-sizing: content;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         padding-block: 10px;
         resize: none;
         width: 100%;
@@ -177,51 +176,46 @@ main {
           outline: none;
         }
       }
-    }
-
-    .form-content-middle {
-      color: #1d9bf0;
-      margin-left: 50px;
-      padding: 10px;
-      padding-top: 0px;
 
       small {
+        color: #1d9bf0;
         font-weight: bold;
       }
-    }
 
-    .form-content-bottom {
-      align-items: center;
-      border-top: 1px solid gray;
-      display: flex;
-      justify-content: space-between;
-      margin-left: 50px;
-      padding-block: 10px;
-
-      ul {
+      .form-content-post {
+        align-items: center;
+        border-top: 1px solid gray;
         display: flex;
-        gap: 20px;
-        list-style: none;
-        margin: 0;
-        margin-left: 10px;
-        padding: 0;
+        justify-content: space-between;
+        margin-top: 10px;
+        padding: 10px;
+        padding-bottom: 0px;
 
-        li {
-          color: #1d9bf0;
+        ul {
+          display: flex;
+          gap: 20px;
+          list-style: none;
+          margin: 0px;
+          padding: 0;
+
+          li {
+            color: #1d9bf0;
+            font-size: 1.1rem;
+          }
         }
-      }
 
-      button {
-        border: 0px;
-        border-radius: 25px;
-        font-size: 0.95rem;
-        font-weight: bold;
-        transition: all 0.3s;
-        padding: 8px 5px;
-        width: 110px;
+        button {
+          border: 0px;
+          border-radius: 25px;
+          font-size: 0.95rem;
+          font-weight: bold;
+          transition: all 0.3s;
+          padding: 8px 5px;
+          width: 110px;
 
-        &:hover {
-          opacity: 0.8;
+          &:hover {
+            opacity: 0.8;
+          }
         }
       }
     }
