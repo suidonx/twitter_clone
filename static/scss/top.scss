@@ -82,6 +82,7 @@ nav {
   color: white;
   grid-area: left;
   padding: 10px;
+  position: relative;
 
   ul {
     margin: 0px;
@@ -121,9 +122,23 @@ nav {
     opacity: 0.8;
   }
 
-  .user-name {
-    color: greenyellow;
-    font-weight: bold;
+  .user-info {
+    display: flex;
+    gap: 10px;
+    bottom: 0;
+    padding: 20px;
+    position: absolute;
+
+    img {
+      border-radius: 100%;
+    }
+
+    .user-name {
+      p {
+        font-weight: bold;
+        margin: 0px;
+      }
+    }
   }
 }
 

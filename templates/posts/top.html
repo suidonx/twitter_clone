@@ -100,7 +100,12 @@
         </li>
       </ul>
       <button>ポストする</button>
-      <div class="user-name">ユーザー名: {{ user.username }}</div>
+      <div class="user-info">
+        <img src="{{ user.icon_image.url }}" alt="画像" width="40" height="40">
+        <div class="user-name">
+          <p>{{ user.username }}</p>
+        </div>
+      </div>
     </nav>
     <main>
       <!-- 投稿フォーム -->

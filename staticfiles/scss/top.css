@@ -60,7 +60,8 @@ header {
 nav {
   color: white;
   grid-area: left;
-  padding: 10px; }
+  padding: 10px;
+  position: relative; }
   nav ul {
     margin: 0px;
     padding: 10px; }
@@ -89,9 +90,17 @@ nav {
     width: 80%; }
   nav button:hover {
     opacity: 0.8; }
-  nav .user-name {
-    color: greenyellow;
-    font-weight: bold; }
+  nav .user-info {
+    display: flex;
+    gap: 10px;
+    bottom: 0;
+    padding: 20px;
+    position: absolute; }
+    nav .user-info img {
+      border-radius: 100%; }
+    nav .user-info .user-name p {
+      font-weight: bold;
+      margin: 0px; }
 
 main {
   border: 1px solid gray;
