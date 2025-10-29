@@ -17,19 +17,22 @@ class IndexView(ListView):
         parm = self.request.GET.get("tab", "recommend")
 
         if parm == "recommend":
-            queryset = Tweet.objects.prefetch_related("user").order_by("-created_at")
+            queryset = Tweet.objects.prefetch_related(
+                "user", "tweetimage_set"
+            ).order_by("-created_at")
 
         elif parm == "follow":
             if self.request.user.id is None:
                 return queryset
             else:
                 users = Follow.objects.filter(follower=self.request.user).values_list(
-                    "followed"
+                    "followed",
+                    flat=True,
                 )
 
             queryset = (
                 Tweet.objects.filter(user__in=users)
-                .prefetch_related("user")
+                .prefetch_related("user", "tweetimage_set")
                 .order_by("-created_at")
             )
 

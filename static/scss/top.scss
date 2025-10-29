@@ -81,6 +81,7 @@ header {
 nav {
   color: white;
   grid-area: left;
+  height: 95vh;
   padding: 10px;
   position: relative;
 
@@ -301,6 +302,15 @@ main {
           font-size: 0.9rem;
         }
       }
+
+      .tweet-image {
+        margin-top: 8px;
+        img {
+          border-radius: 15px;
+          object-fit: cover;
+        }
+      }
+
       .tweet-property {
         display: flex;
         font-size: 0.9rem;

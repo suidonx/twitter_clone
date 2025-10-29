@@ -60,6 +60,7 @@ header {
 nav {
   color: white;
   grid-area: left;
+  height: 95vh;
   padding: 10px;
   position: relative; }
   nav ul {
@@ -209,6 +210,11 @@ main {
       main .tweet-list .tweet .tweet-username small {
         color: gray;
         font-size: 0.9rem; }
+      main .tweet-list .tweet .tweet-image {
+        margin-top: 8px; }
+        main .tweet-list .tweet .tweet-image img {
+          border-radius: 15px;
+          object-fit: cover; }
       main .tweet-list .tweet .tweet-property {
         display: flex;
         font-size: 0.9rem;

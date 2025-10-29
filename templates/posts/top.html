@@ -160,6 +160,14 @@
                     <small>@{{ object.user.account_id }}・{{ object.created_at }}</small>
                   </div>
                   <div class="tweet-text">{{ object.content }}</div>
+                  {% if object.tweetimage_set.first %}
+                    <div class="tweet-image">
+                      <img src="{{ object.tweetimage_set.first.image.url }}"
+                           alt="ツイート画像"
+                           width="450"
+                           height="253">
+                    </div>
+                  {% endif %}
                   <div class="tweet-property">
                     <i class="bi bi-chat"></i>
                     <i class="bi bi-repeat"></i>
@@ -231,6 +239,14 @@
                     <small>@{{ object.user.account_id }}・{{ object.created_at }}</small>
                   </div>
                   <div class="tweet-text">{{ object.content }}</div>
+                  {% if object.tweetimage_set.first %}
+                    <div class="tweet-image">
+                      <img src="{{ object.tweetimage_set.first.image.url }}"
+                           alt="ツイート画像"
+                           width="450"
+                           height="253">
+                    </div>
+                  {% endif %}
                   <div class="tweet-property">
                     <i class="bi bi-chat"></i>
                     <i class="bi bi-repeat"></i>
