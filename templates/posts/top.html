@@ -149,7 +149,7 @@
           {% if user.is_authenticated %}
             {% for object in object_list %}
               <div class="tweet">
-                <img src="{{ object.user.icon_image.url }}"
+                <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
                      alt="ユーザーアイコン"
                      width="40"
                      height="40"
@@ -228,7 +228,7 @@
           {% if user.is_authenticated %}
             {% for object in object_list %}
               <div class="tweet">
-                <img src="{{ object.user.icon_image.url }}"
+                <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
                      alt="ユーザーアイコン"
                      width="40"
                      height="40"
