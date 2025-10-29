@@ -142,6 +142,9 @@ nav {
         font-weight: bold;
         margin: 0px;
       }
+      small {
+        color: gray;
+      }
     }
   }
 }
@@ -289,7 +292,14 @@ main {
       }
 
       .tweet-username {
-        font-weight: bold;
+        span {
+          font-weight: bold;
+        }
+
+        small {
+          color: gray;
+          font-size: 0.9rem;
+        }
       }
       .tweet-property {
         display: flex;

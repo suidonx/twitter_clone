@@ -109,6 +109,7 @@
              height="40">
         <div class="user-name">
           <p>{{ user.username }}</p>
+          <small>@{{ user.account_id }}</small>
         </div>
       </div>
     </nav>
@@ -151,7 +152,10 @@
                    height="40"
                    class="user-icon">
               <div class="tweet-content">
-                <div class="tweet-username">{{ object.user.username }}</div>
+                <div class="tweet-username">
+                  <span>{{ object.user.username }}</span>
+                  <small>@{{ object.user.account_id }}・{{ object.created_at }}</small>
+                </div>
                 <div class="tweet-text">{{ object.content }}</div>
                 <div class="tweet-property">
                   <i class="bi bi-chat"></i>
@@ -215,7 +219,10 @@
                    height="40"
                    class="user-icon">
               <div class="tweet-content">
-                <div class="tweet-username">{{ object.user.username }}</div>
+                <div class="tweet-username">
+                  <span>{{ object.user.username }}</span>
+                  <small>@{{ object.user.account_id }}・{{ object.created_at }}</small>
+                </div>
                 <div class="tweet-text">{{ object.content }}</div>
                 <div class="tweet-property">
                   <i class="bi bi-chat"></i>

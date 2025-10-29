@@ -103,6 +103,8 @@ nav {
     nav .user-info .user-name p {
       font-weight: bold;
       margin: 0px; }
+    nav .user-info .user-name small {
+      color: gray; }
 
 main {
   border: 1px solid gray;
@@ -202,8 +204,11 @@ main {
       padding-inline: 15px; }
       main .tweet-list .tweet .user-icon {
         border-radius: 100%; }
-      main .tweet-list .tweet .tweet-username {
+      main .tweet-list .tweet .tweet-username span {
         font-weight: bold; }
+      main .tweet-list .tweet .tweet-username small {
+        color: gray;
+        font-size: 0.9rem; }
       main .tweet-list .tweet .tweet-property {
         display: flex;
         font-size: 0.9rem;

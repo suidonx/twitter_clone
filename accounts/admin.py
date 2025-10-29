@@ -27,6 +27,7 @@ class CustomUserAdmin(UserAdmin):
                     "self_introduction",
                     "place",
                     "website",
+                    "account_id",
                 )
             },
         ),
