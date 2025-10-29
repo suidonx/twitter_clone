@@ -20,9 +20,12 @@ class IndexView(ListView):
             queryset = Tweet.objects.prefetch_related("user").order_by("-created_at")
 
         elif parm == "follow":
-            users = Follow.objects.filter(follower=self.request.user).values_list(
-                "followed"
-            )
+            if self.request.user.id is None:
+                return queryset
+            else:
+                users = Follow.objects.filter(follower=self.request.user).values_list(
+                    "followed"
+                )
 
             queryset = (
                 Tweet.objects.filter(user__in=users)

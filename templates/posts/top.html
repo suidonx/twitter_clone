@@ -102,16 +102,18 @@
       <button>
         <i class="bi bi-send-plus"></i><span>ポストする</span>
       </button>
-      <div class="user-info">
-        <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
-             alt="画像"
-             width="40"
-             height="40">
-        <div class="user-name">
-          <p>{{ user.username }}</p>
-          <small>@{{ user.account_id }}</small>
+      {% if user.is_authenticated %}
+        <div class="user-info">
+          <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
+               alt="画像"
+               width="40"
+               height="40">
+          <div class="user-name">
+            <p>{{ user.username }}</p>
+            <small>@{{ user.account_id }}</small>
+          </div>
         </div>
-      </div>
+      {% endif %}
     </nav>
     <main>
       <!-- 投稿フォーム -->
@@ -144,65 +146,69 @@
           </a>
         </div>
         <div class="tweet-list">
-          {% for object in object_list %}
-            <div class="tweet">
-              <img src="{{ object.user.icon_image.url }}"
-                   alt="ユーザーアイコン"
-                   width="40"
-                   height="40"
-                   class="user-icon">
-              <div class="tweet-content">
-                <div class="tweet-username">
-                  <span>{{ object.user.username }}</span>
-                  <small>@{{ object.user.account_id }}・{{ object.created_at }}</small>
-                </div>
-                <div class="tweet-text">{{ object.content }}</div>
-                <div class="tweet-property">
-                  <i class="bi bi-chat"></i>
-                  <i class="bi bi-repeat"></i>
-                  <i class="bi bi-heart"></i>
+          {% if user.is_authenticated %}
+            {% for object in object_list %}
+              <div class="tweet">
+                <img src="{{ object.user.icon_image.url }}"
+                     alt="ユーザーアイコン"
+                     width="40"
+                     height="40"
+                     class="user-icon">
+                <div class="tweet-content">
+                  <div class="tweet-username">
+                    <span>{{ object.user.username }}</span>
+                    <small>@{{ object.user.account_id }}・{{ object.created_at }}</small>
+                  </div>
+                  <div class="tweet-text">{{ object.content }}</div>
+                  <div class="tweet-property">
+                    <i class="bi bi-chat"></i>
+                    <i class="bi bi-repeat"></i>
+                    <i class="bi bi-heart"></i>
+                  </div>
                 </div>
               </div>
+            {% empty %}
+              <p>表示可能なツイートがありません。</p>
+            {% endfor %}
+            <!-- pagination -->
+            <div class="paginator" aria-label="page navigation">
+              <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                  <li class="page-item">
+                    <a aria-label="Previous"
+                       class="page-link"
+                       href="?tab=recommend&page={{ page_obj.previous_page_number }}">&laquo;</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.previous_page_number > 0 %}
+                  <li class="page-item">
+                    <a class="page-link"
+                       href="?tab=recommend&page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.paginator.num_pages != 1 %}
+                  <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="?tab=recommend&page={{ page_obj.number }}">{{ page_obj.number }}</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.next_page_number <= page_obj.paginator.num_pages %}
+                  <li class="page-item">
+                    <a class="page-link"
+                       href="?tab=recommend&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                  <li class="page-item">
+                    <a aria-label="Next"
+                       class="page-link"
+                       href="?tab=recommend&page={{ page_obj.next_page_number }}">&raquo;</a>
+                  </li>
+                {% endif %}
+              </ul>
             </div>
-          {% empty %}
-            <p>表示可能なツイートがありません。</p>
-          {% endfor %}
-          <!-- pagination -->
-          <div class="paginator" aria-label="page navigation">
-            <ul class="pagination justify-content-center">
-              {% if page_obj.has_previous %}
-                <li class="page-item">
-                  <a aria-label="Previous"
-                     class="page-link"
-                     href="?tab=recommend&page={{ page_obj.previous_page_number }}">&laquo;</a>
-                </li>
-              {% endif %}
-              {% if page_obj.previous_page_number > 0 %}
-                <li class="page-item">
-                  <a class="page-link"
-                     href="?tab=recommend&page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
-                </li>
-              {% endif %}
-              {% if page_obj.paginator.num_pages != 1 %}
-                <li class="page-item active" aria-current="page">
-                  <a class="page-link" href="?tab=recommend&page={{ page_obj.number }}">{{ page_obj.number }}</a>
-                </li>
-              {% endif %}
-              {% if page_obj.next_page_number <= page_obj.paginator.num_pages %}
-                <li class="page-item">
-                  <a class="page-link"
-                     href="?tab=recommend&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
-                </li>
-              {% endif %}
-              {% if page_obj.has_next %}
-                <li class="page-item">
-                  <a aria-label="Next"
-                     class="page-link"
-                     href="?tab=recommend&page={{ page_obj.next_page_number }}">&raquo;</a>
-                </li>
-              {% endif %}
-            </ul>
-          </div>
+          {% else %}
+            ログインしてください
+          {% endif %}
         </div>
         <!-- following tab -->
         <div class="label {% if "tab=follow" in request.get_full_path %}checked{% endif %}">
@@ -211,65 +217,69 @@
           </a>
         </div>
         <div class="tweet-list">
-          {% for object in object_list %}
-            <div class="tweet">
-              <img src="{{ object.user.icon_image.url }}"
-                   alt="ユーザーアイコン"
-                   width="40"
-                   height="40"
-                   class="user-icon">
-              <div class="tweet-content">
-                <div class="tweet-username">
-                  <span>{{ object.user.username }}</span>
-                  <small>@{{ object.user.account_id }}・{{ object.created_at }}</small>
-                </div>
-                <div class="tweet-text">{{ object.content }}</div>
-                <div class="tweet-property">
-                  <i class="bi bi-chat"></i>
-                  <i class="bi bi-repeat"></i>
-                  <i class="bi bi-heart"></i>
+          {% if user.is_authenticated %}
+            {% for object in object_list %}
+              <div class="tweet">
+                <img src="{{ object.user.icon_image.url }}"
+                     alt="ユーザーアイコン"
+                     width="40"
+                     height="40"
+                     class="user-icon">
+                <div class="tweet-content">
+                  <div class="tweet-username">
+                    <span>{{ object.user.username }}</span>
+                    <small>@{{ object.user.account_id }}・{{ object.created_at }}</small>
+                  </div>
+                  <div class="tweet-text">{{ object.content }}</div>
+                  <div class="tweet-property">
+                    <i class="bi bi-chat"></i>
+                    <i class="bi bi-repeat"></i>
+                    <i class="bi bi-heart"></i>
+                  </div>
                 </div>
               </div>
+            {% empty %}
+              <p>表示可能なツイートがありません。</p>
+            {% endfor %}
+            <!-- pagination -->
+            <div class="paginator" aria-label="page navigation">
+              <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                  <li class="page-item">
+                    <a aria-label="Previous"
+                       class="page-link"
+                       href="?tab=recommend&page={{ page_obj.previous_page_number }}">&laquo;</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.previous_page_number > 0 %}
+                  <li class="page-item">
+                    <a class="page-link"
+                       href="?tab=recommend&page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.paginator.num_pages != 1 %}
+                  <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="?tab=recommend&page={{ page_obj.number }}">{{ page_obj.number }}</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.next_page_number <= page_obj.paginator.num_pages %}
+                  <li class="page-item">
+                    <a class="page-link"
+                       href="?tab=recommend&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                  <li class="page-item">
+                    <a aria-label="Next"
+                       class="page-link"
+                       href="?tab=recommend&page={{ page_obj.next_page_number }}">&raquo;</a>
+                  </li>
+                {% endif %}
+              </ul>
             </div>
-          {% empty %}
-            <p>表示可能なツイートがありません。</p>
-          {% endfor %}
-          <!-- pagination -->
-          <div class="paginator" aria-label="page navigation">
-            <ul class="pagination justify-content-center">
-              {% if page_obj.has_previous %}
-                <li class="page-item">
-                  <a aria-label="Previous"
-                     class="page-link"
-                     href="?tab=recommend&page={{ page_obj.previous_page_number }}">&laquo;</a>
-                </li>
-              {% endif %}
-              {% if page_obj.previous_page_number > 0 %}
-                <li class="page-item">
-                  <a class="page-link"
-                     href="?tab=recommend&page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
-                </li>
-              {% endif %}
-              {% if page_obj.paginator.num_pages != 1 %}
-                <li class="page-item active" aria-current="page">
-                  <a class="page-link" href="?tab=recommend&page={{ page_obj.number }}">{{ page_obj.number }}</a>
-                </li>
-              {% endif %}
-              {% if page_obj.next_page_number <= page_obj.paginator.num_pages %}
-                <li class="page-item">
-                  <a class="page-link"
-                     href="?tab=recommend&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
-                </li>
-              {% endif %}
-              {% if page_obj.has_next %}
-                <li class="page-item">
-                  <a aria-label="Next"
-                     class="page-link"
-                     href="?tab=recommend&page={{ page_obj.next_page_number }}">&raquo;</a>
-                </li>
-              {% endif %}
-            </ul>
-          </div>
+          {% else %}
+            ログインしてください
+          {% endif %}
         </div>
       </div>
     </main>
