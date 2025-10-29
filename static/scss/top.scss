@@ -9,7 +9,7 @@ body {
   grid-template:
     "header header header" 50px
     "left center right"
-    / 300px 1fr 400px;
+    / 300px 2fr 1fr;
   height: 100%;
 }
 
@@ -116,6 +116,10 @@ nav {
     padding: 12px;
     transition: all 0.5s;
     width: 80%;
+
+    i {
+      display: none;
+    }
   }
 
   button:hover {
@@ -312,4 +316,106 @@ main {
 aside {
   color: white;
   grid-area: right;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    display: grid;
+    grid-template:
+      "header header header" 50px
+      "left center right"
+      / 75px 1fr 200px;
+    height: 100%;
+    margin-inline: 50px;
+  }
+
+  header {
+    .header-logo {
+      .logo {
+        margin: 0px;
+        margin-left: 8px;
+      }
+    }
+  }
+
+  nav {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    grid-area: left;
+    padding: 0px;
+
+    ul {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+
+      .bi {
+        font-size: 1.5rem;
+      }
+
+      li {
+        a {
+          display: inline-block;
+          height: 100%;
+          padding: 0px;
+          padding-left: 10px;
+          width: 100%;
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+
+    button {
+      border-radius: 50%;
+      height: 60px;
+      width: 60px;
+      i {
+        display: block;
+        font-size: 1.5rem;
+      }
+      span {
+        display: none;
+      }
+    }
+    .user-info {
+      padding: 30px 10px;
+      img {
+        border-radius: 50%;
+      }
+      .user-name {
+        display: none;
+      }
+    }
+  }
+
+  main {
+    .pagination {
+      ul {
+        display: flex;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    display: grid;
+    grid-template:
+      "header header" 50px
+      "left center"
+      / 75px 1fr;
+    height: 100%;
+    margin-inline: 50px;
+  }
+
+  header {
+    border-right: 1px solid gray;
+  }
+
+  aside {
+    display: none;
+  }
 }

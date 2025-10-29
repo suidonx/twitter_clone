@@ -5,7 +5,7 @@ body {
 
 .container {
   display: grid;
-  grid-template: "header header header" 50px "left center right" / 300px 1fr 400px;
+  grid-template: "header header header" 50px "left center right" / 300px 2fr 1fr;
   height: 100%; }
 
 header {
@@ -88,6 +88,8 @@ nav {
     padding: 12px;
     transition: all 0.5s;
     width: 80%; }
+    nav button i {
+      display: none; }
   nav button:hover {
     opacity: 0.8; }
   nav .user-info {
@@ -217,5 +219,63 @@ main {
 aside {
   color: white;
   grid-area: right; }
+
+@media (max-width: 1200px) {
+  .container {
+    display: grid;
+    grid-template: "header header header" 50px "left center right" / 75px 1fr 200px;
+    height: 100%;
+    margin-inline: 50px; }
+  header .header-logo .logo {
+    margin: 0px;
+    margin-left: 8px; }
+  nav {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    grid-area: left;
+    padding: 0px; }
+    nav ul {
+      align-items: center;
+      display: flex;
+      flex-direction: column; }
+      nav ul .bi {
+        font-size: 1.5rem; }
+      nav ul li a {
+        display: inline-block;
+        height: 100%;
+        padding: 0px;
+        padding-left: 10px;
+        width: 100%; }
+        nav ul li a span {
+          display: none; }
+    nav button {
+      border-radius: 50%;
+      height: 60px;
+      width: 60px; }
+      nav button i {
+        display: block;
+        font-size: 1.5rem; }
+      nav button span {
+        display: none; }
+    nav .user-info {
+      padding: 30px 10px; }
+      nav .user-info img {
+        border-radius: 50%; }
+      nav .user-info .user-name {
+        display: none; }
+  main .pagination ul {
+    display: flex; } }
+
+@media (max-width: 992px) {
+  .container {
+    display: grid;
+    grid-template: "header header" 50px "left center" / 75px 1fr;
+    height: 100%;
+    margin-inline: 50px; }
+  header {
+    border-right: 1px solid gray; }
+  aside {
+    display: none; } }
 
 /*# sourceMappingURL=top.css.map */
