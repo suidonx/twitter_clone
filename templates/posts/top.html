@@ -23,10 +23,12 @@
       <!-- 投稿フォーム -->
       <div class="tab">
         <form method="" action="" class="tweet-form">
-          <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} /static/images/default-profile-icon.jpg {% endif %}"
-               alt="画像"
-               width="40"
-               height="40">
+          <a href="{% if user.id %}{% url "users:profile" user.account_id %}{% endif %}">
+            <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} /static/images/default-profile-icon.jpg {% endif %}"
+                 alt="画像"
+                 width="40"
+                 height="40">
+          </a>
           <div class="form-content">
             <textarea name="" id="" placeholder="いまどうしてる？" maxlength="140"></textarea>
             <small>
@@ -53,11 +55,13 @@
           {% if user.is_authenticated %}
             {% for object in object_list %}
               <div class="tweet">
-                <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
-                     alt="ユーザーアイコン"
-                     width="40"
-                     height="40"
-                     class="user-icon">
+                <a href="{% if user.id %}{% url "users:profile" object.user.account_id %}{% endif %}">
+                  <img src="{% if object.user.icon_image %} {{ object.user.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
+                       alt="ユーザーアイコン"
+                       width="40"
+                       height="40"
+                       class="user-icon">
+                </a>
                 <div class="tweet-content">
                   <div class="tweet-username">
                     <span>{{ object.user.username }}</span>
@@ -132,11 +136,13 @@
           {% if user.is_authenticated %}
             {% for object in object_list %}
               <div class="tweet">
-                <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
-                     alt="ユーザーアイコン"
-                     width="40"
-                     height="40"
-                     class="user-icon">
+                <a href="{% if user.id %}{% url "users:profile" object.user.account_id %}{% endif %}">
+                  <img src="{% if object.user.icon_image %} {{ object.user.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
+                       alt="ユーザーアイコン"
+                       width="40"
+                       height="40"
+                       class="user-icon">
+                </a>
                 <div class="tweet-content">
                   <div class="tweet-username">
                     <span>{{ object.user.username }}</span>

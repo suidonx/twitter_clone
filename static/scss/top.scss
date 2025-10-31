@@ -163,8 +163,11 @@ main {
     padding: 10px 15px;
     width: 100%;
 
-    img {
-      border-radius: 100%;
+    a {
+      height: 40px;
+      img {
+        border-radius: 50%;
+      }
     }
 
     .form-content {
@@ -288,8 +291,11 @@ main {
       padding-top: 10px;
       padding-inline: 15px;
 
-      .user-icon {
-        border-radius: 100%;
+      a {
+        height: 40px;
+        .user-icon {
+          border-radius: 100%;
+        }
       }
 
       .tweet-username {

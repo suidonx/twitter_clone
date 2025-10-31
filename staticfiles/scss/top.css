@@ -118,8 +118,10 @@ main {
     gap: 10px;
     padding: 10px 15px;
     width: 100%; }
-    main .tweet-form img {
-      border-radius: 100%; }
+    main .tweet-form a {
+      height: 40px; }
+      main .tweet-form a img {
+        border-radius: 50%; }
     main .tweet-form .form-content {
       width: 100%; }
       main .tweet-form .form-content textarea {
@@ -203,8 +205,10 @@ main {
       gap: 10px;
       padding-top: 10px;
       padding-inline: 15px; }
-      main .tweet-list .tweet .user-icon {
-        border-radius: 100%; }
+      main .tweet-list .tweet a {
+        height: 40px; }
+        main .tweet-list .tweet a .user-icon {
+          border-radius: 100%; }
       main .tweet-list .tweet .tweet-username span {
         font-weight: bold; }
       main .tweet-list .tweet .tweet-username small {

@@ -1,7 +1,7 @@
 <nav>
   <ul>
     <li>
-      <a href="">
+      <a href="{% url "index" %}">
         <i class="bi bi-house-door"></i><span>ホーム</span>
       </a>
     </li>
@@ -46,7 +46,7 @@
       </a>
     </li>
     <li>
-      <a href="">
+      <a href="{% if user.id %}{% url "users:profile" user.account_id %}{% endif %}">
         <i class="bi bi-person"></i><span>プロフィール</span>
       </a>
     </li>
