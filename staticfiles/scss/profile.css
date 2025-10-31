@@ -1,0 +1,292 @@
+body {
+  background-color: black;
+  height: 100vh;
+  width: 100%; }
+
+.container {
+  display: grid;
+  grid-template: "header header header" 50px "left center right" / 300px 2fr 1fr;
+  height: 100%; }
+
+header {
+  border-bottom: 1px solid gray;
+  display: flex;
+  grid-area: header;
+  justify-content: space-between;
+  padding: 10px; }
+  header .header-logo {
+    align-items: center;
+    display: flex;
+    gap: 20px; }
+    header .header-logo .logo {
+      margin-left: 20px; }
+    header .header-logo p {
+      color: white;
+      font-weight: bold;
+      margin: 0;
+      padding: 0; }
+  header ul {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    justify-content: end;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 300px; }
+  header li {
+    background-color: #1d9bf0;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: bold; }
+    header li a {
+      color: white;
+      display: block;
+      padding: 5px 18px;
+      text-decoration: none; }
+    header li a:hover {
+      color: white;
+      opacity: 0.8; }
+  header .login,
+  header .logout {
+    background-color: white; }
+    header .login a,
+    header .logout a {
+      color: #1d9bf0; }
+    header .login a:hover,
+    header .logout a:hover {
+      color: #1d9bf0; }
+
+nav {
+  color: white;
+  grid-area: left;
+  height: 95vh;
+  padding: 10px;
+  position: relative; }
+  nav ul {
+    margin: 0px;
+    padding: 10px; }
+    nav ul .bi {
+      font-size: 1.5rem;
+      margin-right: 20px; }
+    nav ul li {
+      font-size: 1.3rem;
+      list-style: none;
+      margin-bottom: 20px; }
+      nav ul li a {
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        transition: all 0.2s; }
+      nav ul li a:hover {
+        color: white;
+        background-color: #282727;
+        border-radius: 30px;
+        opacity: 0.8; }
+  nav button {
+    border-radius: 30px;
+    font-weight: bold;
+    padding: 12px;
+    transition: all 0.5s;
+    width: 80%; }
+    nav button i {
+      display: none; }
+  nav button:hover {
+    opacity: 0.8; }
+  nav .user-info {
+    display: flex;
+    gap: 10px;
+    bottom: 0;
+    padding: 20px;
+    position: absolute; }
+    nav .user-info img {
+      border-radius: 100%; }
+    nav .user-info .user-name p {
+      font-weight: bold;
+      margin: 0px; }
+    nav .user-info .user-name small {
+      color: gray; }
+
+main {
+  border: 1px solid gray;
+  border-top: 0px;
+  color: white;
+  grid-area: center; }
+  main .tweet-form {
+    border-bottom: 1px solid gray;
+    display: flex;
+    gap: 10px;
+    padding: 10px 15px;
+    width: 100%; }
+    main .tweet-form img {
+      border-radius: 100%; }
+    main .tweet-form .form-content {
+      width: 100%; }
+      main .tweet-form .form-content textarea {
+        background-color: black;
+        border: 0px;
+        color: white;
+        field-sizing: content;
+        font-size: 1.2rem;
+        padding-block: 10px;
+        resize: none;
+        width: 100%; }
+        main .tweet-form .form-content textarea:focus {
+          outline: none; }
+      main .tweet-form .form-content small {
+        color: #1d9bf0;
+        font-weight: bold; }
+      main .tweet-form .form-content .form-content-post {
+        align-items: center;
+        border-top: 1px solid gray;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        padding: 10px;
+        padding-bottom: 0px; }
+        main .tweet-form .form-content .form-content-post ul {
+          display: flex;
+          gap: 20px;
+          list-style: none;
+          margin: 0px;
+          padding: 0; }
+          main .tweet-form .form-content .form-content-post ul li {
+            color: #1d9bf0;
+            font-size: 1.1rem; }
+        main .tweet-form .form-content .form-content-post button {
+          border: 0px;
+          border-radius: 25px;
+          font-size: 0.95rem;
+          font-weight: bold;
+          transition: all 0.3s;
+          padding: 8px 5px;
+          width: 110px; }
+          main .tweet-form .form-content .form-content-post button:hover {
+            opacity: 0.8; }
+  main .tab {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%; }
+  main .label {
+    border-bottom: 1px solid gray;
+    height: 50px;
+    order: -1;
+    text-align: center;
+    transition: all 0.4s;
+    width: 50%; }
+    main .label:hover {
+      background-color: #1d1c1c; }
+    main .label.checked a {
+      color: white;
+      font-weight: bold; }
+      main .label.checked a p {
+        border-bottom: 5px solid #1d9bf0; }
+    main .label a {
+      color: gray;
+      display: block;
+      height: 100%;
+      margin: 0px;
+      text-decoration: none;
+      width: 100%; }
+      main .label a p {
+        display: inline-block;
+        margin: 0px;
+        padding-block: 10px; }
+    main .label.checked + .tweet-list {
+      display: block; }
+  main .tweet-list {
+    display: none;
+    width: 100%; }
+    main .tweet-list .tweet {
+      border-bottom: 1px solid gray;
+      display: flex;
+      gap: 10px;
+      padding-top: 10px;
+      padding-inline: 15px; }
+      main .tweet-list .tweet .user-icon {
+        border-radius: 100%; }
+      main .tweet-list .tweet .tweet-username span {
+        font-weight: bold; }
+      main .tweet-list .tweet .tweet-username small {
+        color: gray;
+        font-size: 0.9rem; }
+      main .tweet-list .tweet .tweet-image {
+        margin-top: 8px; }
+        main .tweet-list .tweet .tweet-image img {
+          border-radius: 15px;
+          object-fit: cover; }
+      main .tweet-list .tweet .tweet-property {
+        display: flex;
+        font-size: 0.9rem;
+        gap: 100px;
+        padding-block: 8px; }
+  main .paginator {
+    margin-block: 20px; }
+    main .paginator .pagination a {
+      transition: 0.4s all; }
+      main .paginator .pagination a:hover {
+        border-radius: 0px; }
+
+aside {
+  color: white;
+  grid-area: right; }
+
+@media (max-width: 1200px) {
+  .container {
+    display: grid;
+    grid-template: "header header header" 50px "left center right" / 75px 1fr 200px;
+    height: 100%;
+    margin-inline: 50px; }
+  header .header-logo .logo {
+    margin: 0px;
+    margin-left: 8px; }
+  nav {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    grid-area: left;
+    padding: 0px; }
+    nav ul {
+      align-items: center;
+      display: flex;
+      flex-direction: column; }
+      nav ul .bi {
+        font-size: 1.5rem; }
+      nav ul li a {
+        display: inline-block;
+        height: 100%;
+        padding: 0px;
+        padding-left: 10px;
+        width: 100%; }
+        nav ul li a span {
+          display: none; }
+    nav button {
+      border-radius: 50%;
+      height: 60px;
+      width: 60px; }
+      nav button i {
+        display: block;
+        font-size: 1.5rem; }
+      nav button span {
+        display: none; }
+    nav .user-info {
+      padding: 30px 10px; }
+      nav .user-info img {
+        border-radius: 50%; }
+      nav .user-info .user-name {
+        display: none; }
+  main .pagination ul {
+    display: flex; } }
+
+@media (max-width: 992px) {
+  .container {
+    display: grid;
+    grid-template: "header header" 50px "left center" / 75px 1fr;
+    height: 100%;
+    margin-inline: 50px; }
+  header {
+    border-right: 1px solid gray; }
+  aside {
+    display: none; } }
+
+/*# sourceMappingURL=profile.css.map */

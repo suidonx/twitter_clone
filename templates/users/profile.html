@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% block title %}
+  ユーザープロフィール / Xクローン
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet" href="{% sass_src 'scss/profile.scss' %}">
+{% endblock scss %}
+<!-- content -->
+{% block content %}
+  <div class="container">
+    {% include "includes/header.html" %}
+    {% include "includes/nav.html" %}
+    <main>
+      {% if user.is_authenticated %}
+        <div class="profile-username"></div>
+        <div class="profile-image"></div>
+        <div class="profile-content">
+          <h3>{{ object.username }}</h3>
+          <small>@{{ object.account_id }}</small>
+          <p>Lorem ipsum dolor sit amet.</p>
+          <div class="profile-info"></div>
+          <div class="profile-follow"></div>
+        </div>
+        <!-- tweets -->
+        <div class="label {% if "tab=post" not in request.get_full_path %}checked{% endif %}">
+          <a href="?tab=recommend">
+            <p>ポスト</p>
+          </a>
+        </div>
+        <div class="tweet-list">
+          {% for tweet in tweets %}
+            <div class="tweet">
+              <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
+                   alt="ユーザーアイコン"
+                   width="40"
+                   height="40"
+                   class="user-icon">
+              <div class="tweet-content">
+                <div class="tweet-username">
+                  <span>{{ tweet.user.username }}</span>
+                  <small>@{{ tweet.user.account_id }}・{{ tweet.created_at }}</small>
+                </div>
+                <div class="tweet-text">{{ tweet.content }}</div>
+                {% if tweet.tweetimage_set.first %}
+                  <div class="tweet-image">
+                    <img src="{{ tweet.tweetimage_set.first.image.url }}"
+                         alt="ツイート画像"
+                         width="450"
+                         height="253">
+                  </div>
+                {% endif %}
+                <div class="tweet-property">
+                  <i class="bi bi-chat"></i>
+                  <i class="bi bi-repeat"></i>
+                  <i class="bi bi-heart"></i>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <p>表示可能なツイートがありません。</p>
+          {% endfor %}
+          <!-- pagination -->
+          <div class="paginator" aria-label="page navigation">
+            <ul class="pagination justify-content-center">
+              {% if page_obj.has_previous %}
+                <li class="page-item">
+                  <a aria-label="Previous"
+                     class="page-link"
+                     href="?tab=recommend&page={{ page_obj.previous_page_number }}">&laquo;</a>
+                </li>
+              {% endif %}
+              {% if page_obj.previous_page_number > 0 %}
+                <li class="page-item">
+                  <a class="page-link"
+                     href="?tab=recommend&page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                </li>
+              {% endif %}
+              {% if page_obj.paginator.num_pages != 1 %}
+                <li class="page-item active" aria-current="page">
+                  <a class="page-link" href="?tab=recommend&page={{ page_obj.number }}">{{ page_obj.number }}</a>
+                </li>
+              {% endif %}
+              {% if page_obj.next_page_number <= page_obj.paginator.num_pages %}
+                <li class="page-item">
+                  <a class="page-link"
+                     href="?tab=recommend&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                </li>
+              {% endif %}
+              {% if page_obj.has_next %}
+                <li class="page-item">
+                  <a aria-label="Next"
+                     class="page-link"
+                     href="?tab=recommend&page={{ page_obj.next_page_number }}">&raquo;</a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      {% else %}
+        ログインしてください
+      {% endif %}
+    </main>
+    <aside>
+      <h2>お知らせ画面</h2>
+    </aside>
+  </div>
+{% endblock content %}
