@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% block title %}
+  ホーム / Xクローン
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet" href="{% sass_src 'scss/top.scss' %}">
+{% endblock scss %}
+<!-- content -->
+{% block content %}
+  {% if messages %}
+    <ul class="messages list-unstyled">
+      {% for message in messages %}
+        <li {% if message.tags %}class="list-unstyled alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <div class="container">
+    <header>
+      <div class="header-logo">
+        <img src="{% static "images/x-logo.svg" %}"
+             alt="x-logo"
+             width="25"
+             height="25"
+             class="logo">
+        <p>Xクローン</p>
+      </div>
+      <ul>
+        {% if user.is_authenticated %}
+          <li class="logout">
+            <a href="{% url "account_logout" %}">ログアウト</a>
+          </li>
+        {% else %}
+          <li class="login">
+            <a href="{% url "account_login" %}">ログイン</a>
+          </li>
+          <li class="signup">
+            <a href="{% url "account_signup" %}">新規登録</a>
+          </li>
+        {% endif %}
+      </ul>
+    </header>
+    <nav>
+      <ul>
+        <li>
+          <a href="">
+            <i class="bi bi-house-door"></i><span>ホーム</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-search"></i><span>話題を検索</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-bell"></i><span>通知</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-envelope"></i><span>メッセージ</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-cone"></i><span>Grok</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-card-list"></i><span>リスト</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-bookmark"></i><span>ブックマーク</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-people"></i><span>コミュニティ</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-twitter-x"></i><span>プレミアム</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-person"></i><span>プロフィール</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-chat-dots"></i><span>もっと見る</span>
+          </a>
+        </li>
+      </ul>
+      <button>
+        <i class="bi bi-send-plus"></i><span>ポストする</span>
+      </button>
+      {% if user.is_authenticated %}
+        <div class="user-info">
+          <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
+               alt="画像"
+               width="40"
+               height="40">
+          <div class="user-name">
+            <p>{{ user.username }}</p>
+            <small>@{{ user.account_id }}</small>
+          </div>
+        </div>
+      {% endif %}
+    </nav>
+    <main>
+      <!-- 投稿フォーム -->
+      <div class="tab">
+        <form method="" action="" class="tweet-form">
+          <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} /static/images/default-profile-icon.jpg {% endif %}"
+               alt="画像"
+               width="40"
+               height="40">
+          <div class="form-content">
+            <textarea name="" id="" placeholder="いまどうしてる？" maxlength="140"></textarea>
+            <small>
+              <i class="bi bi-globe-americas"></i>
+              全員が返信できます
+            </small>
+            <div class="form-content-post">
+              <ul class="icon">
+                <li>
+                  <i class="bi bi-image"></i>
+                </li>
+              </ul>
+              <button>ポストする</button>
+            </div>
+          </div>
+        </form>
+        <!-- recommend tab -->
+        <div class="label {% if "tab=follow" not in request.get_full_path %}checked{% endif %}">
+          <a href="?tab=recommend">
+            <p>おすすめ</p>
+          </a>
+        </div>
+        <div class="tweet-list">
+          {% if user.is_authenticated %}
+            {% for object in object_list %}
+              <div class="tweet">
+                <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
+                     alt="ユーザーアイコン"
+                     width="40"
+                     height="40"
+                     class="user-icon">
+                <div class="tweet-content">
+                  <div class="tweet-username">
+                    <span>{{ object.user.username }}</span>
+                    <small>@{{ object.user.account_id }}・{{ object.created_at }}</small>
+                  </div>
+                  <div class="tweet-text">{{ object.content }}</div>
+                  {% if object.tweetimage_set.first %}
+                    <div class="tweet-image">
+                      <img src="{{ object.tweetimage_set.first.image.url }}"
+                           alt="ツイート画像"
+                           width="450"
+                           height="253">
+                    </div>
+                  {% endif %}
+                  <div class="tweet-property">
+                    <i class="bi bi-chat"></i>
+                    <i class="bi bi-repeat"></i>
+                    <i class="bi bi-heart"></i>
+                  </div>
+                </div>
+              </div>
+            {% empty %}
+              <p>表示可能なツイートがありません。</p>
+            {% endfor %}
+            <!-- pagination -->
+            <div class="paginator" aria-label="page navigation">
+              <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                  <li class="page-item">
+                    <a aria-label="Previous"
+                       class="page-link"
+                       href="?tab=recommend&page={{ page_obj.previous_page_number }}">&laquo;</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.previous_page_number > 0 %}
+                  <li class="page-item">
+                    <a class="page-link"
+                       href="?tab=recommend&page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.paginator.num_pages != 1 %}
+                  <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="?tab=recommend&page={{ page_obj.number }}">{{ page_obj.number }}</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.next_page_number <= page_obj.paginator.num_pages %}
+                  <li class="page-item">
+                    <a class="page-link"
+                       href="?tab=recommend&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                  <li class="page-item">
+                    <a aria-label="Next"
+                       class="page-link"
+                       href="?tab=recommend&page={{ page_obj.next_page_number }}">&raquo;</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          {% else %}
+            ログインしてください
+          {% endif %}
+        </div>
+        <!-- following tab -->
+        <div class="label {% if "tab=follow" in request.get_full_path %}checked{% endif %}">
+          <a href="?tab=follow">
+            <p>フォロー中</p>
+          </a>
+        </div>
+        <div class="tweet-list">
+          {% if user.is_authenticated %}
+            {% for object in object_list %}
+              <div class="tweet">
+                <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
+                     alt="ユーザーアイコン"
+                     width="40"
+                     height="40"
+                     class="user-icon">
+                <div class="tweet-content">
+                  <div class="tweet-username">
+                    <span>{{ object.user.username }}</span>
+                    <small>@{{ object.user.account_id }}・{{ object.created_at }}</small>
+                  </div>
+                  <div class="tweet-text">{{ object.content }}</div>
+                  {% if object.tweetimage_set.first %}
+                    <div class="tweet-image">
+                      <img src="{{ object.tweetimage_set.first.image.url }}"
+                           alt="ツイート画像"
+                           width="450"
+                           height="253">
+                    </div>
+                  {% endif %}
+                  <div class="tweet-property">
+                    <i class="bi bi-chat"></i>
+                    <i class="bi bi-repeat"></i>
+                    <i class="bi bi-heart"></i>
+                  </div>
+                </div>
+              </div>
+            {% empty %}
+              <p>表示可能なツイートがありません。</p>
+            {% endfor %}
+            <!-- pagination -->
+            <div class="paginator" aria-label="page navigation">
+              <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                  <li class="page-item">
+                    <a aria-label="Previous"
+                       class="page-link"
+                       href="?tab=recommend&page={{ page_obj.previous_page_number }}">&laquo;</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.previous_page_number > 0 %}
+                  <li class="page-item">
+                    <a class="page-link"
+                       href="?tab=recommend&page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.paginator.num_pages != 1 %}
+                  <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="?tab=recommend&page={{ page_obj.number }}">{{ page_obj.number }}</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.next_page_number <= page_obj.paginator.num_pages %}
+                  <li class="page-item">
+                    <a class="page-link"
+                       href="?tab=recommend&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                  </li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                  <li class="page-item">
+                    <a aria-label="Next"
+                       class="page-link"
+                       href="?tab=recommend&page={{ page_obj.next_page_number }}">&raquo;</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          {% else %}
+            ログインしてください
+          {% endif %}
+        </div>
+      </div>
+    </main>
+    <aside>
+      <h2>お知らせ画面</h2>
+    </aside>
+  </div>
+{% endblock content %}

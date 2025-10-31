@@ -1,0 +1,53 @@
+[
+  {
+    "model": "accounts.CustomUser",
+    "pk": 1,
+    "fields": {
+      "username": "hoge",
+      "password": "pbkdf2_sha256$600000$fKVzcxeIP1pDSivG2qy5Py$b1xt8YolOawxaxkn7QZUQRHwan63yNOW8XsVbFaP74E=",
+      "email": "hoge@example.com",
+      "phone_number": "9999999999",
+      "birth_of_date": "1900-01-01",
+      "icon_image": "images/euro.png",
+      "header_image": "images/excavator.jpg",
+      "self_introduction": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate magni veritatis sunt eos officiis nobis quas sit maiores! Repellendus ducimus quod rerum reprehenderit doloribus hic?",
+      "place": "hoge",
+      "website": "hoge",
+      "account_id": "jlQsORON"
+    }
+  },
+  {
+    "model": "accounts.CustomUser",
+    "pk": 2,
+    "fields": {
+      "username": "foo",
+      "password": "pbkdf2_sha256$600000$fKVzcxeIP1pDSivG2qy5Py$b1xt8YolOawxaxkn7QZUQRHwan63yNOW8XsVbFaP74E=",
+      "email": "foo@example.com",
+      "phone_number": "8888999999",
+      "birth_of_date": "1900-01-01",
+      "icon_image": "images/heavy-machine.jpg",
+      "header_image": "images/road-roller.jpg",
+      "self_introduction": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate magni veritatis sunt eos officiis nobis quas sit maiores! Repellendus ducimus quod rerum reprehenderit doloribus hic?",
+      "place": "foo",
+      "website": "bar",
+      "account_id": "yUFPphos"
+    }
+  },
+  {
+    "model": "accounts.CustomUser",
+    "pk": 3,
+    "fields": {
+      "username": "suido",
+      "password": "pbkdf2_sha256$600000$fKVzcxeIP1pDSivG2qy5Py$b1xt8YolOawxaxkn7QZUQRHwan63yNOW8XsVbFaP74E=",
+      "email": "suido@example.com",
+      "phone_number": "8888999999",
+      "birth_of_date": "1900-01-01",
+      "icon_image": "",
+      "header_image": "",
+      "self_introduction": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate magni veritatis sunt eos officiis nobis quas sit maiores! Repellendus ducimus quod rerum reprehenderit doloribus hic?",
+      "place": "suido-town",
+      "website": "suido",
+      "account_id": "LNq2EHzu"
+    }
+  }
+]

@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.github",
+    "posts.apps.PostsConfig",
+    "users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [
@@ -105,7 +107,6 @@ ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy("account_login")
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 # メールアドレスのみでログインする
-ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 # ACCOUNT_LOGIN_METHODS = {"email"}

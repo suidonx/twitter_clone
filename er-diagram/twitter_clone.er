@@ -1,0 +1,72 @@
+[users] {bgcolor: "#7d79a4ff"}
+  *id {label: "bigint, not null"}
+  user_name {label: "varchar, not null"}
+  email {label: "varchar, not null, uniq" }
+  phone_number
+  birth_of_date
+  icon_image
+  header_image
+  self_introduction
+  place
+  website
+  created_at { label: "datatime, not null"}
+  updated_at { label: "datatime, not null"}
+
+[tweets] {bgcolor: "#d0e0d0"}
+  *id {label: "bigint, not null"}
+  user_id {label: "bigint, not null, FK(users)"}
+  content
+  created_at { label: "datatime, not null"}
+  updated_at { label: "datatime, not null"}
+
+[tweet_images]
+  *id
+  tweet_id {label: "FK(tweets)"}
+  image
+  created_at { label: "datatime, not null"}
+  updated_at { label: "datatime, not null"}
+
+[follows] 
+  *id {label: "bigint, not null"}
+  follower_id
+  followed_id
+  created_at { label: "datatime, not null"}
+  updated_at { label: "datatime, not null"}
+
+[goods]
+  *id
+  user_id {label: "FK(users)"}
+  tweet_id {label: "FK(tweets)"}
+  created_at { label: "datatime, not null"}
+  updated_at { label: "datatime, not null"}
+
+[retweets]
+  *id
+  user_id {label: "FK(users)"}
+  tweet_id {label: "FK(tweets)"}
+  created_at { label: "datatime, not null"}
+  updated_at { label: "datatime, not null"}
+
+[comments]
+  *id
+  user_id {label: "FK(users)"}
+  tweet_id {label: "FK(tweets)"}
+  content
+  created_at { label: "datatime, not null"}
+  updated_at { label: "datatime, not null"}
+
+# Cardinality    Syntax
+# 0 or 1         ?
+# exactly 1      1
+# 0 or more      *
+# 1 or more      +
+
+users 1--* tweets
+users 1--* goods
+users 1--* retweets
+users 1--* comments
+
+tweets 1--* retweets
+tweets 1--* goods
+tweets 1--* tweet_images
+tweets 1--* comments
