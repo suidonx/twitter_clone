@@ -9,7 +9,7 @@ body {
   grid-template:
     "header header header" 50px
     "left center right"
-    / 300px 2fr 1fr;
+    / 300px 600px 1fr;
   height: 100%;
 }
 
@@ -422,7 +422,7 @@ aside {
     grid-template:
       "header header header" 50px
       "left center right"
-      / 75px 1fr 200px;
+      / 75px 600px 1fr;
     height: 100%;
     margin-inline: 50px;
   }
