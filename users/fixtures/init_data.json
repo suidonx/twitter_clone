@@ -5,18 +5,268 @@
     "fields": {
       "follower": 1,
       "followed": 2,
-      "created_at": "2025-10-24",
-      "updated_at": "2025-10-24"
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
     }
   },
   {
     "model": "users.Follow",
     "pk": 2,
     "fields": {
+      "follower": 1,
+      "followed": 3,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Follow",
+    "pk": 3,
+    "fields": {
       "follower": 2,
       "followed": 1,
-      "created_at": "2025-10-24",
-      "updated_at": "2025-10-24"
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Follow",
+    "pk": 4,
+    "fields": {
+      "follower": 3,
+      "followed": 2,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Like",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "tweet": 2,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Like",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "tweet": 3,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Like",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "tweet": 5,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Like",
+    "pk": 4,
+    "fields": {
+      "user": 1,
+      "tweet": 7,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Like",
+    "pk": 5,
+    "fields": {
+      "user": 1,
+      "tweet": 9,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Like",
+    "pk": 6,
+    "fields": {
+      "user": 2,
+      "tweet": 2,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Like",
+    "pk": 7,
+    "fields": {
+      "user": 2,
+      "tweet": 5,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Like",
+    "pk": 8,
+    "fields": {
+      "user": 2,
+      "tweet": 8,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Like",
+    "pk": 9,
+    "fields": {
+      "user": 3,
+      "tweet": 9,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Retweet",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "tweet": 1,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Retweet",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "tweet": 4,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Retweet",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "tweet": 7,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Retweet",
+    "pk": 4,
+    "fields": {
+      "user": 2,
+      "tweet": 2,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Retweet",
+    "pk": 5,
+    "fields": {
+      "user": 2,
+      "tweet": 5,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Retweet",
+    "pk": 6,
+    "fields": {
+      "user": 3,
+      "tweet": 7,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Retweet",
+    "pk": 7,
+    "fields": {
+      "user": 3,
+      "tweet": 9,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Comment",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "tweet": 2,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Comment",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "tweet": 5,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Comment",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "tweet": 8,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Comment",
+    "pk": 4,
+    "fields": {
+      "user": 2,
+      "tweet": 1,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Comment",
+    "pk": 5,
+    "fields": {
+      "user": 2,
+      "tweet": 4,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Comment",
+    "pk": 6,
+    "fields": {
+      "user": 3,
+      "tweet": 5,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.Comment",
+    "pk": 7,
+    "fields": {
+      "user": 3,
+      "tweet": 8,
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
     }
   }
 ]

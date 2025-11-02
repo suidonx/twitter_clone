@@ -42,7 +42,7 @@
       "email": "suido@example.com",
       "phone_number": "8888999999",
       "birth_of_date": "1900-01-01",
-      "icon_image": "",
+      "icon_image": "images/milk-crown.jpg",
       "header_image": "",
       "self_introduction": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate magni veritatis sunt eos officiis nobis quas sit maiores! Repellendus ducimus quod rerum reprehenderit doloribus hic?",
       "place": "suido-town",

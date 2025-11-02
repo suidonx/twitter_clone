@@ -4,9 +4,9 @@
     "pk": 1,
     "fields": {
       "user": 1,
-      "content": "hoge",
-      "created_at": "2025-10-24",
-      "updated_at": "2025-10-24"
+      "content": "1個目のツイート",
+      "created_at": "2025-10-24T09:00:00+09:00",
+      "updated_at": "2025-10-24T09:00:00+09:00"
     }
   },
   {
@@ -14,9 +14,9 @@
     "pk": 2,
     "fields": {
       "user": 1,
-      "content": "foo",
-      "created_at": "2025-10-24",
-      "updated_at": "2025-10-24"
+      "content": "2個目のツイート",
+      "created_at": "2025-10-24T12:00:00+09:00",
+      "updated_at": "2025-10-24T12:00:00+09:00"
     }
   },
   {
@@ -24,9 +24,9 @@
     "pk": 3,
     "fields": {
       "user": 1,
-      "content": "bar",
-      "created_at": "2025-10-24",
-      "updated_at": "2025-10-24"
+      "content": "3個目のツイート",
+      "created_at": "2025-10-24T15:00:00+09:00",
+      "updated_at": "2025-10-24T15:00:00+09:00"
     }
   },
   {
@@ -34,9 +34,9 @@
     "pk": 4,
     "fields": {
       "user": 2,
-      "content": "hoge",
-      "created_at": "2025-10-24",
-      "updated_at": "2025-10-24"
+      "content": "4個目のツイート",
+      "created_at": "2025-10-25T09:30:00+09:00",
+      "updated_at": "2025-10-25T09:30:00+09:00"
     }
   },
   {
@@ -44,9 +44,9 @@
     "pk": 5,
     "fields": {
       "user": 2,
-      "content": "foo",
-      "created_at": "2025-10-24",
-      "updated_at": "2025-10-24"
+      "content": "5個目のツイート",
+      "created_at": "2025-10-25T12:30:00+09:00",
+      "updated_at": "2025-10-25T12:30:00+09:00"
     }
   },
   {
@@ -54,9 +54,39 @@
     "pk": 6,
     "fields": {
       "user": 2,
-      "content": "bar",
-      "created_at": "2025-10-24",
-      "updated_at": "2025-10-24"
+      "content": "6個目のツイート",
+      "created_at": "2025-10-25T15:30:00+09:00",
+      "updated_at": "2025-10-25T15:30:00+09:00"
+    }
+  },
+  {
+    "model": "posts.Tweet",
+    "pk": 7,
+    "fields": {
+      "user": 3,
+      "content": "7個目のツイート",
+      "created_at": "2025-11-02T17:59:59+09:00",
+      "updated_at": "2025-11-02T17:59:59+09:00"
+    }
+  },
+  {
+    "model": "posts.Tweet",
+    "pk": 8,
+    "fields": {
+      "user": 3,
+      "content": "8個目のツイート",
+      "created_at": "2025-11-02T20:59:59+09:00",
+      "updated_at": "2025-11-02T20:59:59+09:00"
+    }
+  },
+  {
+    "model": "posts.Tweet",
+    "pk": 9,
+    "fields": {
+      "user": 3,
+      "content": "9個目のツイート",
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
     }
   },
   {
@@ -65,8 +95,8 @@
     "fields": {
       "tweet": 3,
       "image": "images/bulldozer.jpg",
-      "created_at": "2025-10-24",
-      "updated_at": "2025-10-24"
+      "created_at": "2025-10-24T15:05:00+09:00",
+      "updated_at": "2025-10-24T15:05:00+09:00"
     }
   },
   {
@@ -75,8 +105,18 @@
     "fields": {
       "tweet": 6,
       "image": "images/dump-truck.jpg",
-      "created_at": "2025-10-24",
-      "updated_at": "2025-10-24"
+      "created_at": "2025-10-25T15:30:00+09:00",
+      "updated_at": "2025-10-25T15:30:00+09:00"
+    }
+  },
+  {
+    "model": "posts.TweetImage",
+    "pk": 3,
+    "fields": {
+      "tweet": 9,
+      "image": "images/heavy-machine.jpg",
+      "created_at": "2025-11-02T21:59:59+09:00",
+      "updated_at": "2025-11-02T21:59:59+09:00"
     }
   }
 ]
