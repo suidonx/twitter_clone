@@ -148,12 +148,42 @@ main {
           font-size: 1.5rem; }
         main .profile-header .profile-top li .profile-username small {
           color: gray; }
+  main .profile-image {
+    width: 100%; }
+    main .profile-image .header-image {
+      background-color: gray;
+      height: 200px;
+      object-fit: cover;
+      width: 100%; }
+    main .profile-image .profile-button {
+      align-items: start;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      width: 100%; }
+      main .profile-image .profile-button .icon-image {
+        border: 4px solid black;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        transform: translateY(-80px); }
+      main .profile-image .profile-button .profile-edit {
+        background-color: black;
+        border: 1px solid gray;
+        border-radius: 9999px;
+        color: white;
+        display: inline-block;
+        height: fit-content;
+        text-decoration: none;
+        transition: all 0.3s;
+        width: fit-content; }
+        main .profile-image .profile-button .profile-edit:hover {
+          opacity: 0.8; }
+        main .profile-image .profile-button .profile-edit p {
+          font-size: 0.9rem;
           font-weight: bold;
-          transition: all 0.3s;
-          padding: 8px 5px;
-          width: 110px; }
-          main .tweet-form .form-content .form-content-post button:hover {
-            opacity: 0.8; }
+          margin: 0px;
+          padding: 7px 15px;
+          text-align: center; }
   main .tab {
     display: flex;
     flex-wrap: wrap;

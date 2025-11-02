@@ -31,6 +31,23 @@
             </li>
           </ul>
         </div>
+        <div class="profile-image">
+          {% if object.header_image %}
+            <img class="header-image" src="{{ object.header_image.url }}" alt="">
+          {% else %}
+            <div class="header-image"></div>
+          {% endif %}
+          <div class="profile-button">
+            <img src="{% if object.icon_image %}{{ object.icon_image.url }}{% else %}{% static "images/default-profile-icon.jpg" %}{% endif %}"
+                 alt=""
+                 width="135"
+                 height="135"
+                 class="icon-image">
+            <a class="profile-edit" href="">
+              <p>プロフィールを編集</p>
+            </a>
+          </div>
+        </div>
         <div class="profile-content">
           <h3>{{ object.username }}</h3>
           <small>@{{ object.account_id }}</small>
