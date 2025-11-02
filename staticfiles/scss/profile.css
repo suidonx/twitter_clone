@@ -219,6 +219,7 @@ main {
   main .tab {
     display: flex;
     flex-wrap: wrap;
+    transform: translateY(-110px);
     width: 100%; }
   main .label {
     border-bottom: 1px solid gray;
@@ -226,7 +227,7 @@ main {
     order: -1;
     text-align: center;
     transition: all 0.4s;
-    width: 50%; }
+    width: 25%; }
     main .label:hover {
       background-color: #1d1c1c; }
     main .label.checked a {
@@ -256,8 +257,10 @@ main {
       gap: 10px;
       padding-top: 10px;
       padding-inline: 15px; }
-      main .tweet-list .tweet .user-icon {
-        border-radius: 100%; }
+      main .tweet-list .tweet a {
+        height: 40px; }
+        main .tweet-list .tweet a .user-icon {
+          border-radius: 50%; }
       main .tweet-list .tweet .tweet-username span {
         font-weight: bold; }
       main .tweet-list .tweet .tweet-username small {

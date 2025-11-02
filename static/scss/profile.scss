@@ -305,6 +305,7 @@ main {
   .tab {
     display: flex;
     flex-wrap: wrap;
+    transform: translateY(-110px);
     width: 100%;
   }
 
@@ -314,7 +315,7 @@ main {
     order: -1;
     text-align: center;
     transition: all 0.4s;
-    width: 50%;
+    width: 25%;
 
     &:hover {
       background-color: rgb(29, 28, 28);
@@ -361,8 +362,12 @@ main {
       padding-top: 10px;
       padding-inline: 15px;
 
-      .user-icon {
-        border-radius: 100%;
+      a {
+        height: 40px;
+
+        .user-icon {
+          border-radius: 50%;
+        }
       }
 
       .tweet-username {
