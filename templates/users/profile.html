@@ -91,7 +91,7 @@
             {% for tweet in tweets %}
               <div class="tweet">
                 <a href="{% if tweet.user.id %}{% url "users:profile" tweet.user.account_id %}{% endif %}">
-                  <img src="{% if object.icon_image %} {{ object.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
+                  <img src="{% if tweet.user.icon_image %}{{ tweet.user.icon_image.url }}{% else %}{% static "images/default-profile-icon.jpg" %}{% endif %}"
                        alt="ユーザーアイコン"
                        width="40"
                        height="40"
@@ -169,7 +169,7 @@
             {% for tweet in tweets %}
               <div class="tweet">
                 <a href="{% if tweet.user.id %}{% url "users:profile" tweet.user.account_id %}{% endif %}">
-                  <img src="{% if object.icon_image %} {{ object.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
+                  <img src="{% if tweet.user.icon_image %}{{ tweet.user.icon_image.url }}{% else %}{% static "images/default-profile-icon.jpg" %}{% endif %}"
                        alt="ユーザーアイコン"
                        width="40"
                        height="40"
@@ -247,7 +247,7 @@
             {% for tweet in tweets %}
               <div class="tweet">
                 <a href="{% if tweet.user.id %}{% url "users:profile" tweet.user.account_id %}{% endif %}">
-                  <img src="{% if object.icon_image %} {{ object.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
+                  <img src="{% if tweet.user.icon_image %}{{ tweet.user.icon_image.url }}{% else %}{% static "images/default-profile-icon.jpg" %}{% endif %}"
                        alt="ユーザーアイコン"
                        width="40"
                        height="40"
@@ -325,7 +325,7 @@
             {% for tweet in tweets %}
               <div class="tweet">
                 <a href="{% if tweet.user.id %}{% url "users:profile" tweet.user.account_id %}{% endif %}">
-                  <img src="{% if object.icon_image %} {{ object.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
+                  <img src="{% if tweet.user.icon_image %}{{ tweet.user.icon_image.url }}{% else %}{% static "images/default-profile-icon.jpg" %}{% endif %}"
                        alt="ユーザーアイコン"
                        width="40"
                        height="40"
