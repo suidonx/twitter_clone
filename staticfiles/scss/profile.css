@@ -184,6 +184,38 @@ main {
           margin: 0px;
           padding: 7px 15px;
           text-align: center; }
+  main .profile-content {
+    padding: 15px;
+    transform: translateY(-115px); }
+    main .profile-content span {
+      font-size: 1.5rem; }
+    main .profile-content small {
+      color: gray;
+      display: block; }
+    main .profile-content p {
+      padding-top: 10px; }
+    main .profile-content .profile-info {
+      color: gray;
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      gap: 12px;
+      list-style: none;
+      margin: 0;
+      padding: 0; }
+    main .profile-content .profile-follow {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      padding-top: 10px; }
+      main .profile-content .profile-follow span {
+        font-size: 1rem;
+        font-weight: bold; }
+      main .profile-content .profile-follow small {
+        display: inline;
+        margin-left: 8px; }
   main .tab {
     display: flex;
     flex-wrap: wrap;
