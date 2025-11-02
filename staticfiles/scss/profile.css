@@ -112,51 +112,42 @@ main {
   border-top: 0px;
   color: white;
   grid-area: center; }
-  main .tweet-form {
-    border-bottom: 1px solid gray;
+  main .profile-header {
+    align-items: center;
     display: flex;
-    gap: 10px;
-    padding: 10px 15px;
+    height: 55px;
     width: 100%; }
-    main .tweet-form img {
-      border-radius: 100%; }
-    main .tweet-form .form-content {
+    main .profile-header .profile-top {
+      align-items: center;
+      display: flex;
+      gap: 25px;
+      height: 100%;
+      list-style: none;
+      margin: 0;
+      padding: 0;
       width: 100%; }
-      main .tweet-form .form-content textarea {
-        background-color: black;
-        border: 0px;
+      main .profile-header .profile-top li a {
         color: white;
-        field-sizing: content;
-        font-size: 1.2rem;
-        padding-block: 10px;
-        resize: none;
-        width: 100%; }
-        main .tweet-form .form-content textarea:focus {
-          outline: none; }
-      main .tweet-form .form-content small {
-        color: #1d9bf0;
-        font-weight: bold; }
-      main .tweet-form .form-content .form-content-post {
-        align-items: center;
-        border-top: 1px solid gray;
+        font-size: 1.25rem;
+        margin-left: 10px;
+        padding: 8px 9px; }
+        main .profile-header .profile-top li a:hover {
+          color: white;
+          background-color: #282727;
+          border-radius: 50%;
+          opacity: 0.8; }
+      main .profile-header .profile-top li .profile-username {
         display: flex;
-        justify-content: space-between;
-        margin-top: 10px;
-        padding: 10px;
-        padding-bottom: 0px; }
-        main .tweet-form .form-content .form-content-post ul {
-          display: flex;
-          gap: 20px;
-          list-style: none;
-          margin: 0px;
-          padding: 0; }
-          main .tweet-form .form-content .form-content-post ul li {
-            color: #1d9bf0;
-            font-size: 1.1rem; }
-        main .tweet-form .form-content .form-content-post button {
-          border: 0px;
-          border-radius: 25px;
-          font-size: 0.95rem;
+        flex-direction: column;
+        line-height: 20px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        height: 100%; }
+        main .profile-header .profile-top li .profile-username span {
+          font-size: 1.5rem; }
+        main .profile-header .profile-top li .profile-username small {
+          color: gray; }
           font-weight: bold;
           transition: all 0.3s;
           padding: 8px 5px;
