@@ -1,0 +1,25 @@
+{% load static %}
+<header>
+  <div class="header-logo">
+    <img src="{% static "images/x-logo.svg" %}"
+         alt="x-logo"
+         width="25"
+         height="25"
+         class="logo">
+    <p>Xクローン</p>
+  </div>
+  <ul>
+    {% if user.is_authenticated %}
+      <li class="logout">
+        <a href="{% url "account_logout" %}">ログアウト</a>
+      </li>
+    {% else %}
+      <li class="login">
+        <a href="{% url "account_login" %}">ログイン</a>
+      </li>
+      <li class="signup">
+        <a href="{% url "account_signup" %}">新規登録</a>
+      </li>
+    {% endif %}
+  </ul>
+</header>

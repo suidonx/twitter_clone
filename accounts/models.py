@@ -27,9 +27,10 @@ class CustomUser(AbstractUser):
     self_introduction = models.TextField(null=True, blank=True)
     place = models.CharField(null=True, blank=True)
     website = models.CharField(null=True, blank=True)
-    account_id = models.CharField(
+    account_id = models.SlugField(
         default=secrets.token_urlsafe(8),
         blank=True,
+        unique=True,
     )
 
     REQUIRED_FIELDS = ["email", "phone_number", "birth_of_date"]
