@@ -1,0 +1,263 @@
+body {
+  background-color: black;
+  height: 100vh;
+  width: 100%; }
+
+.container {
+  display: grid;
+  grid-template: "header header header" 50px "left center right" / 300px 600px 1fr;
+  height: 100%; }
+
+header {
+  border-bottom: 1px solid gray;
+  display: flex;
+  grid-area: header;
+  justify-content: space-between;
+  padding: 10px; }
+  header .header-logo {
+    align-items: center;
+    display: flex;
+    gap: 20px; }
+    header .header-logo .logo {
+      margin-left: 20px; }
+    header .header-logo p {
+      color: white;
+      font-weight: bold;
+      margin: 0;
+      padding: 0; }
+  header ul {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    justify-content: end;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 300px; }
+  header li {
+    background-color: #1d9bf0;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: bold; }
+    header li a {
+      color: white;
+      display: block;
+      padding: 5px 18px;
+      text-decoration: none; }
+    header li a:hover {
+      color: white;
+      opacity: 0.8; }
+  header .login,
+  header .logout {
+    background-color: white; }
+    header .login a,
+    header .logout a {
+      color: #1d9bf0; }
+    header .login a:hover,
+    header .logout a:hover {
+      color: #1d9bf0; }
+
+nav {
+  color: white;
+  grid-area: left;
+  height: 95vh;
+  padding: 10px;
+  position: relative; }
+  nav ul {
+    margin: 0px;
+    padding: 10px; }
+    nav ul .bi {
+      font-size: 1.5rem;
+      margin-right: 20px; }
+    nav ul li {
+      font-size: 1.3rem;
+      list-style: none;
+      margin-bottom: 20px; }
+      nav ul li a {
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        transition: all 0.2s; }
+      nav ul li a:hover {
+        color: white;
+        background-color: #282727;
+        border-radius: 30px;
+        opacity: 0.8; }
+  nav button {
+    border-radius: 30px;
+    font-weight: bold;
+    padding: 12px;
+    transition: all 0.5s;
+    width: 80%; }
+    nav button i {
+      display: none; }
+  nav button:hover {
+    opacity: 0.8; }
+  nav .user-info {
+    display: flex;
+    gap: 10px;
+    bottom: 0;
+    padding: 20px;
+    position: absolute; }
+    nav .user-info img {
+      border-radius: 100%; }
+    nav .user-info .user-name p {
+      font-weight: bold;
+      margin: 0px; }
+    nav .user-info .user-name small {
+      color: gray; }
+
+main {
+  border: 1px solid gray;
+  border-top: 0px;
+  color: white;
+  grid-area: center; }
+  main .profile-header {
+    align-items: center;
+    display: flex;
+    height: 55px;
+    width: 100%; }
+    main .profile-header .profile-top {
+      align-items: center;
+      display: flex;
+      gap: 25px;
+      height: 100%;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 100%; }
+      main .profile-header .profile-top li a {
+        color: white;
+        font-size: 1.25rem;
+        margin-left: 10px;
+        padding: 8px 9px; }
+        main .profile-header .profile-top li a:hover {
+          color: white;
+          background-color: #282727;
+          border-radius: 50%;
+          opacity: 0.8; }
+      main .profile-header .profile-top li span {
+        font-size: 1.25rem;
+        font-weight: bold; }
+      main .profile-header .profile-top li button {
+        border: 0px;
+        border-radius: 9999px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        padding: 5px 15px;
+        transition: all 0.4s; }
+        main .profile-header .profile-top li button:hover {
+          opacity: 0.8; }
+      main .profile-header .profile-top li:last-child {
+        margin-inline: auto 20px; }
+  main .profile-image {
+    width: 100%; }
+    main .profile-image .header-image {
+      background-color: gray;
+      height: 200px;
+      object-fit: cover;
+      width: 100%; }
+    main .profile-image .profile-button {
+      align-items: start;
+      display: flex;
+      padding: 10px;
+      width: 100%; }
+      main .profile-image .profile-button .icon-image {
+        border: 4px solid black;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        transform: translateY(-80px); }
+  main .profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+    text-align: center;
+    transform: translateY(-90px); }
+    main .profile-content input,
+    main .profile-content textarea {
+      background-color: black;
+      border-radius: 5px;
+      color: white;
+      padding: 10px;
+      width: 100%; }
+    main .profile-content textarea {
+      height: 100px;
+      resize: none; }
+    main .profile-content li {
+      list-style: none; }
+    main .profile-content input::file-selector-button {
+      background-color: #1d9bf0;
+      border: 0px;
+      border-radius: 9999px;
+      cursor: pointer;
+      color: white;
+      padding: 8px 10px; }
+    main .profile-content #id_icon_image,
+    main .profile-content #id_header_image {
+      height: fit-content;
+      width: fit-content; }
+
+aside {
+  color: white;
+  grid-area: right; }
+
+@media (max-width: 1200px) {
+  .container {
+    display: grid;
+    grid-template: "header header header" 50px "left center right" / 75px 600px 1fr;
+    height: 100%;
+    margin-inline: 50px; }
+  header .header-logo .logo {
+    margin: 0px;
+    margin-left: 8px; }
+  nav {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    grid-area: left;
+    padding: 0px; }
+    nav ul {
+      align-items: center;
+      display: flex;
+      flex-direction: column; }
+      nav ul .bi {
+        font-size: 1.5rem; }
+      nav ul li a {
+        display: inline-block;
+        height: 100%;
+        padding: 0px;
+        padding-left: 10px;
+        width: 100%; }
+        nav ul li a span {
+          display: none; }
+    nav button {
+      border-radius: 50%;
+      height: 60px;
+      width: 60px; }
+      nav button i {
+        display: block;
+        font-size: 1.5rem; }
+      nav button span {
+        display: none; }
+    nav .user-info {
+      padding: 30px 10px; }
+      nav .user-info img {
+        border-radius: 50%; }
+      nav .user-info .user-name {
+        display: none; }
+  main .pagination ul {
+    display: flex; } }
+
+@media (max-width: 992px) {
+  .container {
+    display: grid;
+    grid-template: "header header" 50px "left center" / 75px 1fr;
+    height: 100%;
+    margin-inline: 50px; }
+  header {
+    border-right: 1px solid gray; }
+  aside {
+    display: none; } }
+
+/*# sourceMappingURL=profile_edit.css.map */

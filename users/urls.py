@@ -9,4 +9,5 @@ app_name = "users"
 
 urlpatterns = [
     path("", views.UserProfile.as_view(), name="profile"),
+    path("/edit", views.UseProfileEdit.as_view(), name="profile_edit"),
 ]
