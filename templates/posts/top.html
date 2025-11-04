@@ -22,15 +22,20 @@
     <main>
       <!-- 投稿フォーム -->
       <div class="tab">
-        <form method="" action="" class="tweet-form">
+        <form method="post"
+              action="{% url "posts:create" %}"
+              class="tweet-form"
+              enctype="multipart/form-data">
+          {% csrf_token %}
           <a href="{% if user.id %}{% url "users:profile" user.account_id %}{% endif %}">
-            <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} /static/images/default-profile-icon.jpg {% endif %}"
+            <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %}{% endif %}"
                  alt="画像"
                  width="40"
                  height="40">
           </a>
           <div class="form-content">
-            <textarea name="" id="" placeholder="いまどうしてる？" maxlength="140"></textarea>
+            <input name="user" type="hidden" value="{{ user.id }}">
+            <textarea name="content" placeholder="いまどうしてる？" maxlength="140"></textarea>
             <small>
               <i class="bi bi-globe-americas"></i>
               全員が返信できます
@@ -39,6 +44,7 @@
               <ul class="icon">
                 <li>
                   <i class="bi bi-image"></i>
+                  <input type="file" name="image">
                 </li>
               </ul>
               <button>ポストする</button>

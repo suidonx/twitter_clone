@@ -1,7 +1,10 @@
+from django.contrib import messages
 from django.core.paginator import Paginator
-from django.shortcuts import render
-from django.views.generic import ListView
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.views.generic import ListView, View
 
+from .forms import CreateTweetForm, CreateTweetImageForm
 from .models import Tweet
 from users.models import Follow
 
@@ -37,3 +40,89 @@ class IndexView(ListView):
             )
 
         return queryset
+
+
+class CreateTweet(View):
+    def get(self, request):
+        return redirect(reverse("posts:index"))
+
+    def post(self, request):
+
+        def _post_success():
+            messages.success(self.request, "ポストに成功しました")
+
+        def _post_error():
+            messages.add_message(
+                self.request,
+                messages.INFO,
+                "ポストに失敗しました",
+                extra_tags="danger",
+            )
+
+        def _image_error():
+            messages.add_message(
+                self.request,
+                messages.INFO,
+                "画像の投稿に失敗しました",
+                extra_tags="danger",
+            )
+
+        def _not_found_post():
+            messages.warning(self.request, "ポスト内容がありません")
+
+        # POST通信で受け取った値を格納
+        content = self.request.POST.get("content")
+        image = self.request.FILES.get("image")
+
+        # モデルフォームインスタンスを生成
+        content_form = CreateTweetForm(self.request.POST)
+        image_form = CreateTweetImageForm(None, self.request.FILES)
+
+        # ツイートと画像が投稿されたとき
+        if content and image:
+
+            # ツイートと画像のバリデーションが成功したとき
+            if content_form.is_valid() and image_form.is_valid():
+
+                # ツイートを保存
+                tweet = content_form.save()
+
+                # ツイートと画像インスタンスを紐づけて画像を保存
+                image_form.instance.tweet = tweet
+                image_form.save()
+
+                _post_success()
+                return redirect(reverse("posts:index"))
+
+            # 画像のバリデーションだけ成功
+            elif image_form.is_valid():
+                _post_error()
+                return redirect(reverse("posts:index"))
+
+            # ツイートのバリデーションだけ成功
+            elif content_form.is_valid():
+                _image_error()
+                return redirect(reverse("posts:index"))
+
+            # どちらのバリデーションも失敗
+            else:
+                _post_error()
+                _image_error()
+                return redirect(reverse("posts:index"))
+
+        # ツイートのみ投稿
+        elif content:
+            if content_form.is_valid():
+                tweet = content_form.save()
+
+                _post_success()
+                return redirect(reverse("posts:index"))
+
+            else:
+                _post_error()
+                return redirect(reverse("posts:index"))
+
+        # ツイートなし、添付ファイルのみ投稿
+        else:
+            _not_found_post()
+            return redirect(reverse("posts:index"))
