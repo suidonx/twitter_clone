@@ -1,0 +1,71 @@
+nav {
+  color: white;
+  grid-area: left;
+  height: 95vh;
+  padding: 10px;
+  position: relative;
+
+  ul {
+    margin: 0px;
+    padding: 10px;
+    .bi {
+      font-size: 1.5rem;
+      margin-right: 20px;
+    }
+    li {
+      font-size: 1.3rem;
+      list-style: none;
+      margin-bottom: 20px;
+      a {
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      a:hover {
+        color: white;
+        background-color: rgb(40, 39, 39);
+        border-radius: 30px;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  button {
+    border-radius: 30px;
+    font-weight: bold;
+    padding: 12px;
+    transition: all 0.5s;
+    width: 80%;
+
+    i {
+      display: none;
+    }
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+
+  .user-info {
+    display: flex;
+    gap: 10px;
+    bottom: 0;
+    padding: 20px;
+    position: absolute;
+
+    img {
+      border-radius: 100%;
+    }
+
+    .user-name {
+      p {
+        font-weight: bold;
+        margin: 0px;
+      }
+      small {
+        color: gray;
+      }
+    }
+  }
+}
