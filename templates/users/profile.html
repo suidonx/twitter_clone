@@ -43,9 +43,13 @@
                  width="135"
                  height="135"
                  class="icon-image">
-            <a class="profile-edit" href="">
-              <p>プロフィールを編集</p>
-            </a>
+            <!-- ユーザー自身のプロフィールページの場合 -->
+            {% if user.id == object.id %}
+              <a class="profile-edit"
+                 href="{% url "users:profile_edit" user.account_id %}">
+                <p>プロフィールを編集</p>
+              </a>
+            {% endif %}
           </div>
         </div>
         <div class="profile-content">

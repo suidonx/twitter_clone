@@ -1,3 +1,4 @@
+{% load static %}
 <nav>
   <ul>
     <li>
@@ -61,7 +62,7 @@
   </button>
   {% if user.is_authenticated %}
     <div class="user-info">
-      <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
+      <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
            alt="画像"
            width="40"
            height="40">

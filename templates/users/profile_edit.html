@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% block title %}
+  プロフィール編集画面 / Xクローン
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet" href="{% sass_src 'scss/profile_edit.scss' %}">
+{% endblock scss %}
+<!-- content -->
+{% block content %}
+  {% if messages %}
+    <ul class="messages list-unstyled">
+      {% for message in messages %}
+        <li {% if message.tags %}class="list-unstyled alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <div class="container">
+    {% include "includes/header.html" %}
+    {% include "includes/nav.html" %}
+    <main>
+      <!-- ユーザーがログインしているかどうか　-->
+      {% if user.is_authenticated %}
+        <!-- ユーザー自身のプロフィールページかどうか -->
+        {% if user.id == object.id %}
+          <form action="{% url "users:profile_edit" object.account_id %}"
+                method="post"
+                enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="profile-header">
+              <ul class="profile-top">
+                <li>
+                  <a href="{% url "users:profile" user.account_id %}"><i class="bi bi-arrow-left"></i></a>
+                </li>
+                <li>
+                  <span>プロフィールを編集</span>
+                </li>
+                <li>
+                  <button>保存</button>
+                </li>
+              </ul>
+            </div>
+            <div class="profile-image">
+              {% if user.header_image %}
+                <img class="header-image" src="{{ user.header_image.url }}" alt="">
+              {% else %}
+                <div class="header-image"></div>
+              {% endif %}
+              <div class="profile-button">
+                <img src="{% if user.icon_image %}{{ user.icon_image.url }}{% else %}{% static "images/default-profile-icon.jpg" %}{% endif %}"
+                     alt=""
+                     width="135"
+                     height="135"
+                     class="icon-image">
+              </div>
+            </div>
+            <div class="profile-content">
+              <div class="username">
+                {{ form.username.label }}
+                {{ form.username }}
+                <div class="invalid-feedback d-block">{{ form.username.errors }}</div>
+              </div>
+              <div class="icon-image">
+                <p>{{ form.icon_image.label }}</p>
+                {{ form.icon_image }}
+                <div class="invalid-feedback d-block">{{ form.icon_image.errors }}</div>
+              </div>
+              <div class="header-image">
+                <p>{{ form.header_image.label }}</p>
+                {{ form.header_image }}
+                <div class="invalid-feedback d-block">{{ form.header_image.errors }}</div>
+              </div>
+              <div class="self_introducion">
+                {{ form.self_introduction.label }}
+                {{ form.self_introduction }}
+                <div class="invalid-feedback d-block">{{ form.self_introduction.errors }}</div>
+              </div>
+              <div class="place">
+                {{ form.place.label }}
+                {{ form.place }}
+                <div class="invalid-feedback d-block">{{ form.place.errors }}</div>
+              </div>
+              <div class="website">
+                {{ form.website.label }}
+                {{ form.website }}
+                <div class="invalid-feedback d-block">{{ form.website.errors }}</div>
+              </div>
+              <div class="birth_of_date">
+                {{ form.birth_of_date.label }}
+                {{ form.birth_of_date }}
+                <p>{{ form.birth_of_date.help_text }}</p>
+                <div class="invalid-feedback d-block">{{ form.birth_of_date.errors }}</div>
+              </div>
+            </div>
+          {% else %}
+            アクセスできません
+          {% endif %}
+        {% else %}
+          ログインしてください
+        {% endif %}
+      </form>
+    </main>
+    <aside>
+      <h2>お知らせ画面</h2>
+    </aside>
+  </div>
+{% endblock content %}
