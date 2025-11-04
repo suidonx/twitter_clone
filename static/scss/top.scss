@@ -212,6 +212,14 @@ main {
           li {
             color: #1d9bf0;
             font-size: 1.1rem;
+
+            label {
+              cursor: pointer;
+            }
+
+            input::file-selector-button {
+              display: none;
+            }
           }
         }
 

@@ -155,6 +155,10 @@ main {
           main .tweet-form .form-content .form-content-post ul li {
             color: #1d9bf0;
             font-size: 1.1rem; }
+            main .tweet-form .form-content .form-content-post ul li label {
+              cursor: pointer; }
+            main .tweet-form .form-content .form-content-post ul li input::file-selector-button {
+              display: none; }
         main .tweet-form .form-content .form-content-post button {
           border: 0px;
           border-radius: 25px;
