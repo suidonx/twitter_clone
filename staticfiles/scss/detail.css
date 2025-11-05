@@ -234,6 +234,37 @@ main {
             width: 110px; }
             main .detail-content .comment-form .form-content .form-content-post button:hover {
               opacity: 0.8; }
+  main .comment-list {
+    padding-inline: 15px;
+    width: 100%; }
+    main .comment-list hr {
+      margin-bottom: 0; }
+    main .comment-list .comment {
+      display: flex;
+      gap: 10px;
+      padding-top: 10px;
+      position: relative; }
+      main .comment-list .comment a {
+        height: 40px;
+        z-index: 2; }
+        main .comment-list .comment a .user-icon {
+          border-radius: 50%; }
+      main .comment-list .comment .comment-username a {
+        color: white;
+        height: 100%;
+        left: 0;
+        position: relative;
+        text-decoration: none;
+        top: 0;
+        width: 100%;
+        z-index: 2; }
+        main .comment-list .comment .comment-username a:hover {
+          text-decoration: underline; }
+      main .comment-list .comment .comment-username span {
+        font-weight: bold; }
+      main .comment-list .comment .comment-username small {
+        color: gray;
+        font-size: 0.9rem; }
 
 @media (max-width: 1200px) {
   .container {

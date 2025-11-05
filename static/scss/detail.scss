@@ -205,6 +205,57 @@ main {
       }
     }
   }
+
+  .comment-list {
+    padding-inline: 15px;
+    width: 100%;
+
+    hr {
+      margin-bottom: 0;
+    }
+
+    .comment {
+      display: flex;
+      gap: 10px;
+      padding-top: 10px;
+      position: relative;
+
+      a {
+        height: 40px;
+        z-index: 2;
+
+        .user-icon {
+          border-radius: 50%;
+        }
+      }
+
+      .comment-username {
+        a {
+          color: white;
+          height: 100%;
+          left: 0;
+          position: relative;
+          text-decoration: none;
+          top: 0;
+          width: 100%;
+          z-index: 2;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        span {
+          font-weight: bold;
+        }
+
+        small {
+          color: gray;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 1200px) {

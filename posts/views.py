@@ -1,12 +1,12 @@
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import ListView, View, DetailView
 
 from .forms import CreateTweetForm, CreateTweetImageForm
 from .models import Tweet
-from users.models import Follow
+from users.models import Follow, Comment
 
 
 # Create your views here.
@@ -131,3 +131,14 @@ class CreateTweet(View):
 class DetailTweet(DetailView):
     model = Tweet
     template_name = "posts/detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        pk = self.kwargs["pk"]
+        tweet = get_object_or_404(Tweet, id=pk)
+
+        comments = Comment.objects.filter(tweet=tweet).prefetch_related("user")
+        context["comments"] = comments
+
+        return context

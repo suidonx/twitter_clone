@@ -81,12 +81,35 @@
             </a>
             <div class="form-content">
               <input name="user" type="hidden" value="{{ user.id }}">
-              <textarea name="content" placeholder="返信をポスト" maxlength="140"></textarea>
+              <textarea name="content" placeholder="コメントをポスト" maxlength="255"></textarea>
               <div class="form-content-post">
-                <button>返信</button>
+                <button>コメント</button>
               </div>
             </div>
           </form>
+        </div>
+        <div class="comment-list">
+          {% for comment in comments %}
+            <div class="comment">
+              <a href="{% if user.id %}{% url "users:profile" comment.user.account_id %}{% endif %}">
+                <img src="{% if comment.user.icon_image %} {{ comment.user.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %}  {% endif %}"
+                     alt="ユーザーアイコン"
+                     width="40"
+                     height="40"
+                     class="user-icon">
+              </a>
+              <div class="comment-content">
+                <div class="comment-username">
+                  <a href="{% url "users:profile" comment.user.account_id %}"><span>{{ comment.user.username }}</span></a>
+                  <small>@{{ comment.user.account_id }}・{{ comment.created_at }}</small>
+                </div>
+                <p>{{ comment.content }}</p>
+              </div>
+            </div>
+            <hr>
+          {% empty %}
+            <p>まだコメントがありません。</p>
+          {% endfor %}
         </div>
       {% else %}
         ログインしてください
