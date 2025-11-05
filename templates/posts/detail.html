@@ -9,6 +9,13 @@
 {% endblock scss %}
 <!-- content -->
 {% block content %}
+  {% if messages %}
+    <ul class="messages list-unstyled">
+      {% for message in messages %}
+        <li {% if message.tags %}class="list-unstyled alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
   <div class="container">
     {% include "includes/header.html" %}
     {% include "includes/nav.html" %}
@@ -71,7 +78,9 @@
             <hr>
           </div>
           <!-- comment form -->
-          <form action="" method="" class="comment-form">
+          <form action="{% url "posts:comment" object.id %}"
+                method="post"
+                class="comment-form">
             {% csrf_token %}
             <a href="{% if user.id %}{% url "users:profile" user.account_id %}{% endif %}">
               <img src="{% if user.icon_image %} {{ user.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %}{% endif %}"
@@ -81,6 +90,7 @@
             </a>
             <div class="form-content">
               <input name="user" type="hidden" value="{{ user.id }}">
+              <input name="tweet" type="hidden" value="{{ object.id }}">
               <textarea name="content" placeholder="コメントをポスト" maxlength="255"></textarea>
               <div class="form-content-post">
                 <button>コメント</button>

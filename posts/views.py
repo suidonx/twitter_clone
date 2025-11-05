@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import ListView, View, DetailView
 
-from .forms import CreateTweetForm, CreateTweetImageForm
+from .forms import CreateTweetForm, CreateTweetImageForm, CreateCommentForm
 from .models import Tweet
 from users.models import Follow, Comment
 
@@ -142,3 +142,25 @@ class DetailTweet(DetailView):
         context["comments"] = comments
 
         return context
+
+
+class CreateComment(View):
+    def get(self, request, pk):
+        return redirect(reverse("posts:detail", args=[pk]))
+
+    def post(self, request, pk):
+        form = CreateCommentForm(self.request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.success(self.request, "コメントに成功しました")
+
+        else:
+            messages.add_message(
+                self.request,
+                messages.INFO,
+                "コメントに失敗しました",
+                extra_tags="danger",
+            )
+
+        return redirect(reverse("posts:detail", args=[pk]))
