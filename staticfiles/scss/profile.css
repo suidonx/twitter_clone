@@ -260,11 +260,31 @@ main {
       display: flex;
       gap: 10px;
       padding-top: 10px;
-      padding-inline: 15px; }
+      padding-inline: 15px;
+      position: relative; }
+      main .tweet-list .tweet .detail {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1; }
       main .tweet-list .tweet a {
-        height: 40px; }
+        height: 40px;
+        z-index: 2; }
         main .tweet-list .tweet a .user-icon {
           border-radius: 50%; }
+      main .tweet-list .tweet .tweet-username a {
+        color: white;
+        height: 100%;
+        left: 0;
+        position: relative;
+        text-decoration: none;
+        top: 0;
+        width: 100%;
+        z-index: 2; }
+        main .tweet-list .tweet .tweet-username a:hover {
+          text-decoration: underline; }
       main .tweet-list .tweet .tweet-username span {
         font-weight: bold; }
       main .tweet-list .tweet .tweet-username small {

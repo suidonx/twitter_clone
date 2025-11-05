@@ -165,15 +165,42 @@ main {
       gap: 10px;
       padding-top: 10px;
       padding-inline: 15px;
+      position: relative;
+
+      .detail {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+      }
 
       a {
         height: 40px;
+        z-index: 2;
+
         .user-icon {
-          border-radius: 100%;
+          border-radius: 50%;
         }
       }
 
       .tweet-username {
+        a {
+          color: white;
+          height: 100%;
+          left: 0;
+          position: relative;
+          text-decoration: none;
+          top: 0;
+          width: 100%;
+          z-index: 2;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
         span {
           font-weight: bold;
         }
