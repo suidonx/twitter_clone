@@ -92,23 +92,19 @@ class CreateTweet(View):
                 image_form.save()
 
                 _post_success()
-                return redirect(reverse("posts:index"))
 
             # 画像のバリデーションだけ成功
             elif image_form.is_valid():
                 _post_error()
-                return redirect(reverse("posts:index"))
 
             # ツイートのバリデーションだけ成功
             elif content_form.is_valid():
                 _image_error()
-                return redirect(reverse("posts:index"))
 
             # どちらのバリデーションも失敗
             else:
                 _post_error()
                 _image_error()
-                return redirect(reverse("posts:index"))
 
         # ツイートのみ投稿
         elif content:
@@ -116,16 +112,15 @@ class CreateTweet(View):
                 tweet = content_form.save()
 
                 _post_success()
-                return redirect(reverse("posts:index"))
 
             else:
                 _post_error()
-                return redirect(reverse("posts:index"))
 
         # ツイートなし、添付ファイルのみ投稿
         else:
             _not_found_post()
-            return redirect(reverse("posts:index"))
+
+        return redirect(reverse("posts:index"))
 
 
 class DetailTweet(DetailView):
