@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.views.generic import ListView, View
+from django.views.generic import ListView, View, DetailView
 
 from .forms import CreateTweetForm, CreateTweetImageForm
 from .models import Tweet
@@ -126,3 +126,8 @@ class CreateTweet(View):
         else:
             _not_found_post()
             return redirect(reverse("posts:index"))
+
+
+class DetailTweet(DetailView):
+    model = Tweet
+    template_name = "posts/detail.html"
