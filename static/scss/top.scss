@@ -168,6 +168,11 @@ main {
       padding-top: 10px;
       padding-inline: 15px;
       position: relative;
+      transition: all 0.4s;
+
+      &:hover {
+        background-color: #111;
+      }
 
       .detail {
         height: 100%;

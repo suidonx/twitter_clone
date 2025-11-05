@@ -215,7 +215,10 @@ main {
       gap: 10px;
       padding-top: 10px;
       padding-inline: 15px;
-      position: relative; }
+      position: relative;
+      transition: all 0.4s; }
+      main .tweet-list .tweet:hover {
+        background-color: #111; }
       main .tweet-list .tweet .detail {
         height: 100%;
         left: 0;
