@@ -134,9 +134,11 @@ main {
         color: white;
         field-sizing: content;
         font-size: 1.2rem;
+        overflow-wrap: break-word;
         padding-block: 10px;
         resize: none;
-        width: 100%; }
+        width: 100%;
+        word-break: break-all; }
         main .tweet-form .form-content textarea:focus {
           outline: none; }
       main .tweet-form .form-content small {
@@ -242,6 +244,9 @@ main {
       main .tweet-list .tweet .tweet-username small {
         color: gray;
         font-size: 0.9rem; }
+      main .tweet-list .tweet .tweet-content {
+        overflow-wrap: break-word;
+        word-break: break-all; }
       main .tweet-list .tweet .tweet-image {
         margin-top: 8px; }
         main .tweet-list .tweet .tweet-image img {

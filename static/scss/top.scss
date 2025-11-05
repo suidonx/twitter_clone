@@ -46,9 +46,11 @@ main {
         color: white;
         field-sizing: content;
         font-size: 1.2rem;
+        overflow-wrap: break-word;
         padding-block: 10px;
         resize: none;
         width: 100%;
+        word-break: break-all;
 
         &:focus {
           outline: none;
@@ -209,6 +211,11 @@ main {
           color: gray;
           font-size: 0.9rem;
         }
+      }
+
+      .tweet-content {
+        overflow-wrap: break-word;
+        word-break: break-all;
       }
 
       .tweet-image {

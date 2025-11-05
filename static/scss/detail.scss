@@ -105,6 +105,9 @@ main {
     }
 
     .tweet-content {
+      overflow-wrap: break-word;
+      word-break: break-all;
+
       p {
         font-size: 1.1rem;
         margin-block: 10px;
@@ -175,9 +178,11 @@ main {
           color: white;
           field-sizing: content;
           font-size: 1.2rem;
+          overflow-wrap: break-word;
           padding-block: 10px;
           resize: none;
           width: 100%;
+          word-break: break-all;
 
           &:focus {
             outline: none;
@@ -217,8 +222,10 @@ main {
     .comment {
       display: flex;
       gap: 10px;
+      overflow-wrap: break-word;
       padding-top: 10px;
       position: relative;
+      word-break: break-all;
 
       a {
         height: 40px;
