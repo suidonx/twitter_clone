@@ -24,7 +24,7 @@
         <!-- 投稿フォーム -->
         <div class="tab">
           <form method="post"
-                action="{% url "posts:create" %}"
+                action="{% url "posts:tweet_create" %}"
                 class="tweet-form"
                 enctype="multipart/form-data">
             {% csrf_token %}

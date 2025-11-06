@@ -24,7 +24,7 @@
         <div class="detail-header">
           <ul class="detail-top">
             <li>
-              <a href="{% url "posts:index" %}"><i class="bi bi-arrow-left"></i></a>
+              <a href="{% url "posts:tweet_index" %}"><i class="bi bi-arrow-left"></i></a>
             </li>
             <li>
               <ul class="detail-post">
@@ -81,7 +81,7 @@
             <hr>
           </div>
           <!-- comment form -->
-          <form action="{% url "posts:comment" object.id %}"
+          <form action="{% url "posts:comment_create" object.id %}"
                 method="post"
                 class="comment-form">
             {% csrf_token %}

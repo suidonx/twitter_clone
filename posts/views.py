@@ -44,7 +44,7 @@ class IndexView(ListView):
 
 class CreateTweet(View):
     def get(self, request):
-        return redirect(reverse("posts:index"))
+        return redirect(reverse("posts:tweet_index"))
 
     def post(self, request):
 
@@ -120,7 +120,7 @@ class CreateTweet(View):
         else:
             _not_found_post()
 
-        return redirect(reverse("posts:index"))
+        return redirect(reverse("posts:tweet_index"))
 
 
 class DetailTweet(DetailView):
@@ -141,7 +141,7 @@ class DetailTweet(DetailView):
 
 class CreateComment(View):
     def get(self, request, pk):
-        return redirect(reverse("posts:detail", args=[pk]))
+        return redirect(reverse("posts:tweet_detail", args=[pk]))
 
     def post(self, request, pk):
         form = CreateCommentForm(self.request.POST)
@@ -158,4 +158,4 @@ class CreateComment(View):
                 extra_tags="danger",
             )
 
-        return redirect(reverse("posts:detail", args=[pk]))
+        return redirect(reverse("posts:tweet_detail", args=[pk]))
