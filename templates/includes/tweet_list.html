@@ -1,7 +1,8 @@
+{% load static %}
 {% for object in object_list %}
   <div class="tweet">
     <a href="{% if user.id %}{% url "users:profile" object.user.account_id %}{% endif %}">
-      <img src="{% if object.user.icon_image %} {{ object.user.icon_image.url }} {% else %} static/images/default-profile-icon.jpg {% endif %}"
+      <img src="{% if object.user.icon_image %} {{ object.user.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
            alt="ユーザーアイコン"
            width="40"
            height="40"
