@@ -20,9 +20,14 @@ class IndexView(ListView):
         parm = self.request.GET.get("tab", "recommend")
 
         if parm == "recommend":
-            queryset = Tweet.objects.prefetch_related(
-                "user", "tweetimage_set"
-            ).order_by("-created_at")
+            queryset = (
+                Tweet.objects.select_related("user")
+                .prefetch_related(
+                    "tweetimage_set",
+                    "like_set",
+                )
+                .order_by("-created_at")
+            )
 
         elif parm == "follow":
             if self.request.user.id is None:
@@ -35,7 +40,11 @@ class IndexView(ListView):
 
             queryset = (
                 Tweet.objects.filter(user__in=users)
-                .prefetch_related("user", "tweetimage_set")
+                .select_related("user")
+                .prefetch_related(
+                    "tweetimage_set",
+                    "like_set",
+                )
                 .order_by("-created_at")
             )
 
@@ -134,7 +143,7 @@ class DetailTweet(DetailView):
         pk = self.kwargs["pk"]
         tweet = get_object_or_404(Tweet, id=pk)
 
-        comments = Comment.objects.filter(tweet=tweet).prefetch_related("user")
+        comments = Comment.objects.filter(tweet=tweet).select_related("user")
         context["comments"] = comments
 
         return context

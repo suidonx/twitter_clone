@@ -36,7 +36,8 @@ class UserProfile(DetailView):
             )
             tweets = (
                 Tweet.objects.filter(id__in=liked_tweet)
-                .prefetch_related("user", "tweetimage_set")
+                .select_related("user")
+                .prefetch_related("tweetimage_set")
                 .order_by("-created_at")
             )
 
@@ -48,7 +49,8 @@ class UserProfile(DetailView):
             )
             tweets = (
                 Tweet.objects.filter(id__in=retweeted_tweet)
-                .prefetch_related("user", "tweetimage_set")
+                .select_related("user")
+                .prefetch_related("tweetimage_set")
                 .order_by("-created_at")
             )
         # ユーザーがコメントしたツイート一覧を表示
@@ -59,7 +61,8 @@ class UserProfile(DetailView):
             )
             tweets = (
                 Tweet.objects.filter(id__in=commented_tweet)
-                .prefetch_related("user", "tweetimage_set")
+                .select_related("user")
+                .prefetch_related("tweetimage_set")
                 .order_by("-created_at")
             )
 
@@ -67,7 +70,8 @@ class UserProfile(DetailView):
         else:
             tweets = (
                 Tweet.objects.filter(user=user)
-                .prefetch_related("user", "tweetimage_set")
+                .select_related("user")
+                .prefetch_related("tweetimage_set")
                 .order_by("-created_at")
             )
 
