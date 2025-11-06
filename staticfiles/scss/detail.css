@@ -116,12 +116,12 @@ main {
   border-top: 0px;
   color: white;
   grid-area: center; }
-  main .profile-header {
+  main .detail-header {
     align-items: center;
     display: flex;
     height: 55px;
     width: 100%; }
-    main .profile-header .profile-top {
+    main .detail-header .detail-top {
       align-items: center;
       display: flex;
       gap: 25px;
@@ -130,17 +130,17 @@ main {
       margin: 0;
       padding: 0;
       width: 100%; }
-      main .profile-header .profile-top li a {
+      main .detail-header .detail-top li a {
         color: white;
         font-size: 1.25rem;
         margin-left: 10px;
         padding: 8px 9px; }
-        main .profile-header .profile-top li a:hover {
+        main .detail-header .detail-top li a:hover {
           color: white;
           background-color: #282727;
           border-radius: 50%;
           opacity: 0.8; }
-      main .profile-header .profile-top li .profile-username {
+      main .detail-header .detail-top li .detail-post {
         display: flex;
         flex-direction: column;
         line-height: 20px;
@@ -148,135 +148,115 @@ main {
         margin: 0;
         padding: 0;
         height: 100%; }
-        main .profile-header .profile-top li .profile-username span {
+        main .detail-header .detail-top li .detail-post span {
           font-size: 1.5rem; }
-        main .profile-header .profile-top li .profile-username small {
+        main .detail-header .detail-top li .detail-post small {
           color: gray; }
-  main .profile-image {
-    width: 100%; }
-    main .profile-image .header-image {
-      background-color: gray;
-      height: 200px;
-      object-fit: cover;
-      width: 100%; }
-    main .profile-image .profile-button {
-      align-items: start;
-      display: flex;
-      justify-content: space-between;
-      padding: 10px;
-      width: 100%; }
-      main .profile-image .profile-button .icon-image {
-        border: 4px solid black;
-        border-radius: 50%;
-        margin-bottom: 10px;
-        transform: translateY(-80px); }
-      main .profile-image .profile-button .profile-edit {
-        background-color: black;
-        border: 1px solid gray;
-        border-radius: 9999px;
-        color: white;
-        display: inline-block;
-        height: fit-content;
-        text-decoration: none;
-        transition: all 0.3s;
-        width: fit-content; }
-        main .profile-image .profile-button .profile-edit:hover {
-          opacity: 0.8; }
-        main .profile-image .profile-button .profile-edit p {
-          font-size: 0.9rem;
-          font-weight: bold;
-          margin: 0px;
-          padding: 7px 15px;
-          text-align: center; }
-  main .profile-content {
-    padding: 15px;
-    overflow-wrap: break-word;
-    transform: translateY(-115px);
-    word-break: break-all; }
-    main .profile-content span {
-      font-size: 1.5rem; }
-    main .profile-content small {
-      color: gray;
-      display: block; }
-    main .profile-content p {
-      padding-top: 10px; }
-    main .profile-content .profile-info {
-      color: gray;
-      display: flex;
-      flex-wrap: wrap;
-      font-size: 0.95rem;
-      gap: 12px;
-      list-style: none;
-      margin: 0;
-      padding: 0; }
-    main .profile-content .profile-follow {
-      display: flex;
-      gap: 20px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      padding-top: 10px; }
-      main .profile-content .profile-follow span {
-        font-size: 1rem;
-        font-weight: bold; }
-      main .profile-content .profile-follow small {
-        display: inline;
-        margin-left: 8px; }
-  main .tab {
-    display: flex;
-    flex-wrap: wrap;
-    transform: translateY(-110px);
-    width: 100%; }
-  main .label {
+  main .detail-content {
     border-bottom: 1px solid gray;
-    height: 50px;
-    order: -1;
-    text-align: center;
-    transition: all 0.4s;
-    width: 25%; }
-    main .label:hover {
-      background-color: #1d1c1c; }
-    main .label.checked a {
-      color: white;
-      font-weight: bold; }
-      main .label.checked a p {
-        border-bottom: 5px solid #1d9bf0; }
-    main .label a {
-      color: gray;
-      display: block;
-      height: 100%;
-      margin: 0px;
-      text-decoration: none;
+    padding-inline: 15px;
+    padding-block: 10px 15px; }
+    main .detail-content .tweet-header {
+      display: flex;
+      gap: 8px;
       width: 100%; }
-      main .label a p {
-        display: inline-block;
-        margin: 0px;
-        padding-block: 10px; }
-    main .label.checked + .tweet-list {
-      display: block; }
-  main .tweet-list {
-    display: none;
-    width: 100%; }
-    main .tweet-list .tweet {
-      border-bottom: 1px solid gray;
+      main .detail-content .tweet-header a {
+        height: 40px; }
+        main .detail-content .tweet-header a .user-icon {
+          border-radius: 50%; }
+      main .detail-content .tweet-header .tweet-username span {
+        font-weight: bold; }
+      main .detail-content .tweet-header .tweet-username small {
+        color: gray;
+        display: block;
+        font-size: 0.9rem; }
+    main .detail-content .tweet-content {
+      overflow-wrap: break-word;
+      word-break: break-all; }
+      main .detail-content .tweet-content p {
+        font-size: 1.1rem;
+        margin-block: 10px; }
+      main .detail-content .tweet-content .tweet-image img {
+        border-radius: 15px;
+        height: 300px;
+        object-fit: cover;
+        width: 100%; }
+      main .detail-content .tweet-content small {
+        color: gray;
+        display: block;
+        font-size: 0.95rem;
+        margin-top: 15px; }
+      main .detail-content .tweet-content ul {
+        display: flex;
+        gap: 15px;
+        list-style: none;
+        margin: 0;
+        padding: 0; }
+        main .detail-content .tweet-content ul li small {
+          margin: 0; }
+        main .detail-content .tweet-content ul li span {
+          color: white;
+          font-weight: bold;
+          margin-right: 5px; }
+      main .detail-content .tweet-content .tweet-property {
+        color: gray;
+        display: flex;
+        font-size: 1.25rem;
+        justify-content: space-around; }
+    main .detail-content .comment-form {
       display: flex;
       gap: 10px;
+      width: 100%; }
+      main .detail-content .comment-form a {
+        height: 40px; }
+        main .detail-content .comment-form a img {
+          border-radius: 50%; }
+      main .detail-content .comment-form .form-content {
+        width: 100%; }
+        main .detail-content .comment-form .form-content textarea {
+          background-color: black;
+          border: 0px;
+          color: white;
+          field-sizing: content;
+          font-size: 1.2rem;
+          overflow-wrap: break-word;
+          padding-block: 10px;
+          resize: none;
+          width: 100%;
+          word-break: break-all; }
+          main .detail-content .comment-form .form-content textarea:focus {
+            outline: none; }
+        main .detail-content .comment-form .form-content .form-content-post {
+          margin-top: 10px;
+          text-align: right; }
+          main .detail-content .comment-form .form-content .form-content-post button {
+            border: 0px;
+            border-radius: 9999px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            padding: 8px 5px;
+            width: 110px; }
+            main .detail-content .comment-form .form-content .form-content-post button:hover {
+              opacity: 0.8; }
+  main .comment-list {
+    padding-inline: 15px;
+    width: 100%; }
+    main .comment-list hr {
+      margin-bottom: 0; }
+    main .comment-list .comment {
+      display: flex;
+      gap: 10px;
+      overflow-wrap: break-word;
       padding-top: 10px;
-      padding-inline: 15px;
-      position: relative; }
-      main .tweet-list .tweet .detail {
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 1; }
-      main .tweet-list .tweet a {
+      position: relative;
+      word-break: break-all; }
+      main .comment-list .comment a {
         height: 40px;
         z-index: 2; }
-        main .tweet-list .tweet a .user-icon {
+        main .comment-list .comment a .user-icon {
           border-radius: 50%; }
-      main .tweet-list .tweet .tweet-username a {
+      main .comment-list .comment .comment-username a {
         color: white;
         height: 100%;
         left: 0;
@@ -285,32 +265,13 @@ main {
         top: 0;
         width: 100%;
         z-index: 2; }
-        main .tweet-list .tweet .tweet-username a:hover {
+        main .comment-list .comment .comment-username a:hover {
           text-decoration: underline; }
-      main .tweet-list .tweet .tweet-username span {
+      main .comment-list .comment .comment-username span {
         font-weight: bold; }
-      main .tweet-list .tweet .tweet-username small {
+      main .comment-list .comment .comment-username small {
         color: gray;
         font-size: 0.9rem; }
-      main .tweet-list .tweet .tweet-content {
-        overflow-wrap: break-word;
-        word-break: break-all; }
-      main .tweet-list .tweet .tweet-image {
-        margin-top: 8px; }
-        main .tweet-list .tweet .tweet-image img {
-          border-radius: 15px;
-          object-fit: cover; }
-      main .tweet-list .tweet .tweet-property {
-        display: flex;
-        font-size: 0.9rem;
-        gap: 100px;
-        padding-block: 8px; }
-  main .paginator {
-    margin-block: 20px; }
-    main .paginator .pagination a {
-      transition: 0.4s all; }
-      main .paginator .pagination a:hover {
-        border-radius: 0px; }
 
 @media (max-width: 1200px) {
   .container {
@@ -355,9 +316,7 @@ main {
       nav .user-info img {
         border-radius: 50%; }
       nav .user-info .user-name {
-        display: none; }
-  main .pagination ul {
-    display: flex; } }
+        display: none; } }
 
 @media (max-width: 992px) {
   .container {
@@ -370,4 +329,4 @@ main {
   aside {
     display: none; } }
 
-/*# sourceMappingURL=profile.css.map */
+/*# sourceMappingURL=detail.css.map */

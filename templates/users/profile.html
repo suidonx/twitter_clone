@@ -103,7 +103,7 @@
                 </a>
                 <div class="tweet-content">
                   <div class="tweet-username">
-                    <span>{{ tweet.user.username }}</span>
+                    <a href="{% url "users:profile" tweet.user.account_id %}"><span>{{ tweet.user.username }}</span></a>
                     <small>@{{ tweet.user.account_id }}・{{ tweet.created_at }}</small>
                   </div>
                   <div class="tweet-text">{{ tweet.content }}</div>
@@ -121,6 +121,7 @@
                     <i class="bi bi-heart"></i>
                   </div>
                 </div>
+                <a class="detail" href="{% url "posts:detail" tweet.id %}"></a>
               </div>
             {% empty %}
               <p>表示可能なツイートがありません。</p>
@@ -181,7 +182,7 @@
                 </a>
                 <div class="tweet-content">
                   <div class="tweet-username">
-                    <span>{{ tweet.user.username }}</span>
+                    <a href="{% url "users:profile" tweet.user.account_id %}"><span>{{ tweet.user.username }}</span></a>
                     <small>@{{ tweet.user.account_id }}・{{ tweet.created_at }}</small>
                   </div>
                   <div class="tweet-text">{{ tweet.content }}</div>
@@ -199,6 +200,7 @@
                     <i class="bi bi-heart"></i>
                   </div>
                 </div>
+                <a class="detail" href="{% url "posts:detail" tweet.id %}"></a>
               </div>
             {% empty %}
               <p>表示可能なツイートがありません。</p>
@@ -259,7 +261,7 @@
                 </a>
                 <div class="tweet-content">
                   <div class="tweet-username">
-                    <span>{{ tweet.user.username }}</span>
+                    <a href="{% url "users:profile" tweet.user.account_id %}"><span>{{ tweet.user.username }}</span></a>
                     <small>@{{ tweet.user.account_id }}・{{ tweet.created_at }}</small>
                   </div>
                   <div class="tweet-text">{{ tweet.content }}</div>
@@ -277,6 +279,7 @@
                     <i class="bi bi-heart"></i>
                   </div>
                 </div>
+                <a class="detail" href="{% url "posts:detail" tweet.id %}"></a>
               </div>
             {% empty %}
               <p>表示可能なツイートがありません。</p>
@@ -337,7 +340,7 @@
                 </a>
                 <div class="tweet-content">
                   <div class="tweet-username">
-                    <span>{{ tweet.user.username }}</span>
+                    <a href="{% url "users:profile" tweet.user.account_id %}"><span>{{ tweet.user.username }}</span></a>
                     <small>@{{ tweet.user.account_id }}・{{ tweet.created_at }}</small>
                   </div>
                   <div class="tweet-text">{{ tweet.content }}</div>
@@ -355,6 +358,7 @@
                     <i class="bi bi-heart"></i>
                   </div>
                 </div>
+                <a class="detail" href="{% url "posts:detail" tweet.id %}"></a>
               </div>
             {% empty %}
               <p>表示可能なツイートがありません。</p>

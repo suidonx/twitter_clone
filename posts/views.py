@@ -1,12 +1,12 @@
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from django.views.generic import ListView, View
+from django.views.generic import ListView, View, DetailView
 
-from .forms import CreateTweetForm, CreateTweetImageForm
+from .forms import CreateTweetForm, CreateTweetImageForm, CreateCommentForm
 from .models import Tweet
-from users.models import Follow
+from users.models import Follow, Comment
 
 
 # Create your views here.
@@ -92,23 +92,19 @@ class CreateTweet(View):
                 image_form.save()
 
                 _post_success()
-                return redirect(reverse("posts:index"))
 
             # 画像のバリデーションだけ成功
             elif image_form.is_valid():
                 _post_error()
-                return redirect(reverse("posts:index"))
 
             # ツイートのバリデーションだけ成功
             elif content_form.is_valid():
                 _image_error()
-                return redirect(reverse("posts:index"))
 
             # どちらのバリデーションも失敗
             else:
                 _post_error()
                 _image_error()
-                return redirect(reverse("posts:index"))
 
         # ツイートのみ投稿
         elif content:
@@ -116,13 +112,50 @@ class CreateTweet(View):
                 tweet = content_form.save()
 
                 _post_success()
-                return redirect(reverse("posts:index"))
 
             else:
                 _post_error()
-                return redirect(reverse("posts:index"))
 
         # ツイートなし、添付ファイルのみ投稿
         else:
             _not_found_post()
-            return redirect(reverse("posts:index"))
+
+        return redirect(reverse("posts:index"))
+
+
+class DetailTweet(DetailView):
+    model = Tweet
+    template_name = "posts/detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        pk = self.kwargs["pk"]
+        tweet = get_object_or_404(Tweet, id=pk)
+
+        comments = Comment.objects.filter(tweet=tweet).prefetch_related("user")
+        context["comments"] = comments
+
+        return context
+
+
+class CreateComment(View):
+    def get(self, request, pk):
+        return redirect(reverse("posts:detail", args=[pk]))
+
+    def post(self, request, pk):
+        form = CreateCommentForm(self.request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.success(self.request, "コメントに成功しました")
+
+        else:
+            messages.add_message(
+                self.request,
+                messages.INFO,
+                "コメントに失敗しました",
+                extra_tags="danger",
+            )
+
+        return redirect(reverse("posts:detail", args=[pk]))

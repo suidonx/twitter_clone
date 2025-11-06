@@ -1,3 +1,7 @@
+@import "./aside";
+@import "./header";
+@import "./nav";
+
 body {
   background-color: black;
   height: 100vh;
@@ -11,143 +15,6 @@ body {
     "left center right"
     / 300px 600px 1fr;
   height: 100%;
-}
-
-header {
-  border-bottom: 1px solid gray;
-  display: flex;
-  grid-area: header;
-  justify-content: space-between;
-  padding: 10px;
-
-  .header-logo {
-    align-items: center;
-    display: flex;
-    gap: 20px;
-
-    .logo {
-      margin-left: 20px;
-    }
-
-    p {
-      color: white;
-      font-weight: bold;
-      margin: 0;
-      padding: 0;
-    }
-  }
-
-  ul {
-    align-items: center;
-    display: flex;
-    gap: 20px;
-    justify-content: end;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    width: 300px;
-  }
-
-  li {
-    background-color: #1d9bf0;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: bold;
-
-    a {
-      color: white;
-      display: block;
-      padding: 5px 18px;
-      text-decoration: none;
-    }
-    a:hover {
-      color: white;
-      opacity: 0.8;
-    }
-  }
-
-  .login,
-  .logout {
-    background-color: white;
-    a {
-      color: #1d9bf0;
-    }
-    a:hover {
-      color: #1d9bf0;
-    }
-  }
-}
-
-nav {
-  color: white;
-  grid-area: left;
-  height: 95vh;
-  padding: 10px;
-  position: relative;
-
-  ul {
-    margin: 0px;
-    padding: 10px;
-    .bi {
-      font-size: 1.5rem;
-      margin-right: 20px;
-    }
-    li {
-      font-size: 1.3rem;
-      list-style: none;
-      margin-bottom: 20px;
-      a {
-        color: white;
-        padding: 10px;
-        text-decoration: none;
-        transition: all 0.2s;
-      }
-      a:hover {
-        color: white;
-        background-color: rgb(40, 39, 39);
-        border-radius: 30px;
-        opacity: 0.8;
-      }
-    }
-  }
-
-  button {
-    border-radius: 30px;
-    font-weight: bold;
-    padding: 12px;
-    transition: all 0.5s;
-    width: 80%;
-
-    i {
-      display: none;
-    }
-  }
-
-  button:hover {
-    opacity: 0.8;
-  }
-
-  .user-info {
-    display: flex;
-    gap: 10px;
-    bottom: 0;
-    padding: 20px;
-    position: absolute;
-
-    img {
-      border-radius: 100%;
-    }
-
-    .user-name {
-      p {
-        font-weight: bold;
-        margin: 0px;
-      }
-      small {
-        color: gray;
-      }
-    }
-  }
 }
 
 main {
@@ -277,11 +144,6 @@ main {
       width: fit-content;
     }
   }
-}
-
-aside {
-  color: white;
-  grid-area: right;
 }
 
 @media (max-width: 1200px) {

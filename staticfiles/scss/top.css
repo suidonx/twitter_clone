@@ -1,12 +1,6 @@
-body {
-  background-color: black;
-  height: 100vh;
-  width: 100%; }
-
-.container {
-  display: grid;
-  grid-template: "header header header" 50px "left center right" / 300px 600px 1fr;
-  height: 100%; }
+aside {
+  color: white;
+  grid-area: right; }
 
 header {
   border-bottom: 1px solid gray;
@@ -107,6 +101,16 @@ nav {
     nav .user-info .user-name small {
       color: gray; }
 
+body {
+  background-color: black;
+  height: 100vh;
+  width: 100%; }
+
+.container {
+  display: grid;
+  grid-template: "header header header" 50px "left center right" / 300px 600px 1fr;
+  height: 100%; }
+
 main {
   border: 1px solid gray;
   border-top: 0px;
@@ -130,9 +134,11 @@ main {
         color: white;
         field-sizing: content;
         font-size: 1.2rem;
+        overflow-wrap: break-word;
         padding-block: 10px;
         resize: none;
-        width: 100%; }
+        width: 100%;
+        word-break: break-all; }
         main .tweet-form .form-content textarea:focus {
           outline: none; }
       main .tweet-form .form-content small {
@@ -208,16 +214,39 @@ main {
       display: flex;
       gap: 10px;
       padding-top: 10px;
-      padding-inline: 15px; }
+      padding-inline: 15px;
+      position: relative; }
+      main .tweet-list .tweet .detail {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1; }
       main .tweet-list .tweet a {
-        height: 40px; }
+        height: 40px;
+        z-index: 2; }
         main .tweet-list .tweet a .user-icon {
-          border-radius: 100%; }
+          border-radius: 50%; }
+      main .tweet-list .tweet .tweet-username a {
+        color: white;
+        height: 100%;
+        left: 0;
+        position: relative;
+        text-decoration: none;
+        top: 0;
+        width: 100%;
+        z-index: 2; }
+        main .tweet-list .tweet .tweet-username a:hover {
+          text-decoration: underline; }
       main .tweet-list .tweet .tweet-username span {
         font-weight: bold; }
       main .tweet-list .tweet .tweet-username small {
         color: gray;
         font-size: 0.9rem; }
+      main .tweet-list .tweet .tweet-content {
+        overflow-wrap: break-word;
+        word-break: break-all; }
       main .tweet-list .tweet .tweet-image {
         margin-top: 8px; }
         main .tweet-list .tweet .tweet-image img {
@@ -234,10 +263,6 @@ main {
       transition: 0.4s all; }
       main .paginator .pagination a:hover {
         border-radius: 0px; }
-
-aside {
-  color: white;
-  grid-area: right; }
 
 @media (max-width: 1200px) {
   .container {
