@@ -10,3 +10,4 @@ django-sass-processor
 django-allauth[socialaccount]
 libsass
 Pillow
+django-debug-toolbar
