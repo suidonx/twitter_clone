@@ -75,7 +75,8 @@ class CreateTweet(View):
         image = self.request.FILES.get("image")
 
         # モデルフォームインスタンスを生成
-        content_form = CreateTweetForm(self.request.POST)
+        form_data = {"user": self.request.user.id, "content": content}
+        content_form = CreateTweetForm(form_data)
         image_form = CreateTweetImageForm(None, self.request.FILES)
 
         # ツイートと画像が投稿されたとき
@@ -144,7 +145,12 @@ class CreateComment(View):
         return redirect(reverse("posts:tweet_detail", args=[pk]))
 
     def post(self, request, pk):
-        form = CreateCommentForm(self.request.POST)
+        form_data = {
+            "user": self.request.user.id,
+            "tweet": Tweet.objects.get(id=pk),
+            "content": self.request.POST.get("content"),
+        }
+        form = CreateCommentForm(form_data)
 
         if form.is_valid():
             form.save()
