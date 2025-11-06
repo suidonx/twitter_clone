@@ -101,6 +101,68 @@ nav {
     nav .user-info .user-name small {
       color: gray; }
 
+.paginator {
+  margin-block: 20px; }
+  .paginator .pagination a {
+    transition: 0.4s all; }
+    .paginator .pagination a:hover {
+      border-radius: 0px; }
+
+.tweet-list {
+  display: none;
+  width: 100%; }
+  .tweet-list .tweet {
+    border-bottom: 1px solid gray;
+    display: flex;
+    gap: 10px;
+    padding-top: 10px;
+    padding-inline: 15px;
+    position: relative;
+    transition: all 0.4s; }
+    .tweet-list .tweet:hover {
+      background-color: #111; }
+    .tweet-list .tweet .detail {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 1; }
+    .tweet-list .tweet a {
+      height: 40px;
+      z-index: 2; }
+      .tweet-list .tweet a .user-icon {
+        border-radius: 50%; }
+    .tweet-list .tweet .tweet-username a {
+      color: white;
+      height: 100%;
+      left: 0;
+      position: relative;
+      text-decoration: none;
+      top: 0;
+      width: 100%;
+      z-index: 2; }
+      .tweet-list .tweet .tweet-username a:hover {
+        text-decoration: underline; }
+    .tweet-list .tweet .tweet-username span {
+      font-weight: bold; }
+    .tweet-list .tweet .tweet-username small {
+      color: gray;
+      font-size: 0.9rem; }
+    .tweet-list .tweet .tweet-content {
+      overflow-wrap: break-word;
+      word-break: break-all; }
+    .tweet-list .tweet .tweet-image {
+      margin-top: 8px; }
+      .tweet-list .tweet .tweet-image img {
+        border-radius: 15px;
+        object-fit: cover; }
+    .tweet-list .tweet .tweet-property {
+      display: flex;
+      font-size: 0.9rem;
+      gap: 100px;
+      padding-block: 8px; }
+
 body {
   background-color: black;
   height: 100vh;
@@ -254,66 +316,6 @@ main {
         padding-block: 10px; }
     main .label.checked + .tweet-list {
       display: block; }
-  main .tweet-list {
-    display: none;
-    width: 100%; }
-    main .tweet-list .tweet {
-      border-bottom: 1px solid gray;
-      display: flex;
-      gap: 10px;
-      padding-top: 10px;
-      padding-inline: 15px;
-      position: relative;
-      transition: all 0.4s; }
-      main .tweet-list .tweet:hover {
-        background-color: #111; }
-      main .tweet-list .tweet .detail {
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 1; }
-      main .tweet-list .tweet a {
-        height: 40px;
-        z-index: 2; }
-        main .tweet-list .tweet a .user-icon {
-          border-radius: 50%; }
-      main .tweet-list .tweet .tweet-username a {
-        color: white;
-        height: 100%;
-        left: 0;
-        position: relative;
-        text-decoration: none;
-        top: 0;
-        width: 100%;
-        z-index: 2; }
-        main .tweet-list .tweet .tweet-username a:hover {
-          text-decoration: underline; }
-      main .tweet-list .tweet .tweet-username span {
-        font-weight: bold; }
-      main .tweet-list .tweet .tweet-username small {
-        color: gray;
-        font-size: 0.9rem; }
-      main .tweet-list .tweet .tweet-content {
-        overflow-wrap: break-word;
-        word-break: break-all; }
-      main .tweet-list .tweet .tweet-image {
-        margin-top: 8px; }
-        main .tweet-list .tweet .tweet-image img {
-          border-radius: 15px;
-          object-fit: cover; }
-      main .tweet-list .tweet .tweet-property {
-        display: flex;
-        font-size: 0.9rem;
-        gap: 100px;
-        padding-block: 8px; }
-  main .paginator {
-    margin-block: 20px; }
-    main .paginator .pagination a {
-      transition: 0.4s all; }
-      main .paginator .pagination a:hover {
-        border-radius: 0px; }
 
 @media (max-width: 1200px) {
   .container {
