@@ -92,76 +92,10 @@
             </a>
           </div>
           <div class="tweet-list">
-            {% for tweet in tweets %}
-              <div class="tweet">
-                <a href="{% if tweet.user.id %}{% url "users:profile" tweet.user.account_id %}{% endif %}">
-                  <img src="{% if tweet.user.icon_image %}{{ tweet.user.icon_image.url }}{% else %}{% static "images/default-profile-icon.jpg" %}{% endif %}"
-                       alt="ユーザーアイコン"
-                       width="40"
-                       height="40"
-                       class="user-icon">
-                </a>
-                <div class="tweet-content">
-                  <div class="tweet-username">
-                    <a href="{% url "users:profile" tweet.user.account_id %}"><span>{{ tweet.user.username }}</span></a>
-                    <small>@{{ tweet.user.account_id }}・{{ tweet.created_at }}</small>
-                  </div>
-                  <div class="tweet-text">{{ tweet.content }}</div>
-                  {% if tweet.tweetimage_set.first %}
-                    <div class="tweet-image">
-                      <img src="{{ tweet.tweetimage_set.first.image.url }}"
-                           alt="ツイート画像"
-                           width="450"
-                           height="253">
-                    </div>
-                  {% endif %}
-                  <div class="tweet-property">
-                    <i class="bi bi-chat"></i>
-                    <i class="bi bi-repeat"></i>
-                    <i class="bi bi-heart"></i>
-                  </div>
-                </div>
-                <a class="detail" href="{% url "posts:detail" tweet.id %}"></a>
-              </div>
-            {% empty %}
-              <p>表示可能なツイートがありません。</p>
-            {% endfor %}
+            <!-- tweet-list -->
+            {% include "includes/tweet_list.html" with object_list=tweets %}
             <!-- pagination -->
-            <div class="paginator" aria-label="page navigation">
-              <ul class="pagination justify-content-center">
-                {% if page_obj.has_previous %}
-                  <li class="page-item">
-                    <a aria-label="Previous"
-                       class="page-link"
-                       href="?tab=post&page={{ page_obj.previous_page_number }}">&laquo;</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.previous_page_number > 0 %}
-                  <li class="page-item">
-                    <a class="page-link"
-                       href="?tab=post&page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.paginator.num_pages != 1 %}
-                  <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="?tab=post&page={{ page_obj.number }}">{{ page_obj.number }}</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.next_page_number <= page_obj.paginator.num_pages %}
-                  <li class="page-item">
-                    <a class="page-link"
-                       href="?tab=post&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.has_next %}
-                  <li class="page-item">
-                    <a aria-label="Next"
-                       class="page-link"
-                       href="?tab=post&page={{ page_obj.next_page_number }}">&raquo;</a>
-                  </li>
-                {% endif %}
-              </ul>
-            </div>
+            {% include "includes/pagination.html" with param="post" %}
           </div>
           <!-- good -->
           <!-- クエリパラメーターにgoodが含まれる時、いいねを表示 -->
@@ -171,76 +105,10 @@
             </a>
           </div>
           <div class="tweet-list">
-            {% for tweet in tweets %}
-              <div class="tweet">
-                <a href="{% if tweet.user.id %}{% url "users:profile" tweet.user.account_id %}{% endif %}">
-                  <img src="{% if tweet.user.icon_image %}{{ tweet.user.icon_image.url }}{% else %}{% static "images/default-profile-icon.jpg" %}{% endif %}"
-                       alt="ユーザーアイコン"
-                       width="40"
-                       height="40"
-                       class="user-icon">
-                </a>
-                <div class="tweet-content">
-                  <div class="tweet-username">
-                    <a href="{% url "users:profile" tweet.user.account_id %}"><span>{{ tweet.user.username }}</span></a>
-                    <small>@{{ tweet.user.account_id }}・{{ tweet.created_at }}</small>
-                  </div>
-                  <div class="tweet-text">{{ tweet.content }}</div>
-                  {% if tweet.tweetimage_set.first %}
-                    <div class="tweet-image">
-                      <img src="{{ tweet.tweetimage_set.first.image.url }}"
-                           alt="ツイート画像"
-                           width="450"
-                           height="253">
-                    </div>
-                  {% endif %}
-                  <div class="tweet-property">
-                    <i class="bi bi-chat"></i>
-                    <i class="bi bi-repeat"></i>
-                    <i class="bi bi-heart"></i>
-                  </div>
-                </div>
-                <a class="detail" href="{% url "posts:detail" tweet.id %}"></a>
-              </div>
-            {% empty %}
-              <p>表示可能なツイートがありません。</p>
-            {% endfor %}
+            <!-- tweet-list -->
+            {% include "includes/tweet_list.html" with object_list=tweets %}
             <!-- pagination -->
-            <div class="paginator" aria-label="page navigation">
-              <ul class="pagination justify-content-center">
-                {% if page_obj.has_previous %}
-                  <li class="page-item">
-                    <a aria-label="Previous"
-                       class="page-link"
-                       href="?tab=good&page={{ page_obj.previous_page_number }}">&laquo;</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.previous_page_number > 0 %}
-                  <li class="page-item">
-                    <a class="page-link"
-                       href="?tab=good&page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.paginator.num_pages != 1 %}
-                  <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="?tab=good&page={{ page_obj.number }}">{{ page_obj.number }}</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.next_page_number <= page_obj.paginator.num_pages %}
-                  <li class="page-item">
-                    <a class="page-link"
-                       href="?tab=good&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.has_next %}
-                  <li class="page-item">
-                    <a aria-label="Next"
-                       class="page-link"
-                       href="?tab=good&page={{ page_obj.next_page_number }}">&raquo;</a>
-                  </li>
-                {% endif %}
-              </ul>
-            </div>
+            {% include "includes/pagination.html" with param="good" %}
           </div>
           <!-- retweet -->
           <!-- クエリパラメーターにretweetが含まれる時、リツイートを表示 -->
@@ -250,76 +118,10 @@
             </a>
           </div>
           <div class="tweet-list">
-            {% for tweet in tweets %}
-              <div class="tweet">
-                <a href="{% if tweet.user.id %}{% url "users:profile" tweet.user.account_id %}{% endif %}">
-                  <img src="{% if tweet.user.icon_image %}{{ tweet.user.icon_image.url }}{% else %}{% static "images/default-profile-icon.jpg" %}{% endif %}"
-                       alt="ユーザーアイコン"
-                       width="40"
-                       height="40"
-                       class="user-icon">
-                </a>
-                <div class="tweet-content">
-                  <div class="tweet-username">
-                    <a href="{% url "users:profile" tweet.user.account_id %}"><span>{{ tweet.user.username }}</span></a>
-                    <small>@{{ tweet.user.account_id }}・{{ tweet.created_at }}</small>
-                  </div>
-                  <div class="tweet-text">{{ tweet.content }}</div>
-                  {% if tweet.tweetimage_set.first %}
-                    <div class="tweet-image">
-                      <img src="{{ tweet.tweetimage_set.first.image.url }}"
-                           alt="ツイート画像"
-                           width="450"
-                           height="253">
-                    </div>
-                  {% endif %}
-                  <div class="tweet-property">
-                    <i class="bi bi-chat"></i>
-                    <i class="bi bi-repeat"></i>
-                    <i class="bi bi-heart"></i>
-                  </div>
-                </div>
-                <a class="detail" href="{% url "posts:detail" tweet.id %}"></a>
-              </div>
-            {% empty %}
-              <p>表示可能なツイートがありません。</p>
-            {% endfor %}
+            <!-- tweet-list -->
+            {% include "includes/tweet_list.html" with object_list=tweets %}
             <!-- pagination -->
-            <div class="paginator" aria-label="page navigation">
-              <ul class="pagination justify-content-center">
-                {% if page_obj.has_previous %}
-                  <li class="page-item">
-                    <a aria-label="Previous"
-                       class="page-link"
-                       href="?tab=retweet&page={{ page_obj.previous_page_number }}">&laquo;</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.previous_page_number > 0 %}
-                  <li class="page-item">
-                    <a class="page-link"
-                       href="?tab=retweet&page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.paginator.num_pages != 1 %}
-                  <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="?tab=retweet&page={{ page_obj.number }}">{{ page_obj.number }}</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.next_page_number <= page_obj.paginator.num_pages %}
-                  <li class="page-item">
-                    <a class="page-link"
-                       href="?tab=retweet&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.has_next %}
-                  <li class="page-item">
-                    <a aria-label="Next"
-                       class="page-link"
-                       href="?tab=retweet&page={{ page_obj.next_page_number }}">&raquo;</a>
-                  </li>
-                {% endif %}
-              </ul>
-            </div>
+            {% include "includes/pagination.html" with param="retweet" %}
           </div>
           <!-- comment -->
           <!-- クエリパラメーターにcommentが含まれる時、コメントを表示 -->
@@ -329,76 +131,10 @@
             </a>
           </div>
           <div class="tweet-list">
-            {% for tweet in tweets %}
-              <div class="tweet">
-                <a href="{% if tweet.user.id %}{% url "users:profile" tweet.user.account_id %}{% endif %}">
-                  <img src="{% if tweet.user.icon_image %}{{ tweet.user.icon_image.url }}{% else %}{% static "images/default-profile-icon.jpg" %}{% endif %}"
-                       alt="ユーザーアイコン"
-                       width="40"
-                       height="40"
-                       class="user-icon">
-                </a>
-                <div class="tweet-content">
-                  <div class="tweet-username">
-                    <a href="{% url "users:profile" tweet.user.account_id %}"><span>{{ tweet.user.username }}</span></a>
-                    <small>@{{ tweet.user.account_id }}・{{ tweet.created_at }}</small>
-                  </div>
-                  <div class="tweet-text">{{ tweet.content }}</div>
-                  {% if tweet.tweetimage_set.first %}
-                    <div class="tweet-image">
-                      <img src="{{ tweet.tweetimage_set.first.image.url }}"
-                           alt="ツイート画像"
-                           width="450"
-                           height="253">
-                    </div>
-                  {% endif %}
-                  <div class="tweet-property">
-                    <i class="bi bi-chat"></i>
-                    <i class="bi bi-repeat"></i>
-                    <i class="bi bi-heart"></i>
-                  </div>
-                </div>
-                <a class="detail" href="{% url "posts:detail" tweet.id %}"></a>
-              </div>
-            {% empty %}
-              <p>表示可能なツイートがありません。</p>
-            {% endfor %}
+            <!-- tweet-list -->
+            {% include "includes/tweet_list.html" with object_list=tweets %}
             <!-- pagination -->
-            <div class="paginator" aria-label="page navigation">
-              <ul class="pagination justify-content-center">
-                {% if page_obj.has_previous %}
-                  <li class="page-item">
-                    <a aria-label="Previous"
-                       class="page-link"
-                       href="?tab=comment&page={{ page_obj.previous_page_number }}">&laquo;</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.previous_page_number > 0 %}
-                  <li class="page-item">
-                    <a class="page-link"
-                       href="?tab=comment&page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.paginator.num_pages != 1 %}
-                  <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="?tab=comment&page={{ page_obj.number }}">{{ page_obj.number }}</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.next_page_number <= page_obj.paginator.num_pages %}
-                  <li class="page-item">
-                    <a class="page-link"
-                       href="?tab=comment&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
-                  </li>
-                {% endif %}
-                {% if page_obj.has_next %}
-                  <li class="page-item">
-                    <a aria-label="Next"
-                       class="page-link"
-                       href="?tab=comment&page={{ page_obj.next_page_number }}">&raquo;</a>
-                  </li>
-                {% endif %}
-              </ul>
-            </div>
+            {% include "includes/pagination.html" with param="comment" %}
           </div>
           <!-- end -->
         </div>
