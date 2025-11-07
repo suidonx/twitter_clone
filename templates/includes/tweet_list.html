@@ -26,9 +26,14 @@
         <button>
           <i class="bi bi-chat"></i>
         </button>
-        <button>
-          <i class="bi bi-repeat"></i>
-        </button>
+        <form action="{% url "posts:tweet_retweet" object.id %}" method="post">
+          {% csrf_token %}
+          <button class="retweet">
+            <!-- すでにリツイートしているかどうか判定 -->
+            <i class="bi bi-repeat {% if object.user_retweeted_tweet %}active{% endif %}"></i>
+          </button>
+          <span>{{ object.retweet_set.count }}</span>
+        </form>
         <form action="{% url "posts:tweet_like" object.id %}" method="post">
           {% csrf_token %}
           <!-- すでにいいねしているかどうか判定 -->

@@ -11,7 +11,7 @@ from .forms import (
     CreateCommentForm,
 )
 from .models import Tweet
-from users.models import Follow, Comment, Like
+from users.models import Follow, Comment, Like, Retweet
 
 
 # Create your views here.
@@ -27,12 +27,19 @@ class IndexView(ListView):
         if parm == "recommend":
             queryset = (
                 Tweet.objects.select_related("user")
-                .prefetch_related("tweetimage_set", "like_set")
+                .prefetch_related("tweetimage_set", "like_set", "retweet_set")
                 .prefetch_related(
                     Prefetch(
                         "like_set",
                         queryset=Like.objects.filter(user=self.request.user),
                         to_attr="user_liked_tweet",
+                    )
+                )
+                .prefetch_related(
+                    Prefetch(
+                        "retweet_set",
+                        queryset=Retweet.objects.filter(user=self.request.user),
+                        to_attr="user_retweeted_tweet",
                     )
                 )
                 .order_by("-created_at")
@@ -50,12 +57,19 @@ class IndexView(ListView):
             queryset = (
                 Tweet.objects.filter(user__in=users)
                 .select_related("user")
-                .prefetch_related("tweetimage_set", "like_set")
+                .prefetch_related("tweetimage_set", "like_set", "retweet_set")
                 .prefetch_related(
                     Prefetch(
                         "like_set",
                         queryset=Like.objects.filter(user=self.request.user),
                         to_attr="user_liked_tweet",
+                    )
+                )
+                .prefetch_related(
+                    Prefetch(
+                        "retweet_set",
+                        queryset=Retweet.objects.filter(user=self.request.user),
+                        to_attr="user_retweeted_tweet",
                     )
                 )
                 .order_by("-created_at")
@@ -211,5 +225,31 @@ class LikeTweet(View):
         else:
             like.delete()
             messages.success(self.request, "いいね解除しました")
+
+        return redirect(self.request.META.get("HTTP_REFERER", "/"))
+
+
+class RetweetTweet(View):
+    def get(self, request, pk):
+        return redirect(reverse("posts:tweet_index"))
+
+    def post(self, request, pk):
+
+        user = self.request.user
+        tweet = Tweet.objects.get(id=pk)
+
+        # 未登録ならリツイート
+        # すでに登録済みならそのオブジェクトを返して削除処理
+        retweet, is_created = Retweet.objects.get_or_create(
+            user=user,
+            tweet=tweet,
+        )
+
+        if is_created:
+            messages.success(self.request, "リツイートに成功しました")
+
+        else:
+            retweet.delete()
+            messages.success(self.request, "リツイートを解除しました")
 
         return redirect(self.request.META.get("HTTP_REFERER", "/"))
