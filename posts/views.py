@@ -27,9 +27,13 @@ class IndexView(ListView):
         if parm == "recommend":
             queryset = (
                 Tweet.objects.select_related("user")
+                .prefetch_related("tweetimage_set", "like_set")
                 .prefetch_related(
-                    "tweetimage_set",
-                    "like_set",
+                    Prefetch(
+                        "like_set",
+                        queryset=Like.objects.filter(user=self.request.user),
+                        to_attr="user_liked_tweet",
+                    )
                 )
                 .order_by("-created_at")
             )
@@ -46,9 +50,13 @@ class IndexView(ListView):
             queryset = (
                 Tweet.objects.filter(user__in=users)
                 .select_related("user")
+                .prefetch_related("tweetimage_set", "like_set")
                 .prefetch_related(
-                    "tweetimage_set",
-                    "like_set",
+                    Prefetch(
+                        "like_set",
+                        queryset=Like.objects.filter(user=self.request.user),
+                        to_attr="user_liked_tweet",
+                    )
                 )
                 .order_by("-created_at")
             )

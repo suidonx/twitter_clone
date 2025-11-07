@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator
+from django.db.models import Prefetch
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import DetailView, UpdateView
@@ -49,7 +50,18 @@ class UserProfile(DetailView):
         else:
             tweets = Tweet.objects.filter(user=user).order_by("-created_at")
 
+        # コンテキストに渡すツイート一覧を取得
+        tweets = (
+            tweets.select_related("user")
+            .prefetch_related("tweetimage_set", "like_set")
+            .prefetch_related(
+                Prefetch(
+                    "like_set",
+                    queryset=Like.objects.filter(user=self.request.user),
+                    to_attr="user_liked_tweet",
+                )
             )
+        )
 
         # ページネーション
         paginator = Paginator(tweets, 5)
