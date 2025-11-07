@@ -33,50 +33,82 @@
       }
     }
 
-    .tweet-username {
-      a {
-        color: white;
-        height: 100%;
-        left: 0;
-        position: relative;
-        text-decoration: none;
-        top: 0;
-        width: 100%;
-        z-index: 2;
+    .tweet-content {
+      overflow-wrap: break-word;
+      width: 100%;
+      word-break: break-all;
 
-        &:hover {
-          text-decoration: underline;
+      .tweet-username {
+        a {
+          color: white;
+          height: 100%;
+          left: 0;
+          position: relative;
+          text-decoration: none;
+          top: 0;
+          width: 100%;
+          z-index: 2;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        span {
+          font-weight: bold;
+        }
+
+        small {
+          color: gray;
+          font-size: 0.9rem;
         }
       }
 
-      span {
-        font-weight: bold;
+      .tweet-content {
+        overflow-wrap: break-word;
+        word-break: break-all;
       }
 
-      small {
-        color: gray;
-        font-size: 0.9rem;
+      .tweet-image {
+        margin-top: 8px;
+        img {
+          border-radius: 15px;
+          object-fit: cover;
+        }
       }
-    }
 
-    .tweet-content {
-      overflow-wrap: break-word;
-      word-break: break-all;
-    }
+      .tweet-property {
+        display: flex;
+        font-size: 0.95rem;
+        gap: 100px;
+        padding-block: 8px;
+        width: 100%;
 
-    .tweet-image {
-      margin-top: 8px;
-      img {
-        border-radius: 15px;
-        object-fit: cover;
+        button {
+          background-color: transparent;
+          border: 0;
+          color: white;
+          height: 33px;
+          position: relative;
+          transition: all 0.2s;
+          width: 33px;
+          z-index: 2;
+        }
+
+        .like:hover {
+          background-color: rgba(#dc143c, 0.2);
+          border-radius: 50%;
+        }
+
+        .bi-heart-fill {
+          color: crimson;
+        }
+
+        span {
+          display: inline-block;
+          font-size: 0.95rem;
+        }
       }
-    }
-
-    .tweet-property {
-      display: flex;
-      font-size: 0.9rem;
-      gap: 100px;
-      padding-block: 8px;
     }
   }
 }
