@@ -9,6 +9,13 @@
 {% endblock scss %}
 <!-- content -->
 {% block content %}
+  {% if messages %}
+    <ul class="messages list-unstyled">
+      {% for message in messages %}
+        <li {% if message.tags %}class="list-unstyled alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
   <div class="container">
     {% include "includes/header.html" %}
     {% include "includes/nav.html" %}
