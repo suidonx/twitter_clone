@@ -1,12 +1,17 @@
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.db.models import Prefetch
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import ListView, View, DetailView
 
-from .forms import CreateTweetForm, CreateTweetImageForm, CreateCommentForm
+from .forms import (
+    CreateTweetForm,
+    CreateTweetImageForm,
+    CreateCommentForm,
+)
 from .models import Tweet
-from users.models import Follow, Comment
+from users.models import Follow, Comment, Like
 
 
 # Create your views here.
@@ -174,3 +179,29 @@ class CreateComment(View):
             )
 
         return redirect(reverse("posts:tweet_detail", args=[pk]))
+
+
+class LikeTweet(View):
+    def get(self, request, pk):
+        return redirect(reverse("posts:tweet_index"))
+
+    def post(self, request, pk):
+
+        user = self.request.user
+        tweet = Tweet.objects.get(id=pk)
+
+        # 未登録ならいいねを登録
+        # すでに登録済みならそのオブジェクトを返して削除処理
+        like, is_created = Like.objects.get_or_create(
+            user=user,
+            tweet=tweet,
+        )
+
+        if is_created:
+            messages.success(self.request, "いいねに成功しました")
+
+        else:
+            like.delete()
+            messages.success(self.request, "いいね解除しました")
+
+        return redirect(self.request.META.get("HTTP_REFERER", "/"))

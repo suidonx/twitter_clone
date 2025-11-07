@@ -13,5 +13,5 @@ urlpatterns = [
         views.CreateComment.as_view(),
         name="comment_create",
     ),
-    # path("<int:pk>/likes/", views.LikeTweet.as_view(), name="tweet_like"),
+    path("<int:pk>/likes/", views.LikeTweet.as_view(), name="tweet_like"),
 ]
