@@ -26,53 +26,29 @@ class UserProfile(DetailView):
         # プロフィールページのユーザーを取得
         user = CustomUser.objects.filter(account_id=slug).first()
 
+        # 場合分け用パラメーター
         param = self.request.GET.get("tab")
 
         # ユーザーがいいねしたツイート一覧を表示
         if param == "good":
-            liked_tweet = Like.objects.filter(user=user).values_list(
-                "tweet",
-                flat=True,
-            )
-            tweets = (
-                Tweet.objects.filter(id__in=liked_tweet)
-                .select_related("user")
-                .prefetch_related("tweetimage_set")
-                .order_by("-created_at")
-            )
+            tweets = Tweet.objects.filter(like__user=user).order_by("-like__created_at")
 
         # ユーザーがリツイートしたツイート一覧を表示
         elif param == "retweet":
-            retweeted_tweet = Retweet.objects.filter(user=user).values_list(
-                "tweet",
-                flat=True,
+            tweets = Tweet.objects.filter(retweet__user=user).order_by(
+                "-retweet__created_at"
             )
-            tweets = (
-                Tweet.objects.filter(id__in=retweeted_tweet)
-                .select_related("user")
-                .prefetch_related("tweetimage_set")
-                .order_by("-created_at")
-            )
+
         # ユーザーがコメントしたツイート一覧を表示
         elif param == "comment":
-            commented_tweet = Comment.objects.filter(user=user).values_list(
-                "tweet",
-                flat=True,
-            )
-            tweets = (
-                Tweet.objects.filter(id__in=commented_tweet)
-                .select_related("user")
-                .prefetch_related("tweetimage_set")
-                .order_by("-created_at")
+            tweets = Tweet.objects.filter(comment__user=user).order_by(
+                "-comment__created_at"
             )
 
         # ユーザーのツイート一覧を表示
         else:
-            tweets = (
-                Tweet.objects.filter(user=user)
-                .select_related("user")
-                .prefetch_related("tweetimage_set")
-                .order_by("-created_at")
+            tweets = Tweet.objects.filter(user=user).order_by("-created_at")
+
             )
 
         # ページネーション
