@@ -178,13 +178,20 @@ class DetailTweet(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        pk = self.kwargs["pk"]
+        pk = self.kwargs.get("pk")
         tweet = get_object_or_404(Tweet, id=pk)
 
+        # コメントの取得
         comments = Comment.objects.filter(tweet=tweet).select_related("user")
         context["comments"] = comments
 
         return context
+
+    def get_queryset(self, **kwargs):
+        queryset = super().get_queryset()
+
+        queryset = queryset.select_related("user")
+        return queryset
 
 
 class CreateComment(View):
