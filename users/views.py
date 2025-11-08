@@ -82,7 +82,7 @@ class UserProfile(DetailView):
         return context
 
 
-class UseProfileEdit(UpdateView):
+class UserProfileEdit(UpdateView):
     model = CustomUser
     form_class = ProfileEditForm
     slug_field = "account_id"
