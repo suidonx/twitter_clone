@@ -25,25 +25,36 @@ class IndexView(ListView):
         parm = self.request.GET.get("tab", "recommend")
 
         if parm == "recommend":
-            queryset = (
-                Tweet.objects.select_related("user")
-                .prefetch_related("tweetimage_set", "like_set", "retweet_set")
-                .prefetch_related(
-                    Prefetch(
+            if self.request.user.id is None:
+                return queryset
+            else:
+                queryset = (
+                    Tweet.objects.select_related("user")
+                    .prefetch_related(
+                        "tweetimage_set",
                         "like_set",
-                        queryset=Like.objects.filter(user=self.request.user),
-                        to_attr="user_liked_tweet",
-                    )
-                )
-                .prefetch_related(
-                    Prefetch(
                         "retweet_set",
-                        queryset=Retweet.objects.filter(user=self.request.user),
-                        to_attr="user_retweeted_tweet",
                     )
+                    .prefetch_related(
+                        Prefetch(
+                            "like_set",
+                            queryset=Like.objects.filter(
+                                user=self.request.user,
+                            ),
+                            to_attr="user_liked_tweet",
+                        )
+                    )
+                    .prefetch_related(
+                        Prefetch(
+                            "retweet_set",
+                            queryset=Retweet.objects.filter(
+                                user=self.request.user,
+                            ),
+                            to_attr="user_retweeted_tweet",
+                        )
+                    )
+                    .order_by("-created_at")
                 )
-                .order_by("-created_at")
-            )
 
         elif parm == "follow":
             if self.request.user.id is None:
