@@ -9,6 +9,7 @@
   self_introduction
   place
   website
+  account_id
   created_at { label: "datatime, not null"}
   updated_at { label: "datatime, not null"}
 
@@ -55,6 +56,14 @@
   created_at { label: "datatime, not null"}
   updated_at { label: "datatime, not null"}
 
+[bookmarks]
+  *id
+  user_id {label: "FK(users)"}
+  tweet_id {label: "FK(tweets)"}
+  created_at { label: "datatime, not null"}
+  updated_at { label: "datatime, not null"}
+
+
 # Cardinality    Syntax
 # 0 or 1         ?
 # exactly 1      1
@@ -65,8 +74,10 @@ users 1--* tweets
 users 1--* goods
 users 1--* retweets
 users 1--* comments
+users 1--* bookmarks
 
 tweets 1--* retweets
 tweets 1--* goods
-tweets 1--* tweet_images
+tweets 1--1 tweet_images
 tweets 1--* comments
+tweets 1--* bookmarks
