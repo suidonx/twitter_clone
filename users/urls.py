@@ -10,4 +10,5 @@ app_name = "users"
 urlpatterns = [
     path("", views.UserProfile.as_view(), name="profile"),
     path("edit/", views.UserProfileEdit.as_view(), name="profile_edit"),
+    path("follows/", views.FollowUser.as_view(), name="user_follow"),
 ]

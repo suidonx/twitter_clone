@@ -48,6 +48,36 @@
               <span>{{ object.user.username }}</span>
               <small>@{{ object.user.account_id }}</small>
             </div>
+            <!--  自分以外のツイートを見ているときに表示 -->
+            {% if user != object.user %}
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                  <i class="bi bi-three-dots"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <form action="{% url "users:user_follow" object.user.account_id %}"
+                          method="post">
+                      {% csrf_token %}
+                      <!-- ユーザーのフォローリストにツイートユーザーがいる場合、フォロー解除 -->
+                      {% if user.follower.all and object.user.followed.all %}
+                        <button class="dropdown-item">
+                          <i class="bi bi-person-x"></i>{{ object.user.username }}さんのフォローを解除
+                        </button>
+                        <!-- いない場合、フォロー登録 -->
+                      {% else %}
+                        <button class="dropdown-item">
+                          <i class="bi bi-person-add"></i>{{ object.user.username }}さんをフォロー
+                        </button>
+                      {% endif %}
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            {% endif %}
           </div>
           <div class="tweet-content">
             <p>{{ object.content }}</p>
