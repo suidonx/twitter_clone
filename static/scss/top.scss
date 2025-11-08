@@ -1,6 +1,8 @@
 @import "./aside";
 @import "./header";
 @import "./nav";
+@import "./pagination";
+@import "./tweet_list";
 
 body {
   background-color: black;
@@ -154,96 +156,6 @@ main {
 
     &.checked + .tweet-list {
       display: block;
-    }
-  }
-
-  .tweet-list {
-    display: none;
-    width: 100%;
-
-    .tweet {
-      border-bottom: 1px solid gray;
-      display: flex;
-      gap: 10px;
-      padding-top: 10px;
-      padding-inline: 15px;
-      position: relative;
-
-      .detail {
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 1;
-      }
-
-      a {
-        height: 40px;
-        z-index: 2;
-
-        .user-icon {
-          border-radius: 50%;
-        }
-      }
-
-      .tweet-username {
-        a {
-          color: white;
-          height: 100%;
-          left: 0;
-          position: relative;
-          text-decoration: none;
-          top: 0;
-          width: 100%;
-          z-index: 2;
-
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-
-        span {
-          font-weight: bold;
-        }
-
-        small {
-          color: gray;
-          font-size: 0.9rem;
-        }
-      }
-
-      .tweet-content {
-        overflow-wrap: break-word;
-        word-break: break-all;
-      }
-
-      .tweet-image {
-        margin-top: 8px;
-        img {
-          border-radius: 15px;
-          object-fit: cover;
-        }
-      }
-
-      .tweet-property {
-        display: flex;
-        font-size: 0.9rem;
-        gap: 100px;
-        padding-block: 8px;
-      }
-    }
-  }
-
-  .paginator {
-    margin-block: 20px;
-    .pagination {
-      a {
-        transition: 0.4s all;
-        &:hover {
-          border-radius: 0px;
-        }
-      }
     }
   }
 }

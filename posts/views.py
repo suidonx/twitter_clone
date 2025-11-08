@@ -1,12 +1,17 @@
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.db.models import Prefetch
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import ListView, View, DetailView
 
-from .forms import CreateTweetForm, CreateTweetImageForm, CreateCommentForm
+from .forms import (
+    CreateTweetForm,
+    CreateTweetImageForm,
+    CreateCommentForm,
+)
 from .models import Tweet
-from users.models import Follow, Comment
+from users.models import Follow, Comment, Like
 
 
 # Create your views here.
@@ -20,9 +25,18 @@ class IndexView(ListView):
         parm = self.request.GET.get("tab", "recommend")
 
         if parm == "recommend":
-            queryset = Tweet.objects.prefetch_related(
-                "user", "tweetimage_set"
-            ).order_by("-created_at")
+            queryset = (
+                Tweet.objects.select_related("user")
+                .prefetch_related("tweetimage_set", "like_set")
+                .prefetch_related(
+                    Prefetch(
+                        "like_set",
+                        queryset=Like.objects.filter(user=self.request.user),
+                        to_attr="user_liked_tweet",
+                    )
+                )
+                .order_by("-created_at")
+            )
 
         elif parm == "follow":
             if self.request.user.id is None:
@@ -35,7 +49,15 @@ class IndexView(ListView):
 
             queryset = (
                 Tweet.objects.filter(user__in=users)
-                .prefetch_related("user", "tweetimage_set")
+                .select_related("user")
+                .prefetch_related("tweetimage_set", "like_set")
+                .prefetch_related(
+                    Prefetch(
+                        "like_set",
+                        queryset=Like.objects.filter(user=self.request.user),
+                        to_attr="user_liked_tweet",
+                    )
+                )
                 .order_by("-created_at")
             )
 
@@ -44,7 +66,7 @@ class IndexView(ListView):
 
 class CreateTweet(View):
     def get(self, request):
-        return redirect(reverse("posts:index"))
+        return redirect(reverse("posts:tweet_index"))
 
     def post(self, request):
 
@@ -75,7 +97,8 @@ class CreateTweet(View):
         image = self.request.FILES.get("image")
 
         # モデルフォームインスタンスを生成
-        content_form = CreateTweetForm(self.request.POST)
+        form_data = {"user": self.request.user.id, "content": content}
+        content_form = CreateTweetForm(form_data)
         image_form = CreateTweetImageForm(None, self.request.FILES)
 
         # ツイートと画像が投稿されたとき
@@ -120,7 +143,7 @@ class CreateTweet(View):
         else:
             _not_found_post()
 
-        return redirect(reverse("posts:index"))
+        return redirect(reverse("posts:tweet_index"))
 
 
 class DetailTweet(DetailView):
@@ -133,7 +156,7 @@ class DetailTweet(DetailView):
         pk = self.kwargs["pk"]
         tweet = get_object_or_404(Tweet, id=pk)
 
-        comments = Comment.objects.filter(tweet=tweet).prefetch_related("user")
+        comments = Comment.objects.filter(tweet=tweet).select_related("user")
         context["comments"] = comments
 
         return context
@@ -141,10 +164,15 @@ class DetailTweet(DetailView):
 
 class CreateComment(View):
     def get(self, request, pk):
-        return redirect(reverse("posts:detail", args=[pk]))
+        return redirect(reverse("posts:tweet_detail", args=[pk]))
 
     def post(self, request, pk):
-        form = CreateCommentForm(self.request.POST)
+        form_data = {
+            "user": self.request.user.id,
+            "tweet": Tweet.objects.get(id=pk),
+            "content": self.request.POST.get("content"),
+        }
+        form = CreateCommentForm(form_data)
 
         if form.is_valid():
             form.save()
@@ -158,4 +186,30 @@ class CreateComment(View):
                 extra_tags="danger",
             )
 
-        return redirect(reverse("posts:detail", args=[pk]))
+        return redirect(reverse("posts:tweet_detail", args=[pk]))
+
+
+class LikeTweet(View):
+    def get(self, request, pk):
+        return redirect(reverse("posts:tweet_index"))
+
+    def post(self, request, pk):
+
+        user = self.request.user
+        tweet = Tweet.objects.get(id=pk)
+
+        # 未登録ならいいねを登録
+        # すでに登録済みならそのオブジェクトを返して削除処理
+        like, is_created = Like.objects.get_or_create(
+            user=user,
+            tweet=tweet,
+        )
+
+        if is_created:
+            messages.success(self.request, "いいねに成功しました")
+
+        else:
+            like.delete()
+            messages.success(self.request, "いいね解除しました")
+
+        return redirect(self.request.META.get("HTTP_REFERER", "/"))

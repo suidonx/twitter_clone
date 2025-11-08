@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator
+from django.db.models import Prefetch
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import DetailView, UpdateView
@@ -26,50 +27,41 @@ class UserProfile(DetailView):
         # プロフィールページのユーザーを取得
         user = CustomUser.objects.filter(account_id=slug).first()
 
+        # 場合分け用パラメーター
         param = self.request.GET.get("tab")
 
         # ユーザーがいいねしたツイート一覧を表示
         if param == "good":
-            liked_tweet = Like.objects.filter(user=user).values_list(
-                "tweet",
-                flat=True,
-            )
-            tweets = (
-                Tweet.objects.filter(id__in=liked_tweet)
-                .prefetch_related("user", "tweetimage_set")
-                .order_by("-created_at")
-            )
+            tweets = Tweet.objects.filter(like__user=user).order_by("-like__created_at")
 
         # ユーザーがリツイートしたツイート一覧を表示
         elif param == "retweet":
-            retweeted_tweet = Retweet.objects.filter(user=user).values_list(
-                "tweet",
-                flat=True,
+            tweets = Tweet.objects.filter(retweet__user=user).order_by(
+                "-retweet__created_at"
             )
-            tweets = (
-                Tweet.objects.filter(id__in=retweeted_tweet)
-                .prefetch_related("user", "tweetimage_set")
-                .order_by("-created_at")
-            )
+
         # ユーザーがコメントしたツイート一覧を表示
         elif param == "comment":
-            commented_tweet = Comment.objects.filter(user=user).values_list(
-                "tweet",
-                flat=True,
-            )
-            tweets = (
-                Tweet.objects.filter(id__in=commented_tweet)
-                .prefetch_related("user", "tweetimage_set")
-                .order_by("-created_at")
+            tweets = Tweet.objects.filter(comment__user=user).order_by(
+                "-comment__created_at"
             )
 
         # ユーザーのツイート一覧を表示
         else:
-            tweets = (
-                Tweet.objects.filter(user=user)
-                .prefetch_related("user", "tweetimage_set")
-                .order_by("-created_at")
+            tweets = Tweet.objects.filter(user=user).order_by("-created_at")
+
+        # コンテキストに渡すツイート一覧を取得
+        tweets = (
+            tweets.select_related("user")
+            .prefetch_related("tweetimage_set", "like_set")
+            .prefetch_related(
+                Prefetch(
+                    "like_set",
+                    queryset=Like.objects.filter(user=self.request.user),
+                    to_attr="user_liked_tweet",
+                )
             )
+        )
 
         # ページネーション
         paginator = Paginator(tweets, 5)

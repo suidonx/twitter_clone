@@ -1,0 +1,50 @@
+{% load static %}
+{% for object in object_list %}
+  <div class="tweet">
+    <a href="{% if user.id %}{% url "users:profile" object.user.account_id %}{% endif %}">
+      <img src="{% if object.user.icon_image %} {{ object.user.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
+           alt="ユーザーアイコン"
+           width="40"
+           height="40"
+           class="user-icon">
+    </a>
+    <div class="tweet-content">
+      <div class="tweet-username">
+        <a href="{% url "users:profile" object.user.account_id %}"><span>{{ object.user.username }}</span></a>
+        <small>@{{ object.user.account_id }}・{{ object.created_at }}</small>
+      </div>
+      <div class="tweet-text">{{ object.content }}</div>
+      {% if object.tweetimage_set.first %}
+        <div class="tweet-image">
+          <img src="{{ object.tweetimage_set.first.image.url }}"
+               alt="ツイート画像"
+               width="450"
+               height="253">
+        </div>
+      {% endif %}
+      <div class="tweet-property">
+        <button>
+          <i class="bi bi-chat"></i>
+        </button>
+        <button>
+          <i class="bi bi-repeat"></i>
+        </button>
+        <form action="{% url "posts:tweet_like" object.id %}" method="post">
+          {% csrf_token %}
+          <!-- すでにいいねしているかどうか判定 -->
+          <button class="like">
+            {% if object.user_liked_tweet %}
+              <i class="bi bi-heart-fill"></i>
+            {% else %}
+              <i class="bi bi-heart"></i>
+            {% endif %}
+          </button>
+          <span>{{ object.like_set.count }}</span>
+        </form>
+      </div>
+    </div>
+    <a class="detail" href="{% url "posts:tweet_detail" object.id %}"></a>
+  </div>
+{% empty %}
+  <p>表示可能なツイートがありません。</p>
+{% endfor %}

@@ -1,0 +1,11 @@
+.paginator {
+  margin-block: 20px;
+  .pagination {
+    a {
+      transition: 0.4s all;
+      &:hover {
+        border-radius: 0px;
+      }
+    }
+  }
+}
