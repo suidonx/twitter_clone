@@ -190,6 +190,10 @@ nav {
             color: limegreen; }
           .tweet-list .tweet .tweet-content .tweet-property .retweet:hover {
             background-color: rgba(50, 205, 50, 0.2); }
+        .tweet-list .tweet .tweet-content .tweet-property .bookmark:hover {
+          background-color: rgba(30, 144, 255, 0.2); }
+        .tweet-list .tweet .tweet-content .tweet-property .bookmark .bi-bookmark-fill {
+          color: dodgerblue; }
 
 body {
   background-color: black;

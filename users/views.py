@@ -4,10 +4,10 @@ from django.core.paginator import Paginator
 from django.db.models import Prefetch
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from django.views.generic import DetailView, UpdateView, View
+from django.views.generic import DetailView, UpdateView, View, ListView
 
 from .forms import ProfileEditForm
-from .models import Like, Retweet, Comment, Follow
+from .models import Like, Retweet, Comment, Follow, Bookmark
 from posts.models import Tweet
 
 CustomUser = get_user_model()
@@ -66,6 +66,15 @@ class UserProfile(DetailView):
                     "retweet_set",
                     queryset=Retweet.objects.filter(user=self.request.user),
                     to_attr="user_retweeted_tweet",
+                )
+            )
+            .prefetch_related(
+                Prefetch(
+                    "bookmark_set",
+                    queryset=Bookmark.objects.filter(
+                        user=self.request.user,
+                    ),
+                    to_attr="user_bookmarkd_tweet",
                 )
             )
         )

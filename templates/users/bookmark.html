@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% block title %}
+  ブックマーク / Xクローン
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet" href="{% sass_src 'scss/bookmark.scss' %}">
+{% endblock scss %}
+<!-- content -->
+{% block content %}
+  {% if messages %}
+    <ul class="messages list-unstyled">
+      {% for message in messages %}
+        <li {% if message.tags %}class="list-unstyled alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <div class="container">
+    {% include "includes/header.html" %}
+    {% include "includes/nav.html" %}
+    <main>
+      {% if user.is_authenticated %}
+        <div class="bookmark-header">
+          <ul class="bookmark-top">
+            <li>
+              <a href="{% url "posts:tweet_index" %}"><i class="bi bi-arrow-left"></i></a>
+            </li>
+            <li>
+              <ul class="bookmark-title">
+                <li>
+                  <span>ブックマーク</span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="tweet-list">
+          <!-- tweet_list -->
+          {% include "includes/tweet_list.html" %}
+          <!-- pagination -->
+          {% include "includes/pagination.html" with param="recommend" %}
+        </div>
+      {% else %}
+        ログインしてください
+      {% endif %}
+    </main>
+    <aside>
+      <h2>お知らせ画面</h2>
+    </aside>
+  </div>
+{% endblock content %}
