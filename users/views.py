@@ -137,3 +137,57 @@ class FollowUser(View):
             messages.warning(self.request, "フォローを解除しました")
 
         return redirect(self.request.META.get("HTTP_REFERER", "/"))
+
+
+class BookmarkIndex(ListView):
+    model = Tweet
+    template_name = "users/bookmark.html"
+    paginate_by = 5
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        if self.request.user.id is None:
+            return queryset
+
+        # ユーザーがブックマークしたツイート一覧を表示
+        else:
+            queryset = (
+                Tweet.objects.filter(bookmark__user=self.request.user)
+                .select_related("user")
+                .prefetch_related(
+                    "tweetimage_set",
+                    "like_set",
+                    "retweet_set",
+                )
+                .prefetch_related(
+                    Prefetch(
+                        "like_set",
+                        queryset=Like.objects.filter(
+                            user=self.request.user,
+                        ),
+                        to_attr="user_liked_tweet",
+                    )
+                )
+                .prefetch_related(
+                    Prefetch(
+                        "retweet_set",
+                        queryset=Retweet.objects.filter(
+                            user=self.request.user,
+                        ),
+                        to_attr="user_retweeted_tweet",
+                    )
+                )
+                .prefetch_related(
+                    Prefetch(
+                        "bookmark_set",
+                        queryset=Bookmark.objects.filter(
+                            user=self.request.user,
+                        ),
+                        to_attr="user_bookmarkd_tweet",
+                    )
+                )
+                .order_by("-bookmark__created_at")
+            )
+
+        return queryset
