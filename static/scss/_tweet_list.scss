@@ -87,6 +87,7 @@
         button {
           background-color: transparent;
           border: 0;
+          border-radius: 50%;
           color: white;
           height: 33px;
           position: relative;
@@ -95,18 +96,29 @@
           z-index: 2;
         }
 
+        span {
+          display: inline-block;
+          font-size: 0.95rem;
+        }
+
         .like:hover {
           background-color: rgba(#dc143c, 0.2);
-          border-radius: 50%;
         }
 
         .bi-heart-fill {
           color: crimson;
         }
 
-        span {
-          display: inline-block;
-          font-size: 0.95rem;
+        .retweet {
+          font-size: 1.1rem;
+
+          .active {
+            color: limegreen;
+          }
+
+          &:hover {
+            background-color: rgba(limegreen, 0.2);
+          }
         }
       }
     }

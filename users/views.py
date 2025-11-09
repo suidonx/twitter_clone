@@ -53,12 +53,19 @@ class UserProfile(DetailView):
         # コンテキストに渡すツイート一覧を取得
         tweets = (
             tweets.select_related("user")
-            .prefetch_related("tweetimage_set", "like_set")
+            .prefetch_related("tweetimage_set", "like_set", "retweet_set")
             .prefetch_related(
                 Prefetch(
                     "like_set",
                     queryset=Like.objects.filter(user=self.request.user),
                     to_attr="user_liked_tweet",
+                )
+            )
+            .prefetch_related(
+                Prefetch(
+                    "retweet_set",
+                    queryset=Retweet.objects.filter(user=self.request.user),
+                    to_attr="user_retweeted_tweet",
                 )
             )
         )

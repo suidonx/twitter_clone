@@ -170,20 +170,26 @@ nav {
         .tweet-list .tweet .tweet-content .tweet-property button {
           background-color: transparent;
           border: 0;
+          border-radius: 50%;
           color: white;
           height: 33px;
           position: relative;
           transition: all 0.2s;
           width: 33px;
           z-index: 2; }
-        .tweet-list .tweet .tweet-content .tweet-property .like:hover {
-          background-color: rgba(220, 20, 60, 0.2);
-          border-radius: 50%; }
-        .tweet-list .tweet .tweet-content .tweet-property .bi-heart-fill {
-          color: crimson; }
         .tweet-list .tweet .tweet-content .tweet-property span {
           display: inline-block;
           font-size: 0.95rem; }
+        .tweet-list .tweet .tweet-content .tweet-property .like:hover {
+          background-color: rgba(220, 20, 60, 0.2); }
+        .tweet-list .tweet .tweet-content .tweet-property .bi-heart-fill {
+          color: crimson; }
+        .tweet-list .tweet .tweet-content .tweet-property .retweet {
+          font-size: 1.1rem; }
+          .tweet-list .tweet .tweet-content .tweet-property .retweet .active {
+            color: limegreen; }
+          .tweet-list .tweet .tweet-content .tweet-property .retweet:hover {
+            background-color: rgba(50, 205, 50, 0.2); }
 
 body {
   background-color: black;
