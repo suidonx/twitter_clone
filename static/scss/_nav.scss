@@ -1,3 +1,5 @@
+@import "./media_query";
+
 nav {
   color: white;
   grid-area: left;
@@ -65,6 +67,59 @@ nav {
       }
       small {
         color: gray;
+      }
+    }
+  }
+
+  @include responsive(xl) {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    grid-area: left;
+    padding: 0px;
+
+    ul {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+
+      .bi {
+        font-size: 1.5rem;
+      }
+
+      li {
+        a {
+          display: inline-block;
+          height: 100%;
+          padding: 0px;
+          padding-left: 10px;
+          width: 100%;
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+
+    button {
+      border-radius: 50%;
+      height: 60px;
+      width: 60px;
+      i {
+        display: block;
+        font-size: 1.5rem;
+      }
+      span {
+        display: none;
+      }
+    }
+    .user-info {
+      padding: 30px 10px;
+      img {
+        border-radius: 50%;
+      }
+      .user-name {
+        display: none;
       }
     }
   }

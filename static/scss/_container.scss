@@ -1,0 +1,28 @@
+.container {
+  display: grid;
+  grid-template:
+    "header header header" 50px
+    "left center right"
+    / 300px 600px 1fr;
+  height: 100%;
+
+  @include responsive(xl) {
+    display: grid;
+    grid-template:
+      "header header header" 50px
+      "left center right"
+      / 75px 600px 1fr;
+    height: 100%;
+    margin-inline: 50px;
+  }
+
+  @include responsive(lg) {
+    display: grid;
+    grid-template:
+      "header header" 50px
+      "left center"
+      / 75px 1fr;
+    height: 100%;
+    margin-inline: 50px;
+  }
+}

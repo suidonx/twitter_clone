@@ -1,6 +1,14 @@
 aside {
   color: white;
   grid-area: right; }
+  aside .recommend_user {
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 10px; }
+    aside .recommend_user span {
+      font-weight: bold; }
 
 header {
   border-bottom: 1px solid gray;

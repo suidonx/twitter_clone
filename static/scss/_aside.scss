@@ -1,4 +1,73 @@
 aside {
   color: white;
   grid-area: right;
+  overflow-wrap: break-word;
+  min-width: 0;
+  word-wrap: break-all;
+
+  .sidebar-list {
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-block: 20px;
+    margin-left: 20px;
+    padding: 10px;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      padding-block: 15px;
+
+      li {
+        align-items: center;
+        display: flex;
+        gap: 10px;
+        padding: 15px 10px;
+
+        &:first-child {
+          color: gold;
+        }
+        &:nth-child(2) {
+          color: silver;
+        }
+        &:nth-child(3) {
+          color: #b87333;
+        }
+      }
+
+      a {
+        .user-icon {
+          border-radius: 50%;
+        }
+      }
+
+      .likest-content {
+        flex: 0 1 200px;
+        min-width: 0;
+
+        p {
+          color: white;
+          font-size: 0.95rem;
+        }
+      }
+    }
+
+    span {
+      font-weight: bold;
+    }
+  }
+
+  .person-username {
+    font-weight: bold;
+  }
+
+  @include responsive(xxl) {
+    .user-icon {
+      display: none;
+    }
+  }
+
+  @include responsive(lg) {
+    display: none;
+  }
 }

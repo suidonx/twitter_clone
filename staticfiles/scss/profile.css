@@ -1,6 +1,43 @@
 aside {
   color: white;
-  grid-area: right; }
+  grid-area: right;
+  overflow-wrap: break-word;
+  min-width: 0;
+  word-wrap: break-all; }
+  aside .sidebar-list {
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-block: 20px;
+    margin-left: 20px;
+    padding: 10px; }
+    aside .sidebar-list ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      padding-block: 15px; }
+      aside .sidebar-list ul li {
+        align-items: center;
+        display: flex;
+        gap: 10px;
+        padding: 15px 10px; }
+        aside .sidebar-list ul li:first-child {
+          color: gold; }
+        aside .sidebar-list ul li:nth-child(2) {
+          color: silver; }
+        aside .sidebar-list ul li:nth-child(3) {
+          color: #b87333; }
+      aside .sidebar-list ul a .user-icon {
+        border-radius: 50%; }
+      aside .sidebar-list ul .likest-content {
+        flex: 0 1 200px;
+        min-width: 0; }
+        aside .sidebar-list ul .likest-content p {
+          color: white;
+          font-size: 0.95rem; }
+    aside .sidebar-list span {
+      font-weight: bold; }
+  aside .person-username {
+    font-weight: bold; }
 
 header {
   border-bottom: 1px solid gray;
