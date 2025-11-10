@@ -38,7 +38,33 @@ aside {
       font-weight: bold; }
   aside .person-username {
     font-weight: bold; }
+  @media (max-width: 1400px) {
+    aside .user-icon {
+      display: none; } }
+  @media (max-width: 992px) {
+    aside {
+      display: none; } }
+body {
+  background-color: black;
+  height: 100vh;
+  width: 100%; }
 
+.container {
+  display: grid;
+  grid-template: "header header header" 50px "left center right" / 300px 600px 1fr;
+  height: 100%; }
+  @media (max-width: 1200px) {
+    .container {
+      display: grid;
+      grid-template: "header header header" 50px "left center right" / 75px 600px 1fr;
+      height: 100%;
+      margin-inline: 50px; } }
+  @media (max-width: 992px) {
+    .container {
+      display: grid;
+      grid-template: "header header" 50px "left center" / 75px 1fr;
+      height: 100%;
+      margin-inline: 50px; } }
 header {
   border-bottom: 1px solid gray;
   display: flex;
@@ -87,7 +113,13 @@ header {
     header .login a:hover,
     header .logout a:hover {
       color: #1d9bf0; }
-
+  @media (max-width: 1200px) {
+    header .header-logo .logo {
+      margin: 0px;
+      margin-left: 8px; } }
+  @media (max-width: 992px) {
+    header {
+      border-right: 1px solid gray; } }
 nav {
   color: white;
   grid-area: left;
@@ -137,7 +169,42 @@ nav {
       margin: 0px; }
     nav .user-info .user-name small {
       color: gray; }
-
+  @media (max-width: 1200px) {
+    nav {
+      color: white;
+      display: flex;
+      flex-direction: column;
+      grid-area: left;
+      padding: 0px; }
+      nav ul {
+        align-items: center;
+        display: flex;
+        flex-direction: column; }
+        nav ul .bi {
+          font-size: 1.5rem; }
+        nav ul li a {
+          display: inline-block;
+          height: 100%;
+          padding: 0px;
+          padding-left: 10px;
+          width: 100%; }
+          nav ul li a span {
+            display: none; }
+      nav button {
+        border-radius: 50%;
+        height: 60px;
+        width: 60px; }
+        nav button i {
+          display: block;
+          font-size: 1.5rem; }
+        nav button span {
+          display: none; }
+      nav .user-info {
+        padding: 30px 10px; }
+        nav .user-info img {
+          border-radius: 50%; }
+        nav .user-info .user-name {
+          display: none; } }
 .paginator {
   margin-block: 20px; }
   .paginator .pagination a {
@@ -231,16 +298,6 @@ nav {
           background-color: rgba(30, 144, 255, 0.2); }
         .tweet-list .tweet .tweet-content .tweet-property .bookmark .bi-bookmark-fill {
           color: dodgerblue; }
-
-body {
-  background-color: black;
-  height: 100vh;
-  width: 100%; }
-
-.container {
-  display: grid;
-  grid-template: "header header header" 50px "left center right" / 300px 600px 1fr;
-  height: 100%; }
 
 main {
   border: 1px solid gray;
@@ -385,63 +442,8 @@ main {
         padding-block: 10px; }
     main .label.checked + .tweet-list {
       display: block; }
-
-@media (max-width: 1200px) {
-  .container {
-    display: grid;
-    grid-template: "header header header" 50px "left center right" / 75px 600px 1fr;
-    height: 100%;
-    margin-inline: 50px; }
-  header .header-logo .logo {
-    margin: 0px;
-    margin-left: 8px; }
-  nav {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    grid-area: left;
-    padding: 0px; }
-    nav ul {
-      align-items: center;
-      display: flex;
-      flex-direction: column; }
-      nav ul .bi {
-        font-size: 1.5rem; }
-      nav ul li a {
-        display: inline-block;
-        height: 100%;
-        padding: 0px;
-        padding-left: 10px;
-        width: 100%; }
-        nav ul li a span {
-          display: none; }
-    nav button {
-      border-radius: 50%;
-      height: 60px;
-      width: 60px; }
-      nav button i {
-        display: block;
-        font-size: 1.5rem; }
-      nav button span {
-        display: none; }
-    nav .user-info {
-      padding: 30px 10px; }
-      nav .user-info img {
-        border-radius: 50%; }
-      nav .user-info .user-name {
-        display: none; }
-  main .pagination ul {
-    display: flex; } }
-
-@media (max-width: 992px) {
-  .container {
-    display: grid;
-    grid-template: "header header" 50px "left center" / 75px 1fr;
-    height: 100%;
-    margin-inline: 50px; }
-  header {
-    border-right: 1px solid gray; }
-  aside {
-    display: none; } }
+  @media (max-width: 1200px) {
+    main .pagination ul {
+      display: flex; } }
 
 /*# sourceMappingURL=profile.css.map */
