@@ -63,6 +63,13 @@
   created_at { label: "datatime, not null"}
   updated_at { label: "datatime, not null"}
 
+[messages]
+  *id
+  sender_id
+  recipent_id
+  content
+  created_at
+  updated_at
 
 # Cardinality    Syntax
 # 0 or 1         ?
