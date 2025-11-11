@@ -103,3 +103,19 @@ class Bookmark(models.Model):
                 name="bookmark_unique",
             )
         ]
+
+
+class Message(models.Model):
+    sender = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name="sender",
+    )
+    recipient = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name="recipient",
+    )
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
