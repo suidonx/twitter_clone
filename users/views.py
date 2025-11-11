@@ -2,12 +2,12 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator
 from django.db.models import Prefetch
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, View
 
 from .forms import ProfileEditForm
-from .models import Like, Retweet, Comment
+from .models import Like, Retweet, Comment, Follow
 from posts.models import Tweet
 
 CustomUser = get_user_model()
@@ -82,7 +82,7 @@ class UserProfile(DetailView):
         return context
 
 
-class UseProfileEdit(UpdateView):
+class UserProfileEdit(UpdateView):
     model = CustomUser
     form_class = ProfileEditForm
     slug_field = "account_id"
@@ -105,3 +105,26 @@ class UseProfileEdit(UpdateView):
 
         response = super().form_invalid(form)
         return response
+
+
+class FollowUser(View):
+    def get(self, request, slug):
+        return redirect(reverse("posts:tweet_index"))
+
+    def post(self, request, slug):
+        follower = self.request.user
+        followed = get_object_or_404(CustomUser, account_id=slug)
+
+        follow, is_created = Follow.objects.get_or_create(
+            follower=follower,
+            followed=followed,
+        )
+
+        if is_created:
+            messages.success(self.request, "フォローに成功しました")
+
+        else:
+            follow.delete()
+            messages.warning(self.request, "フォローを解除しました")
+
+        return redirect(self.request.META.get("HTTP_REFERER", "/"))

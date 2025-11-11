@@ -164,12 +164,37 @@ main {
         height: 40px; }
         main .detail-content .tweet-header a .user-icon {
           border-radius: 50%; }
-      main .detail-content .tweet-header .tweet-username span {
-        font-weight: bold; }
-      main .detail-content .tweet-header .tweet-username small {
+      main .detail-content .tweet-header .tweet-username {
+        flex-grow: 1; }
+        main .detail-content .tweet-header .tweet-username span {
+          font-weight: bold; }
+        main .detail-content .tweet-header .tweet-username small {
+          color: gray;
+          display: block;
+          font-size: 0.9rem; }
+      main .detail-content .tweet-header .dropdown {
         color: gray;
-        display: block;
-        font-size: 0.9rem; }
+        font-size: 1.1rem;
+        transition: all 0.3s; }
+        main .detail-content .tweet-header .dropdown button {
+          background-color: transparent;
+          border: 0; }
+          main .detail-content .tweet-header .dropdown button:hover {
+            background-color: #111; }
+        main .detail-content .tweet-header .dropdown .dropdown-menu {
+          background-color: black; }
+          main .detail-content .tweet-header .dropdown .dropdown-menu .dropdown-item {
+            align-items: center;
+            border: 2px solid #111;
+            color: #eee;
+            display: flex;
+            font-size: 0.9rem;
+            font-weight: bold; }
+            main .detail-content .tweet-header .dropdown .dropdown-menu .dropdown-item:hover {
+              background-color: #111; }
+            main .detail-content .tweet-header .dropdown .dropdown-menu .dropdown-item .bi {
+              font-size: 1.5rem;
+              margin-right: 10px; }
     main .detail-content .tweet-content {
       overflow-wrap: break-word;
       word-break: break-all; }
