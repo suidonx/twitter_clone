@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.views.generic import DetailView, UpdateView, View, ListView
 
 from .forms import ProfileEditForm
-from .models import Like, Retweet, Comment, Follow, Bookmark
+from .models import Like, Retweet, Comment, Follow, Bookmark, Message
 from posts.models import Tweet
 
 CustomUser = get_user_model()
@@ -191,3 +191,8 @@ class BookmarkIndex(ListView):
             )
 
         return queryset
+
+
+class MessageIndex(ListView):
+    model = Message
+    template_name = "users/message.html"

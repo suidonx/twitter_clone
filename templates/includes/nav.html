@@ -22,8 +22,13 @@
       </a>
     </li>
     <li>
-      <a href="">
-        <i class="bi bi-envelope"></i><span>メッセージ</span>
+      <a href="{% url "users:user_message" user.account_id %}">
+        {% if request.path == "/"|add:user.account_id|add:"/messages/" %}
+          <i class="bi bi-envelope-fill"></i>
+        {% else %}
+          <i class="bi bi-envelope"></i>
+        {% endif %}
+        <span>メッセージ</span>
       </a>
     </li>
     <li>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% block title %}
+  メッセージ一覧 / Xクローン
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet" href="{% sass_src 'scss/message.scss' %}">
+{% endblock scss %}
+<!-- content -->
+{% block content %}
+  <div class="container">
+    {% include "includes/header.html" %}
+    {% include "includes/nav.html" %}
+    <main>
+    </main>
+  </div>
+{% endblock content %}
