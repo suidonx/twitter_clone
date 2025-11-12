@@ -196,3 +196,11 @@ class BookmarkIndex(ListView):
 class MessageIndex(ListView):
     model = Message
     template_name = "users/message.html"
+
+    def get_queryset(self):
+        queryset = (
+            Message.objects.filter(sender=self.request.user)
+            .order_by("recipient", "-created_at")
+            .distinct("recipient")
+        )
+        return queryset

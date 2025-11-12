@@ -3,22 +3,6 @@ body {
   height: 100vh;
   width: 100%; }
 
-.container {
-  display: grid;
-  grid-template: "header header header" 50px "left center right" / 300px 600px 1fr;
-  height: 100%; }
-  @media (max-width: 1200px) {
-    .container {
-      display: grid;
-      grid-template: "header header header" 50px "left center right" / 75px 600px 1fr;
-      height: 100%;
-      margin-inline: 50px; } }
-  @media (max-width: 992px) {
-    .container {
-      display: grid;
-      grid-template: "header header" 50px "left center" / 75px 1fr;
-      height: 100%;
-      margin-inline: 50px; } }
 header {
   border-bottom: 1px solid gray;
   display: flex;
@@ -159,5 +143,120 @@ nav {
           border-radius: 50%; }
         nav .user-info .user-name {
           display: none; } }
+.container {
+  display: grid;
+  grid-template: "header header header" 50px "left center right" / 300px 450px 1fr;
+  height: 100%; }
+  @media (max-width: 1200px) {
+    .container {
+      display: grid;
+      grid-template: "header header header" 50px "left center right" / 75px 450px 1fr;
+      height: 100%;
+      margin-inline: 50px; } }
+  @media (max-width: 992px) {
+    .container {
+      display: grid;
+      grid-template: "header header" 50px "left center" / 75px 1fr;
+      height: 100%;
+      margin-inline: 50px; } }
+ul,
+p {
+  margin: 0;
+  padding: 0; }
+
+main {
+  border-inline: 1px solid gray;
+  color: white;
+  min-width: 0; }
+  main .message-header {
+    align-items: center;
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    min-width: 0;
+    padding: 20px; }
+    main .message-header .message-title {
+      font-size: 1.25rem;
+      font-weight: bold; }
+  main .message-icon {
+    align-items: center;
+    display: flex;
+    list-style: none;
+    min-width: 0; }
+    main .message-icon a {
+      color: white;
+      font-size: 1.25rem;
+      border: 0;
+      border-radius: 50%;
+      color: white;
+      height: 33px;
+      transition: all 0.2s;
+      width: 33px; }
+  main .message-index .message-user-info {
+    display: flex;
+    gap: 8px;
+    min-width: 0;
+    padding: 20px;
+    position: relative;
+    transition: all 0.3s; }
+    main .message-index .message-user-info:hover {
+      background-color: #111; }
+    main .message-index .message-user-info .user-icon {
+      height: 40px;
+      z-index: 2; }
+      main .message-index .message-user-info .user-icon img {
+        border-radius: 50%; }
+    main .message-index .message-user-info .message-user-content {
+      color: gray;
+      font-size: 0.95rem;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
+      main .message-index .message-user-info .message-user-content span {
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        margin-right: 5px; }
+      main .message-index .message-user-info .message-user-content p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
+    main .message-index .message-user-info .message-link {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 1; }
+
+aside {
+  color: white;
+  height: 100%;
+  position: relative; }
+  aside .message-section {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; }
+  aside .message-section-title {
+    font-size: 2rem;
+    font-weight: bold; }
+  aside .message-section-text {
+    color: gray;
+    font-size: 0.95rem; }
+  aside .message-button {
+    background-color: dodgerblue;
+    border-radius: 9999px;
+    color: white;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 30px;
+    text-decoration: none;
+    transition: all 0.2;
+    padding: 15px 30px; }
+    aside .message-button:hover {
+      opacity: 0.8; }
 
 /*# sourceMappingURL=message.css.map */

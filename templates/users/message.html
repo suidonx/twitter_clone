@@ -13,6 +13,44 @@
     {% include "includes/header.html" %}
     {% include "includes/nav.html" %}
     <main>
+      <ul class="message-header">
+        <li class="message-title">メッセージ</li>
+        <ul class="message-icon">
+          <li>
+            <a href="">
+              <i class="bi bi-envelope-plus"></i>
+            </a>
+          </li>
+        </ul>
+      </ul>
+      <div class="message-index">
+        {% for object in object_list %}
+          <div class="message-user-info">
+            <a href="{% url "users:profile" object.recipient.account_id %}"
+               class="user-icon">
+              <img src="{% if object.recipient.icon_image %} {{ object.recipient.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
+                   alt="ユーザーアイコン"
+                   width="40"
+                   height="40">
+            </a>
+            <div class="message-user-content">
+              <span>{{ object.recipient.username }}</span>@{{ object.recipient.account_id }}・{{ object.created_at|date:"Y年n月d日" }}
+              <p>{{ object.content }}</p>
+            </div>
+            <a href="" class="message-link"></a>
+          </div>
+        {% endfor %}
+      </div>
     </main>
+    <aside>
+      {% if request.get_full_path == "/"|add:user.account_id|add:"/messages/" %}
+        <div class="message-section">
+          <p class="message-section-title">メッセージを選択</p>
+          <p class="message-section-text">既存の会話から選択したり、新しい会話を開始したりできます。</p>
+          <a href="" class="message-button">新しいメッセージ</a>
+        </div>
+      {% else %}
+      {% endif %}
+    </aside>
   </div>
 {% endblock content %}
