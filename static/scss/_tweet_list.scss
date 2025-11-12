@@ -120,6 +120,16 @@
             background-color: rgba(limegreen, 0.2);
           }
         }
+
+        .bookmark {
+          &:hover {
+            background-color: rgba(dodgerblue, 0.2);
+          }
+
+          .bi-bookmark-fill {
+            color: dodgerblue;
+          }
+        }
       }
     }
   }

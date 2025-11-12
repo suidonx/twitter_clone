@@ -15,4 +15,5 @@ urlpatterns = [
     ),
     path("<int:pk>/likes/", views.LikeTweet.as_view(), name="tweet_like"),
     path("<int:pk>/retweets/", views.RetweetTweet.as_view(), name="tweet_retweet"),
+    path("<int:pk>/bookmarks/", views.BookmarkTweet.as_view(), name="tweet_bookmark"),
 ]

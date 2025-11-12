@@ -11,7 +11,7 @@ from .forms import (
     CreateCommentForm,
 )
 from .models import Tweet
-from users.models import Follow, Comment, Like, Retweet
+from users.models import Follow, Comment, Like, Retweet, Bookmark
 
 
 # Create your views here.
@@ -53,6 +53,15 @@ class IndexView(ListView):
                             to_attr="user_retweeted_tweet",
                         )
                     )
+                    .prefetch_related(
+                        Prefetch(
+                            "bookmark_set",
+                            queryset=Bookmark.objects.filter(
+                                user=self.request.user,
+                            ),
+                            to_attr="user_bookmarkd_tweet",
+                        )
+                    )
                     .order_by("-created_at")
                 )
 
@@ -79,8 +88,19 @@ class IndexView(ListView):
                 .prefetch_related(
                     Prefetch(
                         "retweet_set",
-                        queryset=Retweet.objects.filter(user=self.request.user),
+                        queryset=Retweet.objects.filter(
+                            user=self.request.user,
+                        ),
                         to_attr="user_retweeted_tweet",
+                    )
+                )
+                .prefetch_related(
+                    Prefetch(
+                        "bookmark_set",
+                        queryset=Bookmark.objects.filter(
+                            user=self.request.user,
+                        ),
+                        to_attr="user_bookmarkd_tweet",
                     )
                 )
                 .order_by("-created_at")
@@ -269,5 +289,31 @@ class RetweetTweet(View):
         else:
             retweet.delete()
             messages.success(self.request, "リツイートを解除しました")
+
+        return redirect(self.request.META.get("HTTP_REFERER", "/"))
+
+
+class BookmarkTweet(View):
+    def get(self, request, pk):
+        return redirect(reverse("posts:tweet_index"))
+
+    def post(self, request, pk):
+
+        user = self.request.user
+        tweet = Tweet.objects.get(id=pk)
+
+        # 未登録ならブックマーク
+        # すでに登録済みならそのオブジェクトを返して削除処理
+        bookmark, is_created = Bookmark.objects.get_or_create(
+            user=user,
+            tweet=tweet,
+        )
+
+        if is_created:
+            messages.success(self.request, "ブックマークに成功しました")
+
+        else:
+            bookmark.delete()
+            messages.success(self.request, "ブックマークを解除しました")
 
         return redirect(self.request.META.get("HTTP_REFERER", "/"))

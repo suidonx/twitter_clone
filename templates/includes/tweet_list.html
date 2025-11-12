@@ -46,6 +46,17 @@
           </button>
           <span>{{ object.like_set.count }}</span>
         </form>
+        <form action="{% url "posts:tweet_bookmark" object.id %}" method="post">
+          {% csrf_token %}
+          <button class="bookmark">
+            <!-- すでにブックマークしているかどうか判定 -->
+            {% if object.user_bookmarkd_tweet %}
+              <i class="bi bi-bookmark-fill"></i>
+            {% else %}
+              <i class="bi bi-bookmark"></i>
+            {% endif %}
+          </button>
+        </form>
       </div>
     </div>
     <a class="detail" href="{% url "posts:tweet_detail" object.id %}"></a>
