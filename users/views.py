@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import DetailView, UpdateView, View, ListView
 
-from .forms import ProfileEditForm
+from .forms import ProfileEditForm, MessageForm
 from .models import Like, Retweet, Comment, Follow, Bookmark, Message
 from posts.models import Tweet
 
@@ -202,5 +202,58 @@ class MessageIndex(ListView):
             Message.objects.filter(sender=self.request.user)
             .order_by("recipient", "-created_at")
             .distinct("recipient")
+            .prefetch_related("recipient")
         )
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        user = self.request.user
+        opponent = self.request.GET.get("user")
+
+        if opponent:
+            opponent = get_object_or_404(
+                CustomUser, account_id=self.request.GET.get("user")
+            )
+
+            messages = Message.objects.filter(sender__in=[user, opponent]).filter(
+                recipient__in=[user, opponent]
+            )
+
+            context["user_messages"] = messages
+
+        return context
+
+
+class CreateMessage(View):
+    def get(self, request, slug):
+        return redirect(reverse("posts:index"))
+
+    def post(self, request, slug):
+        sender = self.request.user
+        account_id = self.request.GET.get("user")
+        recipient = CustomUser.objects.get(account_id=account_id)
+        content = self.request.POST.get("content")
+
+        form = MessageForm(
+            {
+                "sender": sender,
+                "recipient": recipient,
+                "content": content,
+            }
+        )
+
+        if form.is_valid():
+            form.save()
+            messages.success(self.request, "メッセージを投稿しました")
+
+        else:
+            messages.add_message(
+                self.request,
+                messages.INFO,
+                "メッセージの投稿に失敗しました",
+                extra_tags="danger",
+            )
+
+        return redirect(self.request.META.get("HTTP_REFERER", "/"))

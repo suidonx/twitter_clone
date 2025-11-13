@@ -13,4 +13,5 @@ urlpatterns = [
     path("follows/", views.FollowUser.as_view(), name="user_follow"),
     path("bookmarks/", views.BookmarkIndex.as_view(), name="user_bookmark"),
     path("messages/", views.MessageIndex.as_view(), name="user_message"),
+    path("messages/create", views.CreateMessage.as_view(), name="user_message_create"),
 ]

@@ -130,15 +130,21 @@ main {
         z-index: 1;
       }
     }
+
+    .active {
+      border-right: 5px solid #1d9bf0;
+      background-color: #111;
+    }
   }
 }
 
 aside {
   color: white;
-  height: 100%;
+  height: calc(100vh - 50px);
   position: relative;
 
   .message-section {
+    display: none;
     left: 50%;
     position: absolute;
     top: 50%;
@@ -163,13 +169,126 @@ aside {
     display: inline-block;
     font-weight: bold;
     margin-top: 30px;
-
     text-decoration: none;
     transition: all 0.2;
     padding: 15px 30px;
 
     &:hover {
       opacity: 0.8;
+    }
+  }
+
+  .aside-contents {
+    display: none;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  .aside-header {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    padding: 20px;
+
+    .user-icon {
+      img {
+        border-radius: 50%;
+      }
+      height: 35px;
+      z-index: 2;
+    }
+
+    .aside-user-content {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+  }
+
+  .active {
+    display: block;
+  }
+
+  .aside-message {
+    color: white;
+    padding-inline: 20px;
+    overflow-wrap: break-word;
+    width: 100%;
+    word-break: break-all;
+
+    .aside-message-content {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+    }
+
+    .from-user {
+      p {
+        background-color: #1d9bf0;
+        border-radius: 20px;
+        max-width: 75%;
+        margin-left: auto;
+        padding: 10px 20px;
+      }
+
+      small {
+        color: gray;
+        display: inline-block;
+        margin-top: 5px;
+        margin-left: auto;
+      }
+    }
+
+    .from-opponent {
+      p {
+        background-color: #444;
+        border-radius: 9999px;
+        margin-right: auto;
+        max-width: 75%;
+        padding: 10px 20px;
+      }
+
+      small {
+        color: gray;
+        display: inline-block;
+        margin-top: 5px;
+        margin-right: auto;
+      }
+    }
+  }
+
+  .message-form {
+    bottom: 0px;
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
+    display: block;
+    margin-block: 5px;
+    padding-inline: 10px;
+    padding-top: 8px;
+    position: absolute;
+    width: 100%;
+
+    .message-input {
+      background-color: #333;
+      border: 0;
+      border-radius: 15px;
+      color: white;
+      field-sizing: content;
+      max-height: 150px;
+      padding-inline: 20px 50px;
+      padding-block: 8px;
+      resize: none;
+      width: 100%;
+    }
+
+    .send-message-button {
+      background-color: transparent;
+      border: 0px;
+      bottom: 13px;
+      color: #1d9bf0;
+      font-weight: bold;
+      position: absolute;
+      right: 25px;
     }
   }
 }
