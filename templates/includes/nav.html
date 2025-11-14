@@ -22,7 +22,7 @@
       </a>
     </li>
     <li>
-      <a href="{% url "users:user_message" user.account_id %}">
+      <a href="{% if user.id %}{% url "users:user_message" user.account_id %}{% endif %}">
         {% if request.path == "/"|add:user.account_id|add:"/messages/" %}
           <i class="bi bi-envelope-fill"></i>
         {% else %}

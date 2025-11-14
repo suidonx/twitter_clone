@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import DetailView, UpdateView, View, ListView
@@ -197,19 +197,15 @@ class MessageIndex(ListView):
     model = Message
     template_name = "users/message.html"
 
-    def get_queryset(self):
-        queryset = (
-            Message.objects.filter(sender=self.request.user)
-            .order_by("recipient", "-created_at")
-            .distinct("recipient")
-            .prefetch_related("recipient")
-        )
-        return queryset
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         user = self.request.user
+        followers = Follow.objects.filter(followed=user).select_related(
+            "follower",
+        )
+
+        # userパラメーターの取得
         opponent = self.request.GET.get("user")
 
         if opponent:
@@ -217,12 +213,14 @@ class MessageIndex(ListView):
                 CustomUser, account_id=self.request.GET.get("user")
             )
 
+            # ユーザーと相手のメッセージのやり取りを取得
             messages = Message.objects.filter(sender__in=[user, opponent]).filter(
                 recipient__in=[user, opponent]
             )
 
             context["user_messages"] = messages
 
+        context["followers"] = followers
         return context
 
 

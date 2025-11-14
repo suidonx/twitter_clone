@@ -31,37 +31,38 @@
         </ul>
       </ul>
       <div class="message-index">
-        {% for object in object_list %}
-          <div class="message-user-info {% if "?user="|add:object.recipient.account_id in request.get_full_path %}active{% endif %}">
-            <a href="{% url "users:profile" object.recipient.account_id %}"
+        {% for follow in followers %}
+          <div class="message-user-info {% if "?user="|add:follow.follower.account_id in request.get_full_path %}active{% endif %}">
+            <a href="{% url "users:profile" follow.follower.account_id %}"
                class="user-icon">
-              <img src="{% if object.recipient.icon_image %} {{ object.recipient.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
+              <img src="{% if follow.follower.icon_image %} {{ follow.follower.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
                    alt="ユーザーアイコン"
                    width="40"
                    height="40">
             </a>
             <div class="message-user-content">
-              <span>{{ object.recipient.username }}</span>@{{ object.recipient.account_id }}・{{ object.created_at|date:"Y年n月d日" }}
-              <p>{{ object.content }}</p>
+              <span>{{ follow.follower.username }}</span>@{{ follow.follower.account_id }}
             </div>
-            <a href="?user={{ object.recipient.account_id }}" class="message-link"></a>
+            <a href="?user={{ follow.follower.account_id }}" class="message-link"></a>
           </div>
+        {% empty %}
+          フォロワーがいません
         {% endfor %}
       </div>
     </main>
     <aside>
-      {% for object in object_list %}
-        <div class="aside-contents {% if "?user="|add:object.recipient.account_id in request.get_full_path %}active{% endif %}">
+      {% for follow in followers %}
+        <div class="aside-contents {% if "?user="|add:follow.follower.account_id in request.get_full_path %}active{% endif %}">
           <div class="aside-header">
-            <a href="{% url "users:profile" object.recipient.account_id %}"
+            <a href="{% url "users:profile" follow.follower.account_id %}"
                class="user-icon">
-              <img src="{% if object.recipient.icon_image %} {{ object.recipient.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
+              <img src="{% if follow.follower.icon_image %} {{ follow.follower.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
                    alt="ユーザーアイコン"
                    width="35"
                    height="35">
             </a>
             <div class="aside-user-content">
-              <span>{{ object.recipient.username }}</span>
+              <span>{{ follow.follower.username }}</span>
             </div>
           </div>
           <div class="aside-message">
@@ -73,7 +74,7 @@
             {% endfor %}
           </div>
           <div class="message-form">
-            <form action="{% url "users:user_message_create" user.account_id %}?user={{ object.recipient.account_id }}"
+            <form action="{% url "users:user_message_create" user.account_id %}?user={{ follow.follower.account_id }}"
                   method="post"
                   class="massage-form">
               {% csrf_token %}
