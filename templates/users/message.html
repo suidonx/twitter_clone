@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% block title %}
+  メッセージ一覧 / Xクローン
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet" href="{% sass_src 'scss/message.scss' %}">
+{% endblock scss %}
+<!-- content -->
+{% block content %}
+  {% if messages %}
+    <ul class="messages list-unstyled">
+      {% for message in messages %}
+        <li {% if message.tags %}class="list-unstyled alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <div class="container">
+    {% include "includes/header.html" %}
+    {% include "includes/nav.html" %}
+    <main>
+      <ul class="message-header">
+        <li class="message-title">メッセージ</li>
+        <ul class="message-icon">
+          <li>
+            <a href="">
+              <i class="bi bi-envelope-plus"></i>
+            </a>
+          </li>
+        </ul>
+      </ul>
+      <div class="message-index">
+        {% for follow in followers %}
+          <div class="message-user-info {% if "?user="|add:follow.follower.account_id in request.get_full_path %}active{% endif %}">
+            <a href="{% url "users:profile" follow.follower.account_id %}"
+               class="user-icon">
+              <img src="{% if follow.follower.icon_image %} {{ follow.follower.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
+                   alt="ユーザーアイコン"
+                   width="40"
+                   height="40">
+            </a>
+            <div class="message-user-content">
+              <span>{{ follow.follower.username }}</span>@{{ follow.follower.account_id }}
+            </div>
+            <a href="?user={{ follow.follower.account_id }}" class="message-link"></a>
+          </div>
+        {% empty %}
+          フォロワーがいません
+        {% endfor %}
+      </div>
+    </main>
+    <aside>
+      {% for follow in followers %}
+        <div class="aside-contents {% if "?user="|add:follow.follower.account_id in request.get_full_path %}active{% endif %}">
+          <div class="aside-header">
+            <a href="{% url "users:profile" follow.follower.account_id %}"
+               class="user-icon">
+              <img src="{% if follow.follower.icon_image %} {{ follow.follower.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
+                   alt="ユーザーアイコン"
+                   width="35"
+                   height="35">
+            </a>
+            <div class="aside-user-content">
+              <span>{{ follow.follower.username }}</span>
+            </div>
+          </div>
+          <div class="aside-message">
+            {% for message in user_messages %}
+              <div class="aside-message-content {% if message.sender == request.user %}from-user{% else %}from-opponent{% endif %}">
+                <p>{{ message.content }}</p>
+                <small>{{ message.created_at }}</small>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="message-form">
+            <form action="{% url "users:user_message_create" user.account_id %}?user={{ follow.follower.account_id }}"
+                  method="post"
+                  class="massage-form">
+              {% csrf_token %}
+              <textarea class="message-input" name="content" placeholder="新しいメッセージを作成"></textarea>
+              <button class="send-message-button">
+                <i class="bi bi-send"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+      <div class="message-section {% if request.get_full_path == "/"|add:user.account_id|add:"/messages/" %}active{% endif %}">
+        <p class="message-section-title">メッセージを選択</p>
+        <p class="message-section-text">既存の会話から選択したり、新しい会話を開始したりできます。</p>
+        <a href="" class="message-button">新しいメッセージ</a>
+      </div>
+    </aside>
+  </div>
+{% endblock content %}

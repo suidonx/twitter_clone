@@ -1,7 +1,70 @@
 aside {
   color: white;
-  grid-area: right; }
+  grid-area: right;
+  overflow-wrap: break-word;
+  min-width: 0;
+  word-wrap: break-all; }
+  aside .sidebar-list {
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-block: 20px;
+    margin-left: 20px;
+    padding: 10px; }
+    aside .sidebar-list ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      padding-block: 15px; }
+      aside .sidebar-list ul li {
+        align-items: center;
+        display: flex;
+        gap: 10px;
+        padding: 15px 10px; }
+        aside .sidebar-list ul li:first-child {
+          color: gold; }
+        aside .sidebar-list ul li:nth-child(2) {
+          color: silver; }
+        aside .sidebar-list ul li:nth-child(3) {
+          color: #b87333; }
+      aside .sidebar-list ul a .user-icon {
+        border-radius: 50%; }
+      aside .sidebar-list ul .likest-content {
+        flex: 0 1 200px;
+        min-width: 0; }
+        aside .sidebar-list ul .likest-content p {
+          color: white;
+          font-size: 0.95rem; }
+    aside .sidebar-list span {
+      font-weight: bold; }
+  aside .person-username {
+    font-weight: bold; }
+  @media (max-width: 1400px) {
+    aside .user-icon {
+      display: none; } }
+  @media (max-width: 992px) {
+    aside {
+      display: none; } }
+body {
+  background-color: black;
+  height: 100vh;
+  width: 100%; }
 
+.container {
+  display: grid;
+  grid-template: "header header header" 50px "left center right" / 300px 600px 1fr;
+  height: 100%; }
+  @media (max-width: 1200px) {
+    .container {
+      display: grid;
+      grid-template: "header header header" 50px "left center right" / 75px 600px 1fr;
+      height: 100%;
+      margin-inline: 50px; } }
+  @media (max-width: 992px) {
+    .container {
+      display: grid;
+      grid-template: "header header" 50px "left center" / 75px 1fr;
+      height: 100%;
+      margin-inline: 50px; } }
 header {
   border-bottom: 1px solid gray;
   display: flex;
@@ -50,7 +113,13 @@ header {
     header .login a:hover,
     header .logout a:hover {
       color: #1d9bf0; }
-
+  @media (max-width: 1200px) {
+    header .header-logo .logo {
+      margin: 0px;
+      margin-left: 8px; } }
+  @media (max-width: 992px) {
+    header {
+      border-right: 1px solid gray; } }
 nav {
   color: white;
   grid-area: left;
@@ -100,17 +169,42 @@ nav {
       margin: 0px; }
     nav .user-info .user-name small {
       color: gray; }
-
-body {
-  background-color: black;
-  height: 100vh;
-  width: 100%; }
-
-.container {
-  display: grid;
-  grid-template: "header header header" 50px "left center right" / 300px 600px 1fr;
-  height: 100%; }
-
+  @media (max-width: 1200px) {
+    nav {
+      color: white;
+      display: flex;
+      flex-direction: column;
+      grid-area: left;
+      padding: 0px; }
+      nav ul {
+        align-items: center;
+        display: flex;
+        flex-direction: column; }
+        nav ul .bi {
+          font-size: 1.5rem; }
+        nav ul li a {
+          display: inline-block;
+          height: 100%;
+          padding: 0px;
+          padding-left: 10px;
+          width: 100%; }
+          nav ul li a span {
+            display: none; }
+      nav button {
+        border-radius: 50%;
+        height: 60px;
+        width: 60px; }
+        nav button i {
+          display: block;
+          font-size: 1.5rem; }
+        nav button span {
+          display: none; }
+      nav .user-info {
+        padding: 30px 10px; }
+        nav .user-info img {
+          border-radius: 50%; }
+        nav .user-info .user-name {
+          display: none; } }
 main {
   border: 1px solid gray;
   border-top: 0px;
@@ -297,61 +391,5 @@ main {
       main .comment-list .comment .comment-username small {
         color: gray;
         font-size: 0.9rem; }
-
-@media (max-width: 1200px) {
-  .container {
-    display: grid;
-    grid-template: "header header header" 50px "left center right" / 75px 600px 1fr;
-    height: 100%;
-    margin-inline: 50px; }
-  header .header-logo .logo {
-    margin: 0px;
-    margin-left: 8px; }
-  nav {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    grid-area: left;
-    padding: 0px; }
-    nav ul {
-      align-items: center;
-      display: flex;
-      flex-direction: column; }
-      nav ul .bi {
-        font-size: 1.5rem; }
-      nav ul li a {
-        display: inline-block;
-        height: 100%;
-        padding: 0px;
-        padding-left: 10px;
-        width: 100%; }
-        nav ul li a span {
-          display: none; }
-    nav button {
-      border-radius: 50%;
-      height: 60px;
-      width: 60px; }
-      nav button i {
-        display: block;
-        font-size: 1.5rem; }
-      nav button span {
-        display: none; }
-    nav .user-info {
-      padding: 30px 10px; }
-      nav .user-info img {
-        border-radius: 50%; }
-      nav .user-info .user-name {
-        display: none; } }
-
-@media (max-width: 992px) {
-  .container {
-    display: grid;
-    grid-template: "header header" 50px "left center" / 75px 1fr;
-    height: 100%;
-    margin-inline: 50px; }
-  header {
-    border-right: 1px solid gray; }
-  aside {
-    display: none; } }
 
 /*# sourceMappingURL=detail.css.map */

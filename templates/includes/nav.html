@@ -3,7 +3,12 @@
   <ul>
     <li>
       <a href="{% url "posts:tweet_index" %}">
-        <i class="bi bi-house-door"></i><span>ホーム</span>
+        {% if request.path == "/" %}
+          <i class="bi bi-house-door-fill"></i>
+        {% else %}
+          <i class="bi bi-house-door"></i>
+        {% endif %}
+        <span>ホーム</span>
       </a>
     </li>
     <li>
@@ -17,13 +22,18 @@
       </a>
     </li>
     <li>
-      <a href="">
-        <i class="bi bi-envelope"></i><span>メッセージ</span>
+      <a href="{% if user.id %}{% url "users:user_message" user.account_id %}{% endif %}">
+        {% if request.path == "/"|add:user.account_id|add:"/messages/" %}
+          <i class="bi bi-envelope-fill"></i>
+        {% else %}
+          <i class="bi bi-envelope"></i>
+        {% endif %}
+        <span>メッセージ</span>
       </a>
     </li>
     <li>
       <a href="">
-        <i class="bi bi-cone"></i><span>Grok</span>
+        <i class="bi bi-twitter"></i><span>Twitter Blue</span>
       </a>
     </li>
     <li>
@@ -33,7 +43,12 @@
     </li>
     <li>
       <a href="{% if user.id %}{% url "users:user_bookmark" user.account_id %}{% endif %}">
-        <i class="bi bi-bookmark"></i><span>ブックマーク</span>
+        {% if request.path == "/"|add:user.account_id|add:"/bookmarks/" %}
+          <i class="bi bi-bookmark-fill"></i>
+        {% else %}
+          <i class="bi bi-bookmark"></i>
+        {% endif %}
+        <span>ブックマーク</span>
       </a>
     </li>
     <li>
@@ -48,7 +63,12 @@
     </li>
     <li>
       <a href="{% if user.id %}{% url "users:profile" user.account_id %}{% endif %}">
-        <i class="bi bi-person"></i><span>プロフィール</span>
+        {% if request.path == "/"|add:user.account_id|add:"/" %}
+          <i class="bi bi-person-fill"></i>
+        {% else %}
+          <i class="bi bi-person"></i>
+        {% endif %}
+        <span>プロフィール</span>
       </a>
     </li>
     <li>

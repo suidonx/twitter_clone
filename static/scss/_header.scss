@@ -61,4 +61,17 @@ header {
       color: #1d9bf0;
     }
   }
+
+  @include responsive(xl) {
+    .header-logo {
+      .logo {
+        margin: 0px;
+        margin-left: 8px;
+      }
+    }
+  }
+
+  @include responsive(lg) {
+    border-right: 1px solid gray;
+  }
 }

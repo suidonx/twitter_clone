@@ -1,0 +1,48 @@
+{% load static %}
+<aside>
+  <div class="sidebar-list">
+    <span>いいねツイートBEST3</span>
+    <ul>
+      {% for like in SIDEBAR.likest %}
+        <li>
+          <div class="trophy">
+            <i class="bi bi-trophy-fill"></i>
+          </div>
+          <div class="likest-count">{{ like.cnt_like }}件</div>
+          <a href="{% if user.id %}{% url "users:profile" like.user.account_id %}{% endif %}">
+            <img src="{% if object.user.icon_image %} {{ object.user.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
+                 alt="ユーザーアイコン"
+                 width="40"
+                 height="40"
+                 class="user-icon">
+          </a>
+          <div class="likest-content">
+            <span>{{ like.user.username }}さん</span>
+            <p>{{ like.content }}</p>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="sidebar-list">
+    <span>フォロワーが多いユーザーBEST3</span>
+    <ul>
+      {% for person in SIDEBAR.follower %}
+        <li>
+          <div class="trophy">
+            <i class="bi bi-trophy-fill"></i>
+          </div>
+          <div class="person-count">{{ person.cnt_follower }}人</div>
+          <a href="{% if user.id %}{% url "users:profile" person.account_id %}{% endif %}">
+            <img src="{% if object.user.icon_image %} {{ object.user.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
+                 alt="ユーザーアイコン"
+                 width="40"
+                 height="40"
+                 class="user-icon">
+          </a>
+          <div class="person-username">{{ person.username }}さん</div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</aside>

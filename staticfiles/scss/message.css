@@ -1,0 +1,348 @@
+body {
+  background-color: black;
+  height: 100vh;
+  width: 100%; }
+
+header {
+  border-bottom: 1px solid gray;
+  display: flex;
+  grid-area: header;
+  justify-content: space-between;
+  padding: 10px; }
+  header .header-logo {
+    align-items: center;
+    display: flex;
+    gap: 20px; }
+    header .header-logo .logo {
+      margin-left: 20px; }
+    header .header-logo p {
+      color: white;
+      font-weight: bold;
+      margin: 0;
+      padding: 0; }
+  header ul {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    justify-content: end;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 300px; }
+  header li {
+    background-color: #1d9bf0;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: bold; }
+    header li a {
+      color: white;
+      display: block;
+      padding: 5px 18px;
+      text-decoration: none; }
+    header li a:hover {
+      color: white;
+      opacity: 0.8; }
+  header .login,
+  header .logout {
+    background-color: white; }
+    header .login a,
+    header .logout a {
+      color: #1d9bf0; }
+    header .login a:hover,
+    header .logout a:hover {
+      color: #1d9bf0; }
+  @media (max-width: 1200px) {
+    header .header-logo .logo {
+      margin: 0px;
+      margin-left: 8px; } }
+  @media (max-width: 992px) {
+    header {
+      border-right: 1px solid gray; } }
+nav {
+  color: white;
+  grid-area: left;
+  height: 95vh;
+  padding: 10px;
+  position: relative; }
+  nav ul {
+    margin: 0px;
+    padding: 10px; }
+    nav ul .bi {
+      font-size: 1.5rem;
+      margin-right: 20px; }
+    nav ul li {
+      font-size: 1.3rem;
+      list-style: none;
+      margin-bottom: 20px; }
+      nav ul li a {
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        transition: all 0.2s; }
+      nav ul li a:hover {
+        color: white;
+        background-color: #282727;
+        border-radius: 30px;
+        opacity: 0.8; }
+  nav button {
+    border-radius: 30px;
+    font-weight: bold;
+    padding: 12px;
+    transition: all 0.5s;
+    width: 80%; }
+    nav button i {
+      display: none; }
+  nav button:hover {
+    opacity: 0.8; }
+  nav .user-info {
+    display: flex;
+    gap: 10px;
+    bottom: 0;
+    padding: 20px;
+    position: absolute; }
+    nav .user-info img {
+      border-radius: 100%; }
+    nav .user-info .user-name p {
+      font-weight: bold;
+      margin: 0px; }
+    nav .user-info .user-name small {
+      color: gray; }
+  @media (max-width: 1200px) {
+    nav {
+      color: white;
+      display: flex;
+      flex-direction: column;
+      grid-area: left;
+      padding: 0px; }
+      nav ul {
+        align-items: center;
+        display: flex;
+        flex-direction: column; }
+        nav ul .bi {
+          font-size: 1.5rem; }
+        nav ul li a {
+          display: inline-block;
+          height: 100%;
+          padding: 0px;
+          padding-left: 10px;
+          width: 100%; }
+          nav ul li a span {
+            display: none; }
+      nav button {
+        border-radius: 50%;
+        height: 60px;
+        width: 60px; }
+        nav button i {
+          display: block;
+          font-size: 1.5rem; }
+        nav button span {
+          display: none; }
+      nav .user-info {
+        padding: 30px 10px; }
+        nav .user-info img {
+          border-radius: 50%; }
+        nav .user-info .user-name {
+          display: none; } }
+.container {
+  display: grid;
+  grid-template: "header header header" 50px "left center right" / 300px 450px 1fr;
+  height: 100%; }
+  @media (max-width: 1200px) {
+    .container {
+      display: grid;
+      grid-template: "header header header" 50px "left center right" / 75px 450px 1fr;
+      height: 100%;
+      margin-inline: 50px; } }
+  @media (max-width: 992px) {
+    .container {
+      display: grid;
+      grid-template: "header header" 50px "left center" 1fr "left aside" / 75px 1fr;
+      height: 100%;
+      margin-inline: 50px; } }
+ul,
+p {
+  margin: 0;
+  padding: 0; }
+
+main {
+  border-inline: 1px solid gray;
+  color: white;
+  min-width: 0; }
+  main .message-header {
+    align-items: center;
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    min-width: 0;
+    padding: 20px; }
+    main .message-header .message-title {
+      font-size: 1.25rem;
+      font-weight: bold; }
+  main .message-icon {
+    align-items: center;
+    display: flex;
+    list-style: none;
+    min-width: 0; }
+    main .message-icon a {
+      color: white;
+      font-size: 1.25rem;
+      border: 0;
+      border-radius: 50%;
+      color: white;
+      opacity: 0.5;
+      height: 33px;
+      transition: all 0.2s;
+      width: 33px; }
+  main .message-index .message-user-info {
+    display: flex;
+    gap: 8px;
+    min-width: 0;
+    padding: 20px;
+    position: relative;
+    transition: all 0.3s; }
+    main .message-index .message-user-info:hover {
+      background-color: #111; }
+    main .message-index .message-user-info .user-icon {
+      height: 40px;
+      z-index: 2; }
+      main .message-index .message-user-info .user-icon img {
+        border-radius: 50%; }
+    main .message-index .message-user-info .message-user-content {
+      color: gray;
+      font-size: 0.95rem;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
+      main .message-index .message-user-info .message-user-content span {
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        margin-right: 5px; }
+      main .message-index .message-user-info .message-user-content p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
+    main .message-index .message-user-info .message-link {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 1; }
+  main .message-index .active {
+    border-right: 5px solid #1d9bf0;
+    background-color: #111; }
+
+aside {
+  border: 1px solid gray;
+  color: white;
+  height: calc(100vh - 50px);
+  position: relative; }
+  aside .message-section {
+    display: none;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; }
+  aside .message-section-title {
+    font-size: 2rem;
+    font-weight: bold; }
+  aside .message-section-text {
+    color: gray;
+    font-size: 0.95rem; }
+  aside .message-button {
+    background-color: dodgerblue;
+    border-radius: 9999px;
+    color: white;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 30px;
+    opacity: 0.5;
+    text-decoration: none;
+    transition: all 0.2;
+    padding: 15px 30px; }
+  aside .aside-contents {
+    display: none;
+    position: relative;
+    height: 100%;
+    width: 100%; }
+  aside .aside-header {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    padding: 20px; }
+    aside .aside-header .user-icon {
+      height: 35px;
+      z-index: 2; }
+      aside .aside-header .user-icon img {
+        border-radius: 50%; }
+    aside .aside-header .aside-user-content {
+      font-size: 1.25rem;
+      font-weight: bold; }
+  aside .active {
+    display: block; }
+  aside .aside-message {
+    color: white;
+    padding-inline: 20px;
+    overflow-wrap: break-word;
+    width: 100%;
+    word-break: break-all; }
+    aside .aside-message .aside-message-content {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px; }
+    aside .aside-message .from-user p {
+      background-color: #1d9bf0;
+      border-radius: 20px;
+      max-width: 75%;
+      margin-left: auto;
+      padding: 10px 20px; }
+    aside .aside-message .from-user small {
+      color: gray;
+      display: inline-block;
+      margin-top: 5px;
+      margin-left: auto; }
+    aside .aside-message .from-opponent p {
+      background-color: #444;
+      border-radius: 9999px;
+      margin-right: auto;
+      max-width: 75%;
+      padding: 10px 20px; }
+    aside .aside-message .from-opponent small {
+      color: gray;
+      display: inline-block;
+      margin-top: 5px;
+      margin-right: auto; }
+  aside .message-form {
+    bottom: 0px;
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
+    display: block;
+    margin-block: 5px;
+    padding-inline: 10px;
+    padding-top: 8px;
+    position: absolute;
+    width: 100%; }
+    aside .message-form .message-input {
+      background-color: #333;
+      border: 0;
+      border-radius: 15px;
+      color: white;
+      field-sizing: content;
+      max-height: 150px;
+      padding-inline: 20px 50px;
+      padding-block: 8px;
+      resize: none;
+      width: 100%; }
+    aside .message-form .send-message-button {
+      background-color: transparent;
+      border: 0px;
+      bottom: 13px;
+      color: #1d9bf0;
+      font-weight: bold;
+      position: absolute;
+      right: 25px; }
+
+/*# sourceMappingURL=message.css.map */
