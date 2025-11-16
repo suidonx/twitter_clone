@@ -34,7 +34,7 @@
   created_at { label: "datatime, not null"}
   updated_at { label: "datatime, not null"}
 
-[goods]
+[likes]
   *id
   user_id {label: "FK(users)"}
   tweet_id {label: "FK(tweets)"}
@@ -71,6 +71,27 @@
   created_at
   updated_at
 
+[like_notifies]
+  *id
+  user_id {label: "FK(users)"}
+  like_id {label: "FK(likes)"}
+  created_at
+  updated_at
+
+[retweet_notifies]
+  *id
+  user_id {label: "FK(users)"}
+  retweet_id {label: "FK(retweets)"}
+  created_at
+  updated_at
+
+[comment_notifies]
+  *id
+  user_id {label: "FK(users)"}
+  comment_id {label: "FK(comments)"}
+  created_at
+  updated_at
+
 # Cardinality    Syntax
 # 0 or 1         ?
 # exactly 1      1
@@ -78,13 +99,20 @@
 # 1 or more      +
 
 users 1--* tweets
-users 1--* goods
+users 1--* likes
 users 1--* retweets
 users 1--* comments
 users 1--* bookmarks
+users 1--* like_notifies
+users 1--* retweet_notifies
+users 1--* comment_notifies
 
 tweets 1--* retweets
-tweets 1--* goods
+tweets 1--* likes
 tweets 1--1 tweet_images
 tweets 1--* comments
 tweets 1--* bookmarks
+
+likes 1--* like_notifies
+retweets 1--* retweet_notifies
+comments 1--* comment_notifies
