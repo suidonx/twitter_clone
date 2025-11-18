@@ -268,5 +268,125 @@
       "created_at": "2025-11-02T21:59:59+09:00",
       "updated_at": "2025-11-02T21:59:59+09:00"
     }
+  },
+  {
+    "model": "users.LikeNotify",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "like": 3,
+      "created_at": "2025-11-19T21:59:59+09:00",
+      "updated_at": "2025-11-19T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.LikeNotify",
+    "pk": 2,
+    "fields": {
+      "user": 3,
+      "like": 4,
+      "created_at": "2025-11-19T21:59:59+09:00",
+      "updated_at": "2025-11-19T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.LikeNotify",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "like": 5,
+      "created_at": "2025-11-19T21:59:59+09:00",
+      "updated_at": "2025-11-19T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.LikeNotify",
+    "pk": 4,
+    "fields": {
+      "user": 1,
+      "like": 6,
+      "created_at": "2025-11-19T21:59:59+09:00",
+      "updated_at": "2025-11-19T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.LikeNotify",
+    "pk": 5,
+    "fields": {
+      "user": 3,
+      "like": 8,
+      "created_at": "2025-11-19T21:59:59+09:00",
+      "updated_at": "2025-11-19T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.RetweetNotify",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "retweet": 2,
+      "created_at": "2025-11-19T21:59:59+09:00",
+      "updated_at": "2025-11-19T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.RetweetNotify",
+    "pk": 2,
+    "fields": {
+      "user": 3,
+      "retweet": 3,
+      "created_at": "2025-11-19T21:59:59+09:00",
+      "updated_at": "2025-11-19T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.RetweetNotify",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "retweet": 4,
+      "created_at": "2025-11-19T21:59:59+09:00",
+      "updated_at": "2025-11-19T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.CommentNotify",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "comment": 2,
+      "created_at": "2025-11-19T21:59:59+09:00",
+      "updated_at": "2025-11-19T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.CommentNotify",
+    "pk": 2,
+    "fields": {
+      "user": 3,
+      "comment": 3,
+      "created_at": "2025-11-19T21:59:59+09:00",
+      "updated_at": "2025-11-19T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.CommentNotify",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "comment": 4,
+      "created_at": "2025-11-19T21:59:59+09:00",
+      "updated_at": "2025-11-19T21:59:59+09:00"
+    }
+  },
+  {
+    "model": "users.CommentNotify",
+    "pk": 4,
+    "fields": {
+      "user": 2,
+      "comment": 6,
+      "created_at": "2025-11-19T21:59:59+09:00",
+      "updated_at": "2025-11-19T21:59:59+09:00"
+    }
   }
 ]
