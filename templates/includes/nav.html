@@ -17,8 +17,12 @@
       </a>
     </li>
     <li>
-      <a href="">
-        <i class="bi bi-bell"></i><span>通知</span>
+      <a href="{% if user.id %}{% url "users:user_notify" user.account_id %}{% endif %}">
+        {% if request.path == "/"|add:user.account_id|add:"/notifies/" %}
+          <i class="bi bi-bell-fill"></i><span>通知</span>
+        {% else %}
+          <i class="bi bi-bell"></i><span>通知</span>
+        {% endif %}
       </a>
     </li>
     <li>

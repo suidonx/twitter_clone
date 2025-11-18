@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sass_tags %}
+{% block title %}
+  通知一覧 / Xクローン
+{% endblock title %}
+{% block scss %}
+  <link rel="stylesheet" href="{% sass_src 'scss/notify.scss' %}">
+{% endblock scss %}
+<!-- content -->
+{% block content %}
+  {% if messages %}
+    <ul class="messages list-unstyled">
+      {% for message in messages %}
+        <li {% if message.tags %}class="list-unstyled alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <div class="container">
+    {% include "includes/header.html" %}
+    {% include "includes/nav.html" %}
+    <main>
+      <div class="notify-header">
+        <ul class="notify-top">
+          <li>
+            <a href="{% url "posts:tweet_index" %}"><i class="bi bi-arrow-left"></i></a>
+          </li>
+          <li>
+            <ul class="notify-heading">
+              <li>
+                <span>通知</span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="notify-main">
+        {% for notify in notifies %}
+          <div class="notify-card">
+            <div class="notify-icon">
+              {% if notify.type == "like" %}
+                <i class="bi bi-heart-fill"></i>
+              {% elif notify.type == "retweet" %}
+                <i class="bi bi-repeat"></i>
+              {% elif notify.type == "comment" %}
+                <i class="bi bi-chat-fill"></i>
+              {% endif %}
+            </div>
+            <div class="notify-content">
+              {% if notify.type == "like" %}
+                <a href="{% if user.id %}{% url "users:profile" notify.like.user.account_id %}{% endif %}">
+                  <img src="{% if notify.like.user.icon_image %} {{ notify.like.user.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
+                       alt="ユーザーアイコン"
+                       width="30"
+                       height="30"
+                       class="user-icon">
+                </a>
+                <p>
+                  <span>{{ notify.like.user.username }}</span>さんがあなたのポストにいいねしました。
+                </p>
+                <small class="tweet-content">{{ notify.like.tweet.content }}</small>
+                <a class="detail"
+                   href="{% url "posts:tweet_detail" notify.like.tweet.id %}"></a>
+              {% elif notify.type == "retweet" %}
+                <a href="{% if user.id %}{% url "users:profile" notify.retweet.user.account_id %}{% endif %}">
+                  <img src="{% if notify.retweet.user.icon_image %} {{ notify.retweet.user.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
+                       alt="ユーザーアイコン"
+                       width="30"
+                       height="30"
+                       class="user-icon">
+                </a>
+                <p>
+                  <span>{{ notify.retweet.user.username }}</span>さんがあなたのポストにリツイートしました。
+                </p>
+                <small class="tweet-content">{{ notify.retweet.tweet.content }}</small>
+                <a class="detail"
+                   href="{% url "posts:tweet_detail" notify.retweet.tweet.id %}"></a>
+              {% elif notify.type == "comment" %}
+                <a href="{% if user.id %}{% url "users:profile" notify.comment.user.account_id %}{% endif %}">
+                  <img src="{% if notify.comment.user.icon_image %} {{ notify.comment.user.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
+                       alt="ユーザーアイコン"
+                       width="30"
+                       height="30"
+                       class="user-icon">
+                </a>
+                <p>
+                  <span>{{ notify.comment.user.username }}</span>さんがあなたのポストにコメントしました。
+                </p>
+                <small class="tweet-content">{{ notify.comment.tweet.content }}</small>
+                <a class="detail"
+                   href="{% url "posts:tweet_detail" notify.comment.tweet.id %}"></a>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </main>
+    {% include "includes/aside.html" %}
+  </div>
+{% endblock content %}

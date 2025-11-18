@@ -1,13 +1,23 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator
-from django.db.models import Prefetch, Q
+from django.db.models import Prefetch, Q, Value
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import DetailView, UpdateView, View, ListView
 
 from .forms import ProfileEditForm, MessageForm
-from .models import Like, Retweet, Comment, Follow, Bookmark, Message
+from .models import (
+    Like,
+    Retweet,
+    Comment,
+    Follow,
+    Bookmark,
+    Message,
+    LikeNotify,
+    RetweetNotify,
+    CommentNotify,
+)
 from posts.models import Tweet
 
 CustomUser = get_user_model()
@@ -255,3 +265,32 @@ class CreateMessage(View):
             )
 
         return redirect(self.request.META.get("HTTP_REFERER", "/"))
+
+
+class NotifyIndex(ListView):
+    model = Tweet
+    template_name = "users/notify.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # ユーザーについて各通知モデルを取得
+        like = LikeNotify.objects.filter(user=self.request.user)
+        retweet = RetweetNotify.objects.filter(user=self.request.user)
+        comment = CommentNotify.objects.filter(user=self.request.user)
+
+        # キー名で特定できるようにする。
+        new_like = like.annotate(type=Value("like"))
+        new_retweet = retweet.annotate(type=Value("retweet"))
+        new_comment = comment.annotate(type=Value("comment"))
+
+        # 結合して、降順にする。
+        notifies = sorted(
+            list(new_like) + list(new_retweet) + list(new_comment),
+            key=lambda x: x.created_at,
+            reverse=True,
+        )
+
+        context["notifies"] = notifies
+
+        return context
