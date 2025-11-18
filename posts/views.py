@@ -244,7 +244,7 @@ class CreateComment(View):
             # コメントをした場合、通知用のレコードを作成
             user = self.request.user
             tweet = Tweet.objects.get(id=pk)
-            CommentNotify.objects.create(user=user, comment=comment)
+            CommentNotify.objects.create(user=tweet.user, comment=comment)
 
             # 相手に通知メールを送る
             send_mail(
@@ -292,7 +292,7 @@ class LikeTweet(View):
             messages.success(self.request, "いいねに成功しました")
 
             # いいねがあった場合、通知用のレコードを作成
-            LikeNotify.objects.create(user=user, like=like)
+            LikeNotify.objects.create(user=tweet.user, like=like)
 
             # 相手に通知メールを送る
             send_mail(
@@ -335,7 +335,7 @@ class RetweetTweet(View):
             messages.success(self.request, "リツイートに成功しました")
 
             # リツイートがあった場合、通知用のレコードを作成
-            RetweetNotify.objects.create(user=user, retweet=retweet)
+            RetweetNotify.objects.create(user=tweet.user, retweet=retweet)
 
             # 相手に通知メールを送る
             send_mail(
