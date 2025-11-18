@@ -244,22 +244,25 @@ class CreateComment(View):
             # コメントをした場合、通知用のレコードを作成
             user = self.request.user
             tweet = Tweet.objects.get(id=pk)
-            CommentNotify.objects.create(user=tweet.user, comment=comment)
 
-            # 相手に通知メールを送る
-            send_mail(
-                subject="ツイートへの新着コメント",
-                message=render_to_string(
-                    "users/notification_mail.txt",
-                    {
-                        "username": user.username,
-                        "task": "コメント",
-                        "comment": comment.content,
-                    },
-                ),
-                from_email=None,
-                recipient_list=[tweet.user.email],
-            )
+            # 自分以外が自分のツイートにアクションを起こした場合、通知処理をする。
+            if not user == tweet.user:
+                CommentNotify.objects.create(user=tweet.user, comment=comment)
+
+                # 相手に通知メールを送る
+                send_mail(
+                    subject="ツイートへの新着コメント",
+                    message=render_to_string(
+                        "users/notification_mail.txt",
+                        {
+                            "username": user.username,
+                            "task": "コメント",
+                            "comment": comment.content,
+                        },
+                    ),
+                    from_email=None,
+                    recipient_list=[tweet.user.email],
+                )
 
         else:
             messages.add_message(
@@ -292,21 +295,23 @@ class LikeTweet(View):
             messages.success(self.request, "いいねに成功しました")
 
             # いいねがあった場合、通知用のレコードを作成
-            LikeNotify.objects.create(user=tweet.user, like=like)
+            # 自分以外が自分のツイートにアクションを起こした場合、通知処理をする。
+            if not user == tweet.user:
+                LikeNotify.objects.create(user=tweet.user, like=like)
 
-            # 相手に通知メールを送る
-            send_mail(
-                subject="ツイートへの新着いいね",
-                message=render_to_string(
-                    "users/notification_mail.txt",
-                    {
-                        "username": user.username,
-                        "task": "いいね",
-                    },
-                ),
-                from_email=None,
-                recipient_list=[tweet.user.email],
-            )
+                # 相手に通知メールを送る
+                send_mail(
+                    subject="ツイートへの新着いいね",
+                    message=render_to_string(
+                        "users/notification_mail.txt",
+                        {
+                            "username": user.username,
+                            "task": "いいね",
+                        },
+                    ),
+                    from_email=None,
+                    recipient_list=[tweet.user.email],
+                )
 
         else:
             like.delete()
@@ -335,21 +340,23 @@ class RetweetTweet(View):
             messages.success(self.request, "リツイートに成功しました")
 
             # リツイートがあった場合、通知用のレコードを作成
-            RetweetNotify.objects.create(user=tweet.user, retweet=retweet)
+            # 自分以外が自分のツイートにアクションを起こした場合、通知処理をする。
+            if not user == tweet.user:
+                RetweetNotify.objects.create(user=tweet.user, retweet=retweet)
 
-            # 相手に通知メールを送る
-            send_mail(
-                subject="ツイートへの新着リツイート",
-                message=render_to_string(
-                    "users/notification_mail.txt",
-                    {
-                        "username": user.username,
-                        "task": "リツイート",
-                    },
-                ),
-                from_email=None,
-                recipient_list=[tweet.user.email],
-            )
+                # 相手に通知メールを送る
+                send_mail(
+                    subject="ツイートへの新着リツイート",
+                    message=render_to_string(
+                        "users/notification_mail.txt",
+                        {
+                            "username": user.username,
+                            "task": "リツイート",
+                        },
+                    ),
+                    from_email=None,
+                    recipient_list=[tweet.user.email],
+                )
 
         else:
             retweet.delete()
