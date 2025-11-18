@@ -280,9 +280,21 @@ class NotifyIndex(ListView):
         comment = CommentNotify.objects.filter(user=self.request.user)
 
         # キー名で特定できるようにする。
-        new_like = like.annotate(type=Value("like"))
-        new_retweet = retweet.annotate(type=Value("retweet"))
-        new_comment = comment.annotate(type=Value("comment"))
+        new_like = like.annotate(type=Value("like")).select_related(
+            "like",
+            "like__user",
+            "like__tweet",
+        )
+        new_retweet = retweet.annotate(type=Value("retweet")).select_related(
+            "retweet",
+            "retweet__user",
+            "retweet__tweet",
+        )
+        new_comment = comment.annotate(type=Value("comment")).select_related(
+            "comment",
+            "comment__user",
+            "comment__tweet",
+        )
 
         # 結合して、降順にする。
         notifies = sorted(
