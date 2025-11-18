@@ -10,7 +10,7 @@
           </div>
           <div class="likest-count">{{ like.cnt_like }}件</div>
           <a href="{% if user.id %}{% url "users:profile" like.user.account_id %}{% endif %}">
-            <img src="{% if object.user.icon_image %} {{ object.user.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
+            <img src="{% if like.user.icon_image %} {{ like.user.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
                  alt="ユーザーアイコン"
                  width="40"
                  height="40"
@@ -34,7 +34,7 @@
           </div>
           <div class="person-count">{{ person.cnt_follower }}人</div>
           <a href="{% if user.id %}{% url "users:profile" person.account_id %}{% endif %}">
-            <img src="{% if object.user.icon_image %} {{ object.user.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
+            <img src="{% if person.icon_image %} {{ person.icon_image.url }} {% else %} {% static "images/default-profile-icon.jpg" %} {% endif %}"
                  alt="ユーザーアイコン"
                  width="40"
                  height="40"
