@@ -1,0 +1,136 @@
+@import "./media_query";
+@import "./aside";
+@import "./body";
+@import "./container";
+@import "./header";
+@import "./nav";
+@import "./pagination";
+@import "./tweet_list";
+
+p {
+  margin: 0;
+}
+
+main {
+  border: 1px solid gray;
+  border-top: 0;
+}
+
+.notify-header {
+  align-items: center;
+  border-bottom: 1px solid gray;
+  display: flex;
+  height: 55px;
+  width: 100%;
+
+  .notify-top {
+    align-items: center;
+    display: flex;
+    gap: 25px;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    li {
+      a {
+        color: white;
+        font-size: 1.25rem;
+        margin-left: 10px;
+        padding: 8px 9px;
+
+        &:hover {
+          color: white;
+          background-color: rgb(40, 39, 39);
+          border-radius: 50%;
+          opacity: 0.8;
+        }
+      }
+      .notify-heading {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        line-height: 20px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+
+        span {
+          font-size: 1.25rem;
+          font-weight: bold;
+        }
+        small {
+          color: gray;
+        }
+      }
+    }
+  }
+}
+
+.notify-card {
+  align-items: top;
+  border-bottom: 1px solid gray;
+  color: white;
+  display: flex;
+  gap: 15px;
+  padding: 10px 30px;
+  position: relative;
+  transition: all 0.2s;
+
+  .notify-icon {
+    font-size: 1.5rem;
+    .bi-heart-fill {
+      color: crimson;
+    }
+
+    .bi-repeat {
+      color: limegreen;
+    }
+
+    .bi-chat-fill {
+      color: deepskyblue;
+    }
+  }
+
+  .notify-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding-top: 5px;
+    word-break: break-all;
+
+    .user-icon {
+      border-radius: 50%;
+      position: relative;
+      z-index: 3;
+    }
+
+    p {
+      margin-top: 5px;
+    }
+
+    p > span {
+      font-weight: bold;
+    }
+
+    .tweet-content {
+      color: gray;
+      padding-top: 5px;
+    }
+  }
+
+  &:hover {
+    background-color: #111;
+  }
+
+  .detail {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+  }
+}

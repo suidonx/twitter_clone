@@ -1,7 +1,9 @@
 from django.contrib import messages
+from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from django.db.models import Prefetch
 from django.shortcuts import render, redirect, get_object_or_404
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.views.generic import ListView, View, DetailView
 
@@ -11,7 +13,16 @@ from .forms import (
     CreateCommentForm,
 )
 from .models import Tweet
-from users.models import Follow, Comment, Like, Retweet, Bookmark
+from users.models import (
+    Follow,
+    Comment,
+    Like,
+    Retweet,
+    Bookmark,
+    LikeNotify,
+    RetweetNotify,
+    CommentNotify,
+)
 
 
 # Create your views here.
@@ -227,8 +238,31 @@ class CreateComment(View):
         form = CreateCommentForm(form_data)
 
         if form.is_valid():
-            form.save()
+            comment = form.save()
             messages.success(self.request, "コメントに成功しました")
+
+            # コメントをした場合、通知用のレコードを作成
+            user = self.request.user
+            tweet = Tweet.objects.get(id=pk)
+
+            # 自分以外が自分のツイートにアクションを起こした場合、通知処理をする。
+            if not user == tweet.user:
+                CommentNotify.objects.create(user=tweet.user, comment=comment)
+
+                # 相手に通知メールを送る
+                send_mail(
+                    subject="ツイートへの新着コメント",
+                    message=render_to_string(
+                        "users/notification_mail.txt",
+                        {
+                            "username": user.username,
+                            "task": "コメント",
+                            "comment": comment.content,
+                        },
+                    ),
+                    from_email=None,
+                    recipient_list=[tweet.user.email],
+                )
 
         else:
             messages.add_message(
@@ -260,6 +294,25 @@ class LikeTweet(View):
         if is_created:
             messages.success(self.request, "いいねに成功しました")
 
+            # いいねがあった場合、通知用のレコードを作成
+            # 自分以外が自分のツイートにアクションを起こした場合、通知処理をする。
+            if not user == tweet.user:
+                LikeNotify.objects.create(user=tweet.user, like=like)
+
+                # 相手に通知メールを送る
+                send_mail(
+                    subject="ツイートへの新着いいね",
+                    message=render_to_string(
+                        "users/notification_mail.txt",
+                        {
+                            "username": user.username,
+                            "task": "いいね",
+                        },
+                    ),
+                    from_email=None,
+                    recipient_list=[tweet.user.email],
+                )
+
         else:
             like.delete()
             messages.success(self.request, "いいね解除しました")
@@ -285,6 +338,25 @@ class RetweetTweet(View):
 
         if is_created:
             messages.success(self.request, "リツイートに成功しました")
+
+            # リツイートがあった場合、通知用のレコードを作成
+            # 自分以外が自分のツイートにアクションを起こした場合、通知処理をする。
+            if not user == tweet.user:
+                RetweetNotify.objects.create(user=tweet.user, retweet=retweet)
+
+                # 相手に通知メールを送る
+                send_mail(
+                    subject="ツイートへの新着リツイート",
+                    message=render_to_string(
+                        "users/notification_mail.txt",
+                        {
+                            "username": user.username,
+                            "task": "リツイート",
+                        },
+                    ),
+                    from_email=None,
+                    recipient_list=[tweet.user.email],
+                )
 
         else:
             retweet.delete()
