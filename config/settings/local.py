@@ -1,15 +1,29 @@
 from .base import *
 
-INSTALLED_APPS += [
-    "debug_toolbar",
-]
+import sys
 
-MIDDLEWARE += [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
-]
+# テスト中はtoolbarを使わない設定
+TEST = "test" in sys.argv
 
-INTERNAL_IPS = ["127.0.0.1"]
+if DEBUG and not TEST:
+    INSTALLED_APPS += [
+        "debug_toolbar",
+    ]
 
-DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK": lambda request: True,
-}
+    MIDDLEWARE += [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ]
+
+    INTERNAL_IPS = ["127.0.0.1"]
+
+    DEBUG_TOOLBAR_CONFIG = {
+        "SHOW_TOOLBAR_CALLBACK": lambda request: True,
+    }
+
+# テスト時にManifestStaticFilesStorageを使わない設定
+if TEST:
+    STORAGES = {
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
