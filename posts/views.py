@@ -153,8 +153,7 @@ class CreateTweet(View):
         image = self.request.FILES.get("image")
 
         # モデルフォームインスタンスを生成
-        form_data = {"user": self.request.user.id, "content": content}
-        content_form = CreateTweetForm(form_data)
+        content_form = CreateTweetForm(self.request.POST)
         image_form = CreateTweetImageForm(None, self.request.FILES)
 
         # ツイートと画像が投稿されたとき
@@ -164,7 +163,9 @@ class CreateTweet(View):
             if content_form.is_valid() and image_form.is_valid():
 
                 # ツイートを保存
-                tweet = content_form.save()
+                tweet = content_form.save(commit=False)
+                tweet.user = self.request.user
+                tweet.save()
 
                 # ツイートと画像インスタンスを紐づけて画像を保存
                 image_form.instance.tweet = tweet
@@ -188,7 +189,9 @@ class CreateTweet(View):
         # ツイートのみ投稿
         elif content:
             if content_form.is_valid():
-                tweet = content_form.save()
+                tweet = content_form.save(commit=False)
+                tweet.user = self.request.user
+                tweet.save()
 
                 _post_success()
 
