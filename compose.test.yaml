@@ -1,0 +1,24 @@
+services:
+  db:
+    volumes:
+      - db-data-test:/var/lib/postgresql/data
+
+  web:
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.test
+
+  selenium:
+    image: seleniarm/standalone-chromium
+    environment:
+      VNC_NO_PASSWORD: 1
+
+    ports:
+      - "4444:4444" # Selenium WebDriver接続用
+      - "5900:5900" # VNC で接続するポート
+      - "7900:7900" # ブラウザで確認を行うためのポート
+
+    # コンテナが使用するメモリの上限
+    shm_size: "2gb"
+
+volumes:
+  db-data-test:

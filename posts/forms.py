@@ -7,7 +7,7 @@ from users.models import Comment
 class CreateTweetForm(forms.ModelForm):
     class Meta:
         model = Tweet
-        fields = ["user", "content"]
+        fields = ["content"]
 
 
 class CreateTweetImageForm(forms.ModelForm):

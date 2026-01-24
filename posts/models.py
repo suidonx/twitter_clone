@@ -6,7 +6,7 @@ from accounts.models import CustomUser
 # Create your models here.
 class Tweet(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    content = models.TextField(max_length=140)
+    content = models.CharField(max_length=140)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

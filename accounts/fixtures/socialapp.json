@@ -1,0 +1,29 @@
+[
+  {
+    "model": "sites.site",
+    "pk": 1,
+    "fields": {
+      "domain": "web",
+      "name": "web"
+    }
+  },
+  {
+    "model": "socialaccount.socialapp",
+    "pk": 1,
+    "fields": {
+      "provider": "github",
+      "name": "GitHub",
+      "client_id": "dummy",
+      "secret": "dummy",
+      "key": ""
+    }
+  },
+  {
+    "model": "socialaccount.socialapp_sites",
+    "pk": 1,
+    "fields": {
+      "socialapp_id": 1,
+      "site_id": 1
+    }
+  }
+]
